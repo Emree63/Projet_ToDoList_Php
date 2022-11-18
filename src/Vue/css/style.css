@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family-Poppins:wght@400;600&display-swap');
 
 body {
-    font-family: 'Poppinq', sans-serif;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(to right, #ffffff,#38B6FF);
+    background: linear-gradient(to right, #B7FBFB,#38B6FF);
     display: flex;
     font-family: sans-serif;
     background-color: #81d4fa;
@@ -14,23 +14,32 @@ body {
     justify-content: center;
 }
 
+body::before {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255, .15);
+    inset: 0;
+    transform: rotate(-5deg);
+    z-index: -1;
+}
+
+
 /*Bouton*/
 
 .btn{
     display: flex;
     flex-direction: column;
-    margin-left: 17rem;
-    margin-top: -22rem;
+    margin-left: 19rem;
+    margin-top: -25rem;
 }
 
 .btn:link,
 .btn:visited {
-    text-transform: uppercase;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     display: inline-block;
-    border-radius: 100px;
-    font-size: 60%;
+    border-radius: 11px;
+    font-size: 70%;
     transition: all .2s;
     position: absolute;
 }
@@ -55,7 +64,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 50px;
     position: absolute;
     top: 0;
     left: 0;
@@ -84,16 +93,17 @@ body {
     background: rgba(255,255,255, .5);
     padding: 4rem;
     border-radius: 10px;
-    border-radius: relative;
+    position: relative;
 }
 
 .model::before {
     content: '';
     position: absolute;
-    background: rgba(255,255,255, .15);
+    background: rgba(255,255,255, .20);
     inset: 0;
     transform: rotate(-5deg);
     z-index: -1;
+    border-radius: 10px;
 }
 
 .main-logo {
