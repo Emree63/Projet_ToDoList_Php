@@ -7,7 +7,7 @@
 **Nom de l’application** : ToDoList
 </br>
 
-**Thème de l’application** : Repertorier les tâches à accomplir.
+**Thème de l’application** : Répertorier les tâches à accomplir.
 </br>
 
 **Récapitulation de notre application** :
@@ -18,7 +18,7 @@
 
 # Repartition du Gitlab
 
-La racine de notre gitlab est composé de deux dossier essentielles au projet:
+La racine de notre gitlab est composé de deux dossiers essentiels au projet:
 
 [**src**](src) : **Toute la partie codage du site web**
 
@@ -30,6 +30,6 @@ Notre environnement de travail se base essentiellement sur du php et du HTML/CSS
 
 # Technicien en charge de l'application
 
-La composition pour le projet se voit fait par deux élèves de l'IUT d'aubière:
+La composition pour le projet se voit réaliser par deux élèves de l'IUT d'aubière:
 - Emre KARTAL (Groupe 4)
 - Rayhan HASSOU (Groupe 4)
