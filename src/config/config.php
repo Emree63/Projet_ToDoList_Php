@@ -11,14 +11,16 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$base="sasa";
-$login="";
-$mdp="";
+$base="dbrahassou";
+$login="rahassou";
+$mdp="achanger";
 
 //Vues
 
 $vues['erreur']='vues/erreur.php';
 $vues['vuephp1']='vues/vuephp1.php';
-
+$vues['inscription']='html/inscription.html';
+$vues['login']='html/login.html';
+$vues['profil']='html/profil.html';
 
 ?>
