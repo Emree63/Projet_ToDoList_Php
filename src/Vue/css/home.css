@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* HEADER */
+
+.main-head{
+    background: #9AF7FF;
+    color: #ffffff;
+}
+
+a{
+    font-family: JetBrains Mono,Menlo,Droid Sans Mono,monospace;
+}
+
+nav{
+    min-height: 10vh;
+    display: flex;
+}
+
+nav ul{
+    display: flex;
+    flex: 1 1 40rem;
+    justify-content: space-around;
+}
+
+.main-logo img{
+    flex: 1 1 40rem;
+}
+
+/*Réseau sociaux*/
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social a {
+    display: inline-block;
+    width: 20%;
+    height: 30%;
+    padding: 35%;
+    border-radius: 40%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    flex-shrink: 0;
+    transition: all .2s;
+}
+
+@media screen and (min-width: 768px) {
+    .social a:hover {
+        transform: scale(1.2) translateY(-5px);
+    }
+}
+
+.social a.facebook {
+    padding-top: 2%;
+    padding-left: 4%;
+   background: linear-gradient(45deg, #3b5998,#0078d7); 
+   box-shadow: 0 4px 30px rgba(45, 98, 169, 1);
+}
+
+.social a.twitter {
+    padding-top: 2%;
+    padding-left: 4%;
+    background: linear-gradient(45deg, #1da1f2,#0e71c8); 
+    box-shadow: 0 4px 30px rgba(19, 127, 212, 1);
+}
+
+.social a.instagram {
+    padding-top: 2%;
+    padding-left: 4%;
+    background: linear-gradient(45deg, #405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d); 
+    box-shadow: 0 4px 30px rgba(120, 64, 190, 0.8);
+}
+
+.social a.gitlab {
+    padding-top: 2%;
+    padding-left: 4%;
+    background: linear-gradient(45deg, #FF9467,#DB4100); 
+    box-shadow: 0 4px 30px rgba(255,148,103, 0.6);
+}
