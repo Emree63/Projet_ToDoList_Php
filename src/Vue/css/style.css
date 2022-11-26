@@ -23,6 +23,7 @@ body::before {
     z-index: -1;
 }
 
+
 /* Model */
 
 .model {
@@ -265,6 +266,29 @@ body::before {
     background: white;
     transform: scale(1.1);
 }
+
+/* Button */
+
+
+.button{
+    border-color: #38b6ff;
+    height: 2rem;
+    width: 5rem;
+    margin-left: 21rem;
+    margin-bottom: 1rem;
+    font-size: 90%;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #38b6ff;
+    color: white;
+    display: flex;
+    justify-content: center;
+} 
+
+.button:hover {
+    background-color: #6fc7fa;
+} 
+
 
 /* Responsive */
 
