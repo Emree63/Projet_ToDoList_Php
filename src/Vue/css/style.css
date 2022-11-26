@@ -1,4 +1,4 @@
-@import url("reset.css");
+@import url("./Vue/css/reset.css");
 
 @import url('https://fonts.googleapis.com/css2?family-Poppins:wght@400;600&display-swap');
 
@@ -21,69 +21,6 @@ body::before {
     inset: 0;
     transform: rotate(-5deg);
     z-index: -1;
-}
-
-
-/*Bouton*/
-
-.btn{
-    display: flex;
-    flex-direction: column;
-    margin-left: 19rem;
-    margin-top: -25rem;
-}
-
-.btn:link,
-.btn:visited {
-    text-decoration: none;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 11px;
-    font-size: 70%;
-    transition: all .2s;
-    position: absolute;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.btn-white {
-    background-color: #fff;
-    color: #777;
-}
-
-.btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 50px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-}
-
-.btn-white::after {
-    background-color: #fff;
-}
-
-.btn:hover::after {
-    transform: scaleX(1.5) scaleY(1.7);
-    opacity: 0;
-}
-
-.btn-animated {
-    animation: moveInBottom 5s ease-out;
-    animation-fill-mode: backwards;
 }
 
 /* Model */

@@ -1,6 +1,6 @@
 <?php
 
-namespace controleur;
+namespace Controller;
 
 class Controleur {
 
@@ -16,7 +16,10 @@ session_start();
 $dVueEreur = array ();
 
 try{
-$action=$_REQUEST['action'];
+$action=NULL;
+ if(isset($_REQUEST['action'])){
+	$action = $_REQUEST["action"];
+ }
 
 switch($action) {
 
@@ -30,10 +33,22 @@ case "validationFormulaire":
 	$this->ValidationFormulaire($dVueEreur);
 	break;
 
+case "redirectionLogin":
+	$this->redirectionLogin($dVueEreur);
+	break;
+
+case "redirectionInscription":
+	$this->redirectionInscription($dVueEreur);
+	break;
+
+case "seConnecter":
+	$this->seConnecter($dVueEreur);
+	break;
+
 //mauvaise action
 default:
 $dVueEreur[] =	"Erreur d'appel php";
-require ($rep.$vues['vuephp1']);
+require ($rep.$vues['home']);
 break;
 }
 
@@ -63,7 +78,7 @@ $dVue = array (
 	'nom' => "",
 	'age' => 0,
 	);
-	require ($rep.$vues['vuephp1']);
+	require ($rep.$vues['Home']);
 }
 
 function ValidationFormulaire(array $dVueEreur) {
@@ -83,8 +98,31 @@ $dVue = array (
 	'age' => $age,
         'data' => $data,
 	);
-	require ($rep.$vues['vuephp1']);
+	require ($rep.$vues['inscription']);
 }
+
+
+function redirectionLogin(array $dVueEreur) {
+	global $rep,$vues;
+	require ($rep.$vues['login']);
+}
+
+function redirectionInscription(array $dVueEreur) {
+	global $rep,$vues;
+	require ($rep.$vues['inscription']);
+}
+
+function seConnecter(array $dVueEreur) {
+	global $rep,$vues;
+
+
+	//si exception, ca remonte !!!
+	$mail=$_POST['mail']; // txtNom = nom du champ texte dans le formulaire
+	$password=$_POST['password'];
+	\config\Validation::val_connection($nom,$age,$dVueEreur);
+	require ($rep.$vues['login']);
+}
+
 
 }//fin class
 

@@ -17,10 +17,9 @@ $mdp="achanger";
 
 //Vues
 
-$vues['erreur']='vues/erreur.php';
-$vues['vuephp1']='vues/vuephp1.php';
-$vues['inscription']='html/inscription.html';
-$vues['login']='html/login.html';
-$vues['profil']='html/profil.html';
+$vues['inscription']='Vue/html/inscription.html';
+$vues['Home']='Vue/html/index.html';
+$vues['login']='Vue/html/login.html';
+$vues['profil']='Vue/html/profil.html';
 
 ?>

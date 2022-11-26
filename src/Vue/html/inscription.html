@@ -2,42 +2,42 @@
 
 <html>
     <head>
-
       <title>Page d'inscription</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="../css/inscription.css">
-      <script type="text/javascript" src="../javaScript/inscription.js" defer></script> 
+      <link rel="stylesheet" href="./Vue/css/inscription.css">
+      <script type="text/javascript" src="./Vue/javaScript/inscription.js" defer></script> 
 
     </head>
 
     <body>
-          <div class="text-box">
-            <a href="login.html" class="btn btn-white btn-animate">Revenir</a>
-          </div>
+    
           <div class="main-logo">
-            <img src="../Images/Logo.png" alt="logo">
+            <form method="post" class="form-redirection">
+              <Button type="submit">Revenir</Button>
+              <input type="hidden" name="action" value="redirectionLogin">
+            </form>
+            <img src="./Vue/Images/Logo.png" alt="logo">
             <h1>Inscription</h1>
           </div>
-        
           <form>
             <ul class="items"></ul>
 
             <fieldset class="username enable">
                 <div class="icon left"><i class="user"></i></div>
-                <input type="text" name="username" placeholder="Username"/>
+                <input type="text" name="usernameForm" placeholder="Username"/>
                 <div class="icon right button"><i class="arrow"></i></div>
             </fieldset>
 
             <fieldset class="email">
               <div class="icon left"><i class="letter"></i></div>
-              <input type="mail" name="email" placeholder="Email"/>
+              <input type="mail" name="mailForm" placeholder="Email"/>
               <div class="icon right button"><i class="arrow"></i></div>
             </fieldset>
 
             <fieldset class="password">
               <div class="icon left"><i class="lock"></i></div>
-              <input type="password" name="password" placeholder="Password"/>
+              <input type="password" name="passwordForm" placeholder="Password"/>
               <div class="icon right button"><i class="arrow"></i></div>
             </fieldset>
 
