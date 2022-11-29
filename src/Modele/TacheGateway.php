@@ -1,14 +1,11 @@
 <?php
-require_once 'Tache.php';
-require_once 'Utilisateur.php';
-
 class TacheGateway{
 	private $con;
   	public  function __construct(Connection $con){
         $this->con=$con;
     }
 
-    public Tache function Ajouter($nom, $description, Date $dateCreation, Utilisateur $createur){
+    public function Ajouter($nom, $description, Date $dateCreation, Utilisateur $createur){
     	$query='INSERT INTO Tache VALUES($nom, $description, dateCreation, $createur)';
 
     }
@@ -20,8 +17,8 @@ class TacheGateway{
 
 
     public function Supprimer(Tache $tache){
-        $query='DELETE FROM Tache WHERE utilisateur=:utilisateur AND nom=:nom AND id=:id';
-        $this->con->executeQuery($query, array('utilisateur' => array($tache->createur, PDO::PARAM_INT),'nom' => array($tache->nom, PDO::PARAM_STRING), 'id' => array($tache->id, PDO::PARAM_INT)));
+        $query='DELETE FROM Tache WHERE utilisateur=:utilisateur AND nom=:nom';
+        $this->con->executeQuery($query, array('utilisateur' => array($tache->createur, PDO::PARAM_INT),'nom' => array($tache->nom, PDO::PARAM_STRING)));
     }
 }
 ?>
