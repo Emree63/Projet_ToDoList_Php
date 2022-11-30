@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home Page</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="./Vue/css/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -15,49 +14,28 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-info">
-        <img src="./Vue/Images/LogoForHome.png" width="200">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse navbar-home" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <form method="post">
-              <button type="submit" class="button-home">Profil</Button>
-              <input type="hidden" name="action" value="redirectionLogin">
-            </form>
-            <form method="post">
-              <button type="submit" class="button-home">Mes tâches</Button>
-              <input type="hidden" name="action" value="">
-            </form>
-            <form method="post">
-              <button type="submit" class="button-home">Les tâches publics</Button>
-              <input type="hidden" name="action" value="ConsulterListe">
-            </form>
-          </div>
-        </div>
-      </nav>
-      <br>
+      <? php require('Vue/html/NavBar.php'); ?>
       
-      <?php
-            Foreach($results as $row)
-            {
-              print $row->getNom();
-              echo ("<br>");
-              print $row->getDateCreation();
-              echo ("<br>");
-            }
-      ?>
+
 
 
 
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li class="page-item"> 
+            <a class="page-link" href="#">Previous</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a
+            ></li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
         </ul>
       </nav>
   </body>

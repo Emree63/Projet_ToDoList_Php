@@ -211,16 +211,6 @@ body::before {
     accent-color: black;
 }
 
-.model button {
-    background: #38b6ff;
-    color: white;
-    padding: 1rem;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: background .5s;
-}
-
 .login-card-form button:hover {
     background-color: rgba(84,192,255,.85);
     cursor: pointer;
@@ -268,6 +258,30 @@ body::before {
 }
 
 /* Button */
+
+
+.mon-button{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    border-color: transparent;
+    background-color: transparent;
+    color: #35339a;
+}
+
+.mon-button:hover{
+    text-decoration: underline 1px;
+}
+
+.button-body{
+    background: #38b6ff;
+    color: white;
+    padding: 1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background .5s;
+}
+
 
 
 .button{

@@ -46,12 +46,16 @@
                     </div>
                     <a href="#">Oublie de mot de passe</a>
                 </div>
-                <button type="submit">Se connecter</button>
+                <button type="submit" class="button-body">Se connecter</button>
                 <!-- action !!!!!!!!!! --> 
                 <input type="hidden" name="action" value="seConnecter">
             </form>
             <div class="login-card-footer">
-                Pas de compte? <a href="./Vue/html/inscription.html">Creer un compte</a>
+                Pas de compte ? <!--<a href="../../Controller/Controleur.php?action='redirectionInscription'">Creer un compte</a>-->
+                <form method="post">
+                    <Button type="submit" class="mon-button">Creer un compte</Button>
+                    <input type="hidden" name="action" value="redirectionInscription">
+                </form>
             </div>
         </div>
         <div class="social">

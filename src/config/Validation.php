@@ -4,36 +4,81 @@ namespace config;
 
 class Validation {
 
-    static function val_action($action) {
+    static function val_form_user(string &$nom, string &$prenom, string &$pseudo, string &$mdp, string &$email, &$dVueEreur) {
 
-        if (!isset($action)) {
-            throw new Exception('pas d\'action');
-            //on pourrait aussi utiliser
-//$action = $_GET['action'] ?? 'no';
-            // This is equivalent to:
-            //$action =  if (isset($_GET['action'])) $action=$_GET['action']  else $action='no';
-        }
-    }
-
-    static function val_form(string &$nom, string &$age, &$dVueEreur) {
-
+        int $i=0;
+        //Vérification Nom
         if (!isset($nom)||$nom=="") {
             $dVueEreur[] =	"pas de nom";
             $nom="";
+            $i++;
         }
 
-        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING))
+        val_string($Nom,$i,$dVueEreur);
+
+        //Vérification Prenom
+        if (!isset($prenom)||$prenom=="") {
+            $dVueEreur[] =	"pas de prenom";
+            $pseudo="";
+            $i++;
+        }
+
+        val_string($prenom,$i,$dVueEreur);
+
+        //Vérification Email
+        if (!isset($email)||$email=="") {
+            $dVueEreur[] =	"pas de email";
+            $pseudo="";
+            $i++;
+        }
+
+        if ($email != filter_var($email, FILTER_SANITIZE_STRING))
         {
             $dVueEreur[] =	"testative d'injection de code (attaque sécurité)";
             $nom="";
-
+            $i++;
         }
 
-        if (!isset($age)||$age==""||!filter_var($age, FILTER_VALIDATE_INT)) {
-            $dVueEreur[] =	"pas d'age ";
-            $age=0;
+        val_string($email,$i,$dVueEreur);
+
+        //Vérification Pseudo
+        if (!isset($pseudo)||$pseudo=="") {
+            $dVueEreur[] =	"pas de pseudo";
+            $pseudo="";
+            $i++;
         }
 
+        val_string($pseudo,$i,$dVueEreur);
+
+        //Vérification Mot de Passe
+        if (!isset($mdp)||$mdp=="") {
+            $dVueEreur[] =	"pas de mot de passe";
+            $mdp="";
+            $i++;
+        }
+
+        val_string($mdp,$i,$dVueEreur);
+
+
+        if (!preg_match('/^.{5,}$/', $mdp)) {
+            $dVueEreur[] =	"Mot de passe trop léger : Plus de 5 caractères minimum  !";
+            $i++;
+        }
+
+        if($i>0){
+            return false;
+        }
+        return true;
+
+    }
+
+    static function val_string(string &$str, int &$i ,&$dVueEreur) {
+        if ($str != filter_var($str, FILTER_SANITIZE_STRING))
+        {
+            $dVueEreur[] =	"tentative d'injection de code (attaque sécurité)";
+            $str="";
+            $i++;
+        }
     }
 
 }

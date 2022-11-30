@@ -4,13 +4,13 @@ namespace modeles;
 
 class Utilisateur
 {
-    private string $id;
-    private string $nom;
-    private string $prenom;
-    private string $pseudo;
-    private string $email;
+    private $id;
+    private $nom;
+    private $prenom;
+    private $pseudo;
+    private $email;
 
-    public function __construct(string $id, string $nom, string $prenom, string $pseudo, string $email,string $motDePasse, bool $isAdmin){
+    public function __construct($id, $nom, $prenom, $pseudo, $email, $motDePasse, $isAdmin){
     	$this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -23,7 +23,7 @@ class Utilisateur
         return $this->id;
     }
 
-    public function setId(string $id){
+    public function setId($id){
         $this->nom = $id;
     }
 
@@ -32,7 +32,7 @@ class Utilisateur
 		return $this->nom;
 	}
 
-    public function setNom(string $nom){
+    public function setNom($nom){
         $this->nom = $nom;
 	}
 
@@ -41,7 +41,7 @@ class Utilisateur
 		return $this->prenom;
 	}
 
-    public function setPrenom(string $prenom){
+    public function setPrenom($prenom){
         $this->prenom = $prenom;
 	}
 	
@@ -50,7 +50,7 @@ class Utilisateur
 		return $this->pseudo;
 	}
 
-    public function setPseudo(string $pseudo){
+    public function setPseudo($pseudo){
         $this->pseudo = $pseudo;
 	}
 
@@ -59,7 +59,7 @@ class Utilisateur
 		return $this->email;
 	}
 
-    public function setEmail(string $email){
+    public function setEmail($email){
         $this->email = $email;
 	}
 

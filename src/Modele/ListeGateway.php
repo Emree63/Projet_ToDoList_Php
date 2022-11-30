@@ -21,9 +21,9 @@ class ListeGateway{
     	$this->con->executeQuery($query, array('nom' => array($Liste->getNom(), PDO::PARAM_STRING)), array('id' => array($Liste->getId()),PDO::PARAM_INT));
     }
 
-    public function Supprimer(Liste $liste){
+    public function Supprimer(int $id){
         $query='DELETE FROM ToDoListe_Liste WHERE id=:id';
-        $this->con->executeQuery($query,'id' => array($liste->id, PDO::PARAM_STRING)));
+        $this->con->executeQuery($query,'id' => array($id, PDO::PARAM_STRING)));
     }
 
     public function getListe(int $offset, int $limit){
@@ -41,7 +41,7 @@ class ListeGateway{
     }
 
     public function getListePublic($offset,$limit){
-        $query = "SELECT * FROM ToDoListe_Liste AND isPublic LIMITS $offset,$limit"; 
+        $query = "SELECT * FROM ToDoListe_Liste AND estPublic LIMITS $offset,$limit"; 
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
         return $results;

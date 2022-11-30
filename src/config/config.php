@@ -3,24 +3,17 @@
 //gen
 $rep=__DIR__.'/../';
 
-// liste des modules à inclure
-
-//$dConfig['includes']= array('controleur/Validation.php');
-
-
-
 //BD
 
-$base="dbrahassou";
-$login="rahassou";
-$mdp="achanger";
-
+$user= 'rahassou';
+$pass='achanger';
+$dsn='mysql:host=londres.uca.local;dbname=dbrahassou';
 //Vues
 
-$vues['inscription']='Vue/html/inscription.html';
-$vues['Home']='Vue/html/index.html';
-$vues['login']='Vue/html/login.html';
-$vues['profil']='Vue/html/profil.html';
+$vues['erreur']='vues/erreur.php';
+$vues['inscription']='Vue/html/inscription.php';
+$vues['ListPublic']='Vue/html/PageListPublic.php';
+$vues['login']='Vue/html/login.php';
 $vues['listeVue']='Vue/html/ListeVue.php';
 
 ?>
