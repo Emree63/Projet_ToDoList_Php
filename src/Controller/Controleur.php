@@ -23,27 +23,31 @@ $action=NULL;
 
 switch($action) {
 
-//pas d'action, on réinitialise 1er appel
-case NULL:
-	$this->Reinit();
-	break;
+		//pas d'action, on réinitialise 1er appel
+		case NULL:
+			$this->Reinit();
+			break;
 
 
-case "validationFormulaire":
-	$this->ValidationFormulaire($dVueEreur);
-	break;
+		case "validationFormulaire":
+			$this->ValidationFormulaire($dVueEreur);
+			break;
 
-case "redirectionLogin":
-	$this->redirectionLogin($dVueEreur);
-	break;
+		case "redirectionLogin":
+			$this->redirectionLogin($dVueEreur);
+			break;
 
-case "redirectionInscription":
-	$this->redirectionInscription($dVueEreur);
-	break;
+		case "redirectionInscription":
+			$this->redirectionInscription($dVueEreur);
+			break;
 
-case "seConnecter":
-	$this->seConnecter($dVueEreur);
-	break;
+		case "seConnecter":
+			$this->seConnecter($dVueEreur);
+			break;
+
+		case "ConsulterListe":
+			$this->ConsulterListe();
+			break;
 
 //mauvaise action
 default:
@@ -122,6 +126,18 @@ function seConnecter(array $dVueEreur) {
 	\config\Validation::val_connection($nom,$age,$dVueEreur);
 	require ($rep.$vues['login']);
 }
+
+function ConsulterListe(){
+		global $rep,$vues;
+		$con=new Connection("mysql:host=localhost;dbname=dbrahassou","rahassou","achanger");
+		$model = new ListeGateway($con);
+		$results=array();
+		$results=$model->getListePublic(0,10);
+		$dVue = array (			
+    		'results' => $results
+		);
+		require ($rep.$vues['listeVue']);
+	} 
 
 
 }//fin class

@@ -32,15 +32,27 @@
             </form>
             <form method="post">
               <button type="submit" class="button-home">Les tâches publics</Button>
-              <input type="hidden" name="action" value="">
+              <input type="hidden" name="action" value="ConsulterListe">
             </form>
           </div>
         </div>
       </nav>
       <br>
       
+      <?php
+            Foreach($results as $row)
+            {
+              print $row->getNom();
+              echo ("<br>");
+              print $row->getDateCreation();
+              echo ("<br>");
+            }
+      ?>
+
+
+
       <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center >
+        <ul class="pagination justify-content-center">
           <li class="page-item"><a class="page-link" href="#">Previous</a></li>
           <li class="page-item"><a class="page-link" href="#">1</a></li>
           <li class="page-item"><a class="page-link" href="#">2</a></li>

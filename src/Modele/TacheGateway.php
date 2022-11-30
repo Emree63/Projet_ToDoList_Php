@@ -5,20 +5,23 @@ class TacheGateway{
         $this->con=$con;
     }
 
-    public function Ajouter($nom, $description, Date $dateCreation, Utilisateur $createur){
-    	$query='INSERT INTO Tache VALUES($nom, $description, dateCreation, $createur)';
-
+    public function Ajouter(string $nom, string $description, Date $dateCreation, bool $estValide, int $idCreateur){
+    	$query='INSERT INTO ToDoList_Tache(nom, description, dateCreation,estValide, createur) VALUES(:nom, :description, :dateCreation, :estValide, :idCreateur)';
+        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STRING)),
+        array('description' => array($description, PDO::PARAM_STRING)),
+        array('dateCreation' => array($dateCreation, PDO::PARAM_STRING)),
+        array('estValide' => array($estValide, PDO::PARAM_BOOL)),
+        array('idCreateur' => array($idCreateur, PDO::PARAM_INT)))
     }
 
     public function Editer(Tache $tache, string $nom, string $description){
-    	$query='UPDATE Tache SET  :nom=$nom, :description=$description';
-    	$this->con->executeQuery($query, array('nom' => array($tache->nom, PDO::PARAM_STRING)), array('description' => array($tache->description, PDO::PARAM_STRING)));
+    	$query='UPDATE ToDoListe_Tache SET  nom=:nom, description =:description WHERE id=:id';
+    	$this->con->executeQuery($query, array('nom' => array($tache->getNom(), PDO::PARAM_STRING)), array('description' => array($tache->getdescription(), PDO::PARAM_STRING)), array('id' => array($tache->getId()),PDO::PARAM_INT));
     }
 
-
     public function Supprimer(Tache $tache){
-        $query='DELETE FROM Tache WHERE utilisateur=:utilisateur AND nom=:nom';
-        $this->con->executeQuery($query, array('utilisateur' => array($tache->createur, PDO::PARAM_INT),'nom' => array($tache->nom, PDO::PARAM_STRING)));
+        $query='DELETE FROM ToDoList_Tache WHERE id=:id';
+        $this->con->executeQuery($query,'id' => array($tache->getId(), PDO::PARAM_STRING)));
     }
 }
 ?>

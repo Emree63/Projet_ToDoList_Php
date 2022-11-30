@@ -21,5 +21,6 @@ $vues['inscription']='Vue/html/inscription.html';
 $vues['Home']='Vue/html/index.html';
 $vues['login']='Vue/html/login.html';
 $vues['profil']='Vue/html/profil.html';
+$vues['listeVue']='Vue/html/ListeVue.php';
 
 ?>
