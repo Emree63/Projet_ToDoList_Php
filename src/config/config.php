@@ -12,7 +12,7 @@ $dsn='mysql:host=londres.uca.local;dbname=dbrahassou';
 
 $vues['erreur']='vues/erreur.php';
 $vues['inscription']='Vue/html/inscription.php';
-$vues['ListPublic']='Vue/html/PageListPublic.php';
+$vues['ListPublic']='Vue/html/PageListePublic.php';
 $vues['login']='Vue/html/login.php';
 $vues['listeVue']='Vue/html/ListeVue.php';
 
