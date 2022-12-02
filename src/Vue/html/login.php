@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,11 +10,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0" />
 </head>
 <body>
-
     <div class="main">
         <form method="post" >
             <Button type="submit" class="button">Sortir</Button>
-            <input type="hidden" name="action" value="redirectionHome">
+            <input type="hidden" name="action" value="redirectionListePublic">
         </form>
         <div class="model">
             <div class="main-logo">
@@ -51,11 +49,8 @@
                 <input type="hidden" name="action" value="seConnecter">
             </form>
             <div class="login-card-footer">
-                Pas de compte ? <!--<a href="../../Controller/Controleur.php?action='redirectionInscription'">Creer un compte</a>-->
-                <form method="post">
-                    <Button type="submit" class="mon-button">Creer un compte</Button>
-                    <input type="hidden" name="action" value="redirectionInscription">
-                </form>
+                Pas de compte ? 
+                <a href="index.php?action=redirectionInscription">Creer un compte</a>
             </div>
         </div>
         <div class="social">

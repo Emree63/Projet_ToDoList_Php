@@ -6,7 +6,7 @@ class Validation {
 
     static function val_form_user(string &$nom, string &$prenom, string &$pseudo, string &$mdp, string &$email, &$dVueEreur) {
 
-        int $i=0;
+        $i=0;
         //Vérification Nom
         if (!isset($nom)||$nom=="") {
             $dVueEreur[] =	"pas de nom";

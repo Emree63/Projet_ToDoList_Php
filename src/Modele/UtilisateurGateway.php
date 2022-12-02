@@ -1,5 +1,6 @@
 <?php
 class UtilisateurGateway{
+    
 	private $con;
   	public  function __construct(){
         $this->con=new Connection($dsn,$user,$pass);

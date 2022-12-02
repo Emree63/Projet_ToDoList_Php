@@ -3,56 +3,58 @@
 <html>
     <head>
       <title>Page d'inscription</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- CSS only -->
-      <link rel="stylesheet" href="./Vue/css/inscription.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-      <!-- JavaScript Bundle with Popper -->
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>
-
-    
+      <link rel="stylesheet" href="./Vue/css/style.css">
+      <link rel="stylesheet" href="./Vue/css/reset.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      </head>
     <body>
-          <div class="main-logo">
-            <img src="./Vue/Images/Logo.png" alt="logo">
-            <h1>Inscription</h1>
+      <div class="main">
+          <div class="model">
+              <div class="main-logo">
+                  <img src="./Vue/Images/Logo.png" alt="logo">
+              </div>
+              <div class="login-card-header">
+                  <h1>Inscrivez-vous</h1>    
+              </div>
+              <form class="login-card-form">
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                        <input type="text" name="nom-Form" placeholder="Nom" required autofocus>
+                    </div>
+                  </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                          <input type="text" name="prenom-Form" placeholder="Prenom" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                      <input type="text" name="pseudo-Form" placeholder="Pseudo" required autofocus>
+                  </div>
+                  <div class="form-item">
+                      <input type="text" name="mail-Form" placeholder="Mail" required autofocus>
+                  </div>
+                  <div class="form-item">
+                      <input type="password" name="password-Form" placeholder="Password" required >
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">S'inscrire</button>
+                  <!-- action !!!!!!!!!! --> 
+                  <input type="hidden" name="action" value="validationFormulaire">
+                  <p class="text-center text-muted mt-5 mb-0">Déjà un compte?
+                  <a href="index.php?action=redirectionLogin" class="fw-bold text-body"><u>Connectez-vous</u></a></p>
+              
+                </form>
+
           </div>
-          <form>
-            <!-- 2 column grid layout with text inputs for the first and last names -->
-            <div class="row mb-4">
-              <div class="col">
-                <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
-                  <label class="form-label" for="form3Example1">First name</label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
-                  <label class="form-label" for="form3Example2">Last name</label>
-                </div>
-              </div>
-            </div>
           
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
-              <label class="form-label" for="form3Example3">Email address</label>
-            </div>
-          
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" />
-              <label class="form-label" for="form3Example4">Password</label>
-            </div>
-          
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
-        
-          </form>
+      </div>
 
     </body>
 

@@ -5,15 +5,15 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$user= 'rahassou';
+$user= 'emkartal1';
 $pass='achanger';
-$dsn='mysql:host=londres.uca.local;dbname=dbrahassou';
+$dsn='mysql:host=londres.uca.local;dbname=dbemkartal1';
 //Vues
 
 $vues['erreur']='vues/erreur.php';
 $vues['inscription']='Vue/html/inscription.php';
-$vues['ListPublic']='Vue/html/PageListePublic.php';
+$vues['listPublic']='Vue/html/PageListePublic.php';
 $vues['login']='Vue/html/login.php';
-$vues['listeVue']='Vue/html/ListeVue.php';
+$vues['NavBar']='Vue/html/NavBar.php';
 
 ?>

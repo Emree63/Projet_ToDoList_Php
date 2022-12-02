@@ -2,28 +2,27 @@
 class ListeGateway{
 	private $con;
 
-  	public  function __construct(Connection $con){
-        $this->con=$con;
+  	public  function __construct(){
+        $this->con=new Connection($dsn,$user,$pass);
     }
 
     public function Ajouter(string $nom,  Date $dateCreation, bool $estValide, int $idCreateur, bool $estPublic){
     	$query='INSERT INTO ToDoList_Liste(nom, dateCreation,estValide, createur, estPublic) VALUES(:nom, :dateCreation, :estValide, :idCreateur, :estPublic)';
         $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STRING)),
-        array('dateCreation' => array($dateCreation, PDO::PARAM_STRING)),
-        array('estValide' => array($estValide, PDO::PARAM_BOOL)),
-        array('idCreateur' => array($idCreateur, PDO::PARAM_INT)),
-        array('estPublic' => array($estPublic, PDO::PARAM_INT))
-    )
+                                        array('dateCreation' => array($dateCreation, PDO::PARAM_STRING)),
+                                        array('estValide' => array($estValide, PDO::PARAM_BOOL)),
+                                        array('idCreateur' => array($idCreateur, PDO::PARAM_INT)),
+                                        array('estPublic' => array($estPublic, PDO::PARAM_INT)));
     }
 
-    public function Editer(Liste $Liste, string $nom,){
+    public function Editer(Liste $Liste){
     	$query='UPDATE ToDoListe_Liste SET  nom=:nom WHERE id=:id';
     	$this->con->executeQuery($query, array('nom' => array($Liste->getNom(), PDO::PARAM_STRING)), array('id' => array($Liste->getId()),PDO::PARAM_INT));
     }
 
     public function Supprimer(int $id){
         $query='DELETE FROM ToDoListe_Liste WHERE id=:id';
-        $this->con->executeQuery($query,'id' => array($id, PDO::PARAM_STRING)));
+        $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_STRING)));
     }
 
     public function getListe(int $offset, int $limit){
@@ -43,8 +42,11 @@ class ListeGateway{
     public function getListePublic($offset,$limit){
         $query = "SELECT * FROM ToDoListe_Liste AND estPublic LIMITS $offset,$limit"; 
         $this->con->executeQuery($query);
-        $results=$this->con->getResults();
-        return $results;
+        $tab = [];
+		foreach ($this->con->getResults() as $liste) {
+			$tab[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
+		}
+		return $tab;
     }
 }
 ?>

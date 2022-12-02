@@ -6,17 +6,18 @@ class Liste
 {
 	private $id;
 	private $nom;
+	private $description;
 	private $dateCreation;
 	private $estPublic;
-	private $idUser;
+	private $idUtilisateur;
 
-	public function __construct($id, $nom, $dateCreation, $estPublic, $idUser){
+	public function __construct($id, $nom, $description, $dateCreation, $estPublic, $idUser){
 		$this->id = $id;
 		$this->nom = $nom;
 		$this->description = $description;
 		$this->dateCreation = $dateCreation;
 		$this->estPublic = $estPublic;
-		$this->idUser = $idUser;
+		$this->idUtilisateur = $idUtilisateur;
 	}
 	
 	//Id
@@ -55,13 +56,13 @@ class Liste
 		$this->estPublic = $estPublic;
 	}
 
-	//IdUser
+	//idUtilisateur
 	public function getIdUser(){
-		return $this->idUser;
+		return $this->idUtilisateur;
 	}
 
 	public function setIdUser($idUser){
-		$this->idUser = $idUser;	
+		$this->idUtilisateur = $idUtilisateur;	
 	}
 
 }
