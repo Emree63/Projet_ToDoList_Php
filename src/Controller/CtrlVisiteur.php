@@ -68,10 +68,10 @@ class CtrlVisiteur {
 
 	function ValidationFormulaire(array $dVueEreur) {
 		global $rep,$vues; 
-		Modele::CreerUtilisateur();
-		require ($rep.$vues['login']);
+		Mdl::CreerUtilisateur();
+		$action=NULL;
+		$this->redirectionLogin($dVueEreur);
 	}
-
 
 	function redirectionLogin(array $dVueEreur) {
 		global $rep,$vues; 
@@ -85,17 +85,19 @@ class CtrlVisiteur {
 
 	function seConnecter(array $dVueEreur) {
 		global $rep,$vues; 
-		require ($rep.$vues['login']);
+		MdlVisiteur::Connection();
+		$action=NULL;
+		$this->ConsulterListePublic($dVueEreur);
 	}
 
 	function ConsulterListePublic(array $dVueEreur) {
 		global $rep,$vues; 
-		$listes = Modele::RecupererListePublic();
+		$listes = MdlVisiteur::RecupererListePublic();
 		require ($rep.$vues['listPublic']);
 	}
 
 
 
-	}//fin class
+}//fin class
 
 ?>

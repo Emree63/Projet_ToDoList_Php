@@ -4,12 +4,11 @@
 $rep=__DIR__.'/../';
 
 //BD
-
 $user='emkartal1';
 $pass='achanger';
 $dsn='mysql:host=londres.uca.local;dbname=dbemkartal1';
-//Vues
 
+//Vues
 $vues['erreur']='Vue/html/erreur.php';
 $vues['inscription']='Vue/html/inscription.php';
 $vues['listPublic']='Vue/html/PageListePublic.php';

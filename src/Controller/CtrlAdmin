@@ -1,6 +1,6 @@
 <?php
 
-class CtrlUtilisateur {
+class CtrlAdmin {
 
 	function __construct() {
 
