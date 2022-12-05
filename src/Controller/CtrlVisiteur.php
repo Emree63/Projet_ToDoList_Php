@@ -51,7 +51,7 @@ class CtrlVisiteur {
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur inattendue!!! ";
+			$dVueEreur[] =	"Erreur BD!!! ";
 			require ($rep.$vues['erreur']);
 
 		}

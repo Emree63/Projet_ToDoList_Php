@@ -21,7 +21,7 @@
               <div class="login-card-header">
                   <h1>Inscrivez-vous</h1>    
               </div>
-              <form class="login-card-form">
+              <form method="POST" class="login-card-form">
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">

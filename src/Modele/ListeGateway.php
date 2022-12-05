@@ -3,6 +3,7 @@ class ListeGateway{
 	private $con;
 
   	public  function __construct(){
+        global $dsn,$user,$pass;
         $this->con=new Connection($dsn,$user,$pass);
     }
 
@@ -26,7 +27,7 @@ class ListeGateway{
     }
 
     public function getListe(int $offset, int $limit){
-        $query = "SELECT * FROM ToDoListe_Liste LIMITS $offset,$limit"; 
+        $query = "SELECT * FROM ToDoList_Liste LIMITS $offset,$limit"; 
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
         return $results;
@@ -40,13 +41,13 @@ class ListeGateway{
     }
 
     public function getListePublic($offset,$limit){
-        $query = "SELECT * FROM ToDoListe_Liste AND estPublic LIMITS $offset,$limit"; 
+        $query = "SELECT * FROM ToDoList_Liste AND estPublic LIMITS $offset,$limit"; 
         $this->con->executeQuery($query);
-        $tab = [];
+        $listes = [];
 		foreach ($this->con->getResults() as $liste) {
-			$tab[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
+			$listes[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
 		}
-		return $tab;
+		return $listes;
     }
 }
 ?>

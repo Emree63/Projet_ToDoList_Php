@@ -10,7 +10,7 @@ $pass='achanger';
 $dsn='mysql:host=londres.uca.local;dbname=dbemkartal1';
 //Vues
 
-$vues['erreur']='vues/erreur.php';
+$vues['erreur']='Vue/html/erreur.php';
 $vues['inscription']='Vue/html/inscription.php';
 $vues['listPublic']='Vue/html/PageListePublic.php';
 $vues['login']='Vue/html/login.php';

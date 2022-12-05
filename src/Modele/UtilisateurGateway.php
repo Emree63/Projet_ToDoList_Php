@@ -3,6 +3,7 @@ class UtilisateurGateway{
     
 	private $con;
   	public  function __construct(){
+        global $dsn,$user,$pass;
         $this->con=new Connection($dsn,$user,$pass);
     }
 
