@@ -1,6 +1,6 @@
 <div class="header">
   <div class="menu-bar">
-        <nav class="navbar navbar-expand-lg bg-info fixed-top">
+        <nav class="navbar navbar-expand-lg bg-info ">
         <img src="./Vue/Images/LogoForHome.png" width="200">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>

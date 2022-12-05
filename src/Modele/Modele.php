@@ -19,9 +19,9 @@ class Modele
     }
 
     public static function RecupererListePublic(){
-        $userGtw = new ListeGateway();
+        $userGtw = new ListeGateway(); 
 
-        return $userGtw->getListe(0,10);
+        return $userGtw->getListePublic(0,10);
     }
     
 

@@ -18,7 +18,7 @@ class CtrlVisiteur {
 
 				//pas d'action, on réinitialise 1er appel
 				case NULL:
-					$this->Reinit();
+					$this->ConsulterListePublic($dVueEreur);
 					break;
 
 				case "validationFormulaire":
@@ -66,12 +66,6 @@ class CtrlVisiteur {
 		exit(0);
 	}//fin constructeur
 
-
-	function Reinit() {
-		global $rep,$vues; 
-		require ($rep.$vues['listPublic']);
-	}
-
 	function ValidationFormulaire(array $dVueEreur) {
 		global $rep,$vues; 
 		Modele::CreerUtilisateur();
@@ -96,7 +90,7 @@ class CtrlVisiteur {
 
 	function ConsulterListePublic(array $dVueEreur) {
 		global $rep,$vues; 
-		Modele::RecupererListePublic();
+		$listes = Modele::RecupererListePublic();
 		require ($rep.$vues['listPublic']);
 	}
 

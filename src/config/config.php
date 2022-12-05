@@ -5,7 +5,7 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$user= 'emkartal1';
+$user='emkartal1';
 $pass='achanger';
 $dsn='mysql:host=londres.uca.local;dbname=dbemkartal1';
 //Vues

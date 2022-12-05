@@ -18,7 +18,7 @@
 
       <?php
         foreach($listes as $liste){
-          echo '<center>$liste->getNom()</center>';
+          echo '<center>'.$liste->getNom().'</center>';
         }
 	    ?>
 

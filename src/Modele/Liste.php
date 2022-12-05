@@ -1,7 +1,5 @@
 <?php
 
-namespace modeles;
-
 class Liste
 {
 	private $id;
@@ -11,7 +9,7 @@ class Liste
 	private $estPublic;
 	private $idUtilisateur;
 
-	public function __construct($id, $nom, $description, $dateCreation, $estPublic, $idUser){
+	public function __construct($id, $nom, $description, $dateCreation, $estPublic, $idUtilisateur){
 		$this->id = $id;
 		$this->nom = $nom;
 		$this->description = $description;
@@ -57,11 +55,11 @@ class Liste
 	}
 
 	//idUtilisateur
-	public function getIdUser(){
+	public function getIdUtilisateur(){
 		return $this->idUtilisateur;
 	}
 
-	public function setIdUser($idUser){
+	public function setIdUtilisateur($idUtilisateur){
 		$this->idUtilisateur = $idUtilisateur;	
 	}
 

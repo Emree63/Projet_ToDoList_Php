@@ -29,8 +29,8 @@ class ListeGateway{
     public function getListe(int $offset, int $limit){
         $query = "SELECT * FROM ToDoList_Liste LIMITS $offset,$limit"; 
         $this->con->executeQuery($query);
-        $results=$this->con->getResults();
-        return $results;
+        $listes=$this->con->getResults();
+        return $listes;
     }
 
     public function getTacheListe(Liste $liste){
@@ -41,7 +41,7 @@ class ListeGateway{
     }
 
     public function getListePublic($offset,$limit){
-        $query = "SELECT * FROM ToDoList_Liste AND estPublic LIMITS $offset,$limit"; 
+        $query = "SELECT * FROM ToDoList_Liste "; 
         $this->con->executeQuery($query);
         $listes = [];
 		foreach ($this->con->getResults() as $liste) {
