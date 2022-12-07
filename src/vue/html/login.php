@@ -2,22 +2,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="./Vue/css/style.css">
-    <link rel="stylesheet" href="./Vue/css/reset.css">
+    <!-- CSS only -->
+  
+    <link rel="stylesheet" href="./vue/css/style.css">
+    <link rel="stylesheet" href="./vue/css/reset.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0" />
 </head>
 <body>
     <div class="main">
-        <form method="post" >
-            <Button type="submit" class="button">Sortir</Button>
-            <input type="hidden" name="action" value="redirectionListePublic">
-        </form>
+    <a class="button" href="VueListePublic">Sortir</a>
         <div class="model">
             <div class="main-logo">
-                <img src="./Vue/Images/Logo.png" alt="logo">
+                <img src="./vue/Images/Logo.png" alt="logo">
             </div>
             <div class="login-card-header">
                 <h1>Se Connecter</h1>    

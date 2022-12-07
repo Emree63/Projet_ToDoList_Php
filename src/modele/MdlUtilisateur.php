@@ -1,6 +1,6 @@
 <?php
 
-class MdlVisiteur
+class MdlUtilisateur
 {
 
 	public function __construct(){
@@ -20,8 +20,9 @@ class MdlVisiteur
 
     public static function RecupererListePublic(){
         $userGtw = new ListeGateway(); 
-
         return $userGtw->getListePublic(0,10);
     }
+
+
 
 }

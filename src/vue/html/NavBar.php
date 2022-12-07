@@ -1,7 +1,7 @@
 <div class="header">
   <div class="menu-bar">
         <nav class="navbar navbar-expand-lg bg-info ">
-        <img src="./Vue/Images/LogoForHome.png" width="200">
+        <img src="./vue/Images/LogoForHome.png" width="200">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>
         </button>
@@ -22,8 +22,8 @@
                 <h4><a class="nav-item nav-link text-light" href="index.php?action=logout">Se deconnecter</a></h4>
               <?php
               } else {
-                ?> <h5><a class="nav-item nav-link text-light" href="index.php?action=redirectionLogin">Se connecter</a></h5>
-                  <h5><a class="nav-item nav-link text-light" href="index.php?action=redirectionInscription">S'inscrire</a></h5>
+                ?> <h5><a class="nav-item nav-link text-light" href="login">Se connecter</a></h5>
+                  <h5><a class="nav-item nav-link text-light" href="inscription">S'inscrire</a></h5>
                 
                 <?php
               }

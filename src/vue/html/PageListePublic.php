@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
@@ -36,6 +36,7 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light ">
+  <br>
   <!-- Section: Links  -->
   <section class="">
     <div class="container text-center text-md-start mt-5">

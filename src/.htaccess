@@ -1,0 +1,15 @@
+#--------------------------------
+# Config
+#--------------------------------
+
+Options +FollowSymlinks
+
+RewriteEngine On
+
+#---------------------------------
+# Règles de réécriture d'url
+#---------------------------------
+
+RewriteRule ^login$ index.php?action=redirectionLogin [L]
+RewriteRule ^inscription$ index.php?action=redirectionInscription [L]
+RewriteRule ^VueListePublic$ index.php?action=redirectionListePublic [L]
