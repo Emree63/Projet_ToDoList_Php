@@ -41,6 +41,14 @@ class CtrlVisiteur {
 					$this->redirectionInscription($dVueEreur);
 					break;
 
+				case "SupprimerTache":
+					$this->SupprimerTache();
+					break;
+
+				case "SupprimerListe":
+					$this->SupprimerListe();
+					break;
+
 				//mauvaise action
 				default:
 					$dVueEreur[] =	"Erreur d'appel php";
@@ -93,11 +101,29 @@ class CtrlVisiteur {
 	function ConsulterListePublic(array $dVueEreur) {
 		global $rep,$vues; 
 		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
 		require ($rep.$vues['listPublic']);
 	}
 
+	function SupprimerTache(){
+		global $rep,$vues; 
+		$id = $_GET['idTache'];
+		$tache = MdlVisiteur::SupprimerTache($id);
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		require ($rep.$vues['listPublic']);
 
+	}
 
+	function SupprimerListe(){
+		global $rep,$vues; 
+		$id = $_GET['idListe'];
+		$liste = MdlVisiteur::SupprimerListe($id);
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		require ($rep.$vues['listPublic']);
+
+	}
 }//fin class
 
 ?>

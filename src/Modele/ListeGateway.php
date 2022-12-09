@@ -17,13 +17,13 @@ class ListeGateway{
     }
 
     public function Editer(Liste $Liste){
-    	$query='UPDATE ToDoListe_Liste SET  nom=:nom WHERE id=:id';
+    	$query='UPDATE ToDoList_Liste SET nom=:nom WHERE id=:id';
     	$this->con->executeQuery($query, array('nom' => array($Liste->getNom(), PDO::PARAM_STRING)), array('id' => array($Liste->getId()),PDO::PARAM_INT));
     }
 
     public function Supprimer(int $id){
-        $query='DELETE FROM ToDoListe_Liste WHERE id=:id';
-        $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_STRING)));
+        $query='DELETE FROM ToDoList_Liste WHERE id=:id';
+        $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
     }
 
     public function getListe(int $offset, int $limit){
@@ -34,14 +34,14 @@ class ListeGateway{
     }
 
     public function getTacheListe(Liste $liste){
-        $query = 'SELECT tache FROM ToDoListe_Liste WHERE id=:id ';
+        $query = 'SELECT tache FROM ToDoList_Liste WHERE id=:id ';
         $this->con->executeQuery($query, array('id' => array($liste->getId, PDO::PARAM_INT)));
         $results=$this->con->getResults();
         return $results;
     }
 
     public function getListePublic($offset,$limit){
-        $query = "SELECT * FROM ToDoList_Liste "; 
+        $query = "SELECT * FROM ToDoList_Liste WHERE estPublic LIMIT $offset, $limit"; 
         $this->con->executeQuery($query);
         $listes = [];
 		foreach ($this->con->getResults() as $liste) {

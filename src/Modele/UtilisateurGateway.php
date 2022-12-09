@@ -20,7 +20,19 @@ class UtilisateurGateway{
     public function SupprimerUtilisateur(int $id){
         $query='DELETE FROM ToDoList_Utilisateur WHERE id=:id;';
         $this->con->executeQuery($query, array(
-                            'id' => array($id, PDO::PARAM_STRING)));
+                            'id' => array($id, PDO::PARAM_INT)));
+    }
+
+    public getCredential(string $id){
+        $query = 'SELECT motDePasse FROM ToDoList_Utilisateur WHERE id=:id';
+
+        if(this->con->executeQuery($query, array('id' => array($id, PDO::PARAM_INT)))){
+            return (this->con->getResults[0]['motDePasse'])
+        }
+        else{
+            /* pas sur de ça*/
+            throw new PDOexception;
+        }
     }
 
     public function RechercheUtilisateurViaPseudo(string $pseudo){

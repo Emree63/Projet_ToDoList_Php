@@ -65,7 +65,7 @@ class Tache
 
 	//idList
 	public function getIdListe(){
-		return $this->estValide;
+		return $this->idListe;
 	}
 
 	public function setIdListe($idListe){

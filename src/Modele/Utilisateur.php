@@ -7,6 +7,7 @@ class Utilisateur
     private $prenom;
     private $pseudo;
     private $email;
+    private $isAdmin;
 
     public function __construct($id, $nom, $prenom, $pseudo, $email, $motDePasse, $isAdmin){
     	$this->id = $id;
@@ -14,6 +15,7 @@ class Utilisateur
         $this->prenom = $prenom;
         $this->pseudo = $pseudo;
         $this->email = $email;
+        $this->isAdmin = $isAdmin;
     }
 
     //Nom

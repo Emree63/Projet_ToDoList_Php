@@ -24,4 +24,21 @@ class MdlVisiteur
         return $userGtw->getListePublic(0,10);
     }
 
+    public static function RecupererTache(){
+        $userGtw = new TacheGateway();
+
+        return $userGtw->getTache();
+    }
+
+    public static function SupprimerTache(string $id){
+         $userGtw = new TacheGateway();
+
+        return $userGtw->Supprimer($id);
+    }
+
+    public static function SupprimerListe(string $id){
+         $userGtw = new ListeGateway();
+
+        return $userGtw->Supprimer($id);
+    }
 }

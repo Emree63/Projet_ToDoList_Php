@@ -2,6 +2,7 @@
 class TacheGateway{
 	private $con;
   	public  function __construct(){
+        global $dsn,$user,$pass;
         $this->con=new Connection($dsn,$user,$pass);
     }
 
@@ -19,9 +20,19 @@ class TacheGateway{
     	$this->con->executeQuery($query, array('nom' => array($tache->getNom(), PDO::PARAM_STRING)), array('description' => array($tache->getdescription(), PDO::PARAM_STRING)), array('id' => array($tache->getId(),PDO::PARAM_INT)));
     }
 
-    public function Supprimer(Tache $tache){
+    public function Supprimer(string $id){
         $query='DELETE FROM ToDoList_Tache WHERE id=:id';
-        $this->con->executeQuery($query,'id' => array($tache->getId(), PDO::PARAM_STRING));
+        $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
+    }
+
+    public function getTache(){
+        $query='SELECT * FROM ToDoList_Tache';
+         $this->con->executeQuery($query);
+        $taches = [];
+        foreach ($this->con->getResults() as $tache) {
+            $taches[] = new Tache($tache["id"],$tache["nom"],$tache["description"],$tache["dateCreation"],$tache["estValide"],$tache["idListe"]);
+        }
+        return $taches;
     }
 }
 ?>

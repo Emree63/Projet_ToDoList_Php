@@ -27,14 +27,14 @@ class Validation {
 
         //Vérification Email
         if (!isset($email)||$email=="") {
-            $dVueEreur[] =	"pas de email";
+            $dVueEreur[] =	"L'email est obligatoire.";
             $pseudo="";
             $i++;
         }
 
         if ($email != filter_var($email, FILTER_SANITIZE_STRING))
         {
-            $dVueEreur[] =	"testative d'injection de code (attaque sécurité)";
+            $dVueEreur[] =	"Tentative d'injection de code (attaque sécurité)";
             $nom="";
             $i++;
         }
@@ -43,7 +43,7 @@ class Validation {
 
         //Vérification Pseudo
         if (!isset($pseudo)||$pseudo=="") {
-            $dVueEreur[] =	"pas de pseudo";
+            $dVueEreur[] =	"Le pseudonyme est obligatoire.";
             $pseudo="";
             $i++;
         }
@@ -52,7 +52,7 @@ class Validation {
 
         //Vérification Mot de Passe
         if (!isset($mdp)||$mdp=="") {
-            $dVueEreur[] =	"pas de mot de passe";
+            $dVueEreur[] =	"Veuillez renseignez votre mot de passe.";
             $mdp="";
             $i++;
         }
@@ -75,7 +75,7 @@ class Validation {
     static function val_string(string &$str, int &$i ,&$dVueEreur) {
         if ($str != filter_var($str, FILTER_SANITIZE_STRING))
         {
-            $dVueEreur[] =	"tentative d'injection de code (attaque sécurité)";
+            $dVueEreur[] =	"Tentative d'injection de code (attaque sécurité)";
             $str="";
             $i++;
         }
