@@ -17,8 +17,8 @@
           </style>
           <ul class="navbar-nav ml-auto">
             <?php
-            if(isset($_SESSION["idUtilisateur"]) and $_SESSION["idUtilisateur"]){ ?>
-                <h4><a class="nav-item nav-link text-light" href="index.php?action=showPrivateList&userid=<?= $_SESSION["idUtilisateur"] ?>">Mes listes</a></h4>
+            if(isset($_SESSION['id'])){ ?>
+                <h4><a class="nav-item nav-link text-light" href="#">Mes listes</a></h4>
                 <h4><a class="nav-item nav-link text-light" href="index.php?action=logout">Se deconnecter</a></h4>
               <?php
               } else {

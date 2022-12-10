@@ -23,20 +23,27 @@ class UtilisateurGateway{
                             'id' => array($id, PDO::PARAM_INT)));
     }
 
-    public getCredential(string $id){
-        $query = 'SELECT motDePasse FROM ToDoList_Utilisateur WHERE id=:id';
-
-        if(this->con->executeQuery($query, array('id' => array($id, PDO::PARAM_INT)))){
-            return (this->con->getResults[0]['motDePasse'])
+    public function getCredentials(string $mail){
+        $query = 'SELECT motDePasse FROM ToDoList_Utilisateur WHERE email=:mail';
+        $this->con->executeQuery($query, array('mail' => array($mail, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        if($results!=null){
+            return $results[0]['motDePasse'];
+        }else{
+            throw new Exception("Identifiant introuvable*");
         }
-        else{
-            /* pas sur de ça*/
-            throw new PDOexception;
-        }
+        
     }
 
-    public function RechercheUtilisateurViaEmail(string $pseudo){
-        
+    public function RechercheUtilisateurViaEmail(string $mail){
+        $query = 'SELECT * FROM ToDoList_Utilisateur WHERE email=:mail';
+        $this->con->executeQuery($query, array('mail' => array($mail, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        if($results!=null){
+            return new Utilisateur($results[0]['id'],$results[0]['nom'],$results[0]['prenom'],$results[0]['pseudo'],$results[0]['email']);
+        }else{
+            throw new Exception("Identifiant introuvable*");
+        }
     }
 }
 ?>

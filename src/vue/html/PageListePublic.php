@@ -30,11 +30,11 @@
                 <span class="h2 me-2 text-info"><?= $liste->getNom()?>
                    <a href="index.php?action=SupprimerListe&idListe=<?= $liste->getId() ?>">
                       <button class="btn btn-default">
-                        <img src="./vue/Images/trash.png" width="25" />
+                        <img src="./vue/Images/trash.png" width="20" />
                       </button>
                   </a>
                   <button type="submit" class="btn btn-default">
-                    <img src="./vue/Images/edit.png" width="25" />
+                    <img src="./vue/Images/edit.png" width="20" />
                   </button>
                 </span>
               </p>
@@ -53,13 +53,13 @@
                 <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
 
                   <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
-                  <button class="btn btn-default">
-                   <img src="./vue/Images/trash.png" width="25" />
-                 </button>
-               </a>
+                    <button class="btn btn-default">
+                      <img src="./vue/Images/trash.png" width="18" />
+                    </button>
+                  </a>
                   
                   <button type="submit" class="btn btn-default">
-                    <img src="./vue/Images/edit.png" width="25" />
+                    <img src="./vue/Images/edit.png" width="18" />
                   </button>
               </li>
                <?php

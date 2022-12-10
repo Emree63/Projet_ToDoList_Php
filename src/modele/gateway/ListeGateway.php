@@ -22,7 +22,7 @@ class ListeGateway{
     }
 
     public function Supprimer(int $id){
-        $query='DELETE FROM ToDoList_Liste WHERE id=:id';
+        $query="DELETE FROM ToDoList_Liste WHERE id=:id";
         $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
     }
 
@@ -31,13 +31,6 @@ class ListeGateway{
         $this->con->executeQuery($query);
         $listes=$this->con->getResults();
         return $listes;
-    }
-
-    public function getTacheListe(Liste $liste){
-        $query = 'SELECT tache FROM ToDoList_Liste WHERE id=:id ';
-        $this->con->executeQuery($query, array('id' => array($liste->getId, PDO::PARAM_INT)));
-        $results=$this->con->getResults();
-        return $results;
     }
 
     public function getListePublic($offset,$limit){

@@ -7,15 +7,13 @@ class Utilisateur
     private $prenom;
     private $pseudo;
     private $email;
-    private $isAdmin;
 
-    public function __construct($id, $nom, $prenom, $pseudo, $email, $motDePasse, $isAdmin){
+    public function __construct($id, $nom, $prenom, $pseudo, $email){
     	$this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->pseudo = $pseudo;
         $this->email = $email;
-        $this->isAdmin = $isAdmin;
     }
 
     //Nom

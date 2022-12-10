@@ -21,7 +21,12 @@
             <div class="login-card-header">
                 <h1>Se Connecter</h1>    
             </div>
-            <form class="login-card-form">
+            <?php 
+            if(isset($ErreurLog)){?>
+                <center><p class="ErreurText"> <?php echo $ErreurLog?></p></center><?php
+            } 
+            ?>
+            <form method="POST" class="login-card-form">
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">mail</span>
                     <input type="text" name="mail" placeholder="Enter Mail" required autofocus>
@@ -49,7 +54,7 @@
             </form>
             <div class="login-card-footer">
                 Pas de compte ? 
-                <a href="index.php?action=redirectionInscription">Creer un compte</a>
+                <a href="inscription">Creer un compte</a>
             </div>
         </div>
         <div class="social">

@@ -14,7 +14,7 @@ class FrontControleur {
 			// $action=$_REQUEST['action'];
 
 			// //On vérifie si l'action fait partie des listes d'actions
-			// $string_actor=fct($action,$listeActions);
+			// $string_actor=quelListe($action,$listeActions);
 			// if($string_actor!=NULL){
 			// 	$mdl=new mdl.$string_actor;
 			// 	$actor=$mdl.isMdl;
@@ -34,7 +34,16 @@ class FrontControleur {
 			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
-
     }
+
+	public static function quelListe($action,$listeActions){
+		foreach($listeActions as $a){
+			if(in_array($action, $a)){
+				return array_search($a,$listeActions);
+			}
+		}
+		return null;
+	}
+	
 }
 ?>

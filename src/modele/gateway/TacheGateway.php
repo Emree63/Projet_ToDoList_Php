@@ -25,6 +25,12 @@ class TacheGateway{
         $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
     }
 
+    // Si une liste est supprimée on supprime toutes ces tâches grâce à cette fonction
+    public function SupprimerViaListe(string $id){
+        $query='DELETE FROM ToDoList_Tache WHERE idListe=:id';
+        $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
+    }
+
     public function getTache(){
         $query='SELECT * FROM ToDoList_Tache';
          $this->con->executeQuery($query);

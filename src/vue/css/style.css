@@ -282,7 +282,10 @@ body::before {
     transition: background .5s;
 }
 
-
+.ErreurText{
+    color: red;
+    font-size: 0.7rem;
+}
 
 .button{
     border-color: #38b6ff;

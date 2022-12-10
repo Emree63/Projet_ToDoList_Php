@@ -59,13 +59,13 @@ class CtrlVisiteur {
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur BD!!! ";
+			$dVueEreur[] =	"Erreur: Connexion a la base de données impossible! ";
 			require ($rep.$vues['erreur']);
 
 		}
-		catch (Exception $e2)
+		catch (Exception $e)
 		{
-			$dVueEreur[] =	"Erreur inattendue!!! ";
+			$dVueEreur[] =	"Erreur venue de nulle part";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -98,34 +98,43 @@ class CtrlVisiteur {
 
 	function seConnecter(array $dVueEreur) {
 		global $rep,$vues; 
-		MdlVisiteur::Connection();
-		$action=NULL;
-		$this->ConsulterListePublic($dVueEreur);
+		try{
+			$result=MdlUtilisateur::Connection();
+			$action=NULL;
+			$this->ConsulterListePublic($dVueEreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			require ($rep.$vues['login']);
+		}
+		
 	}
 
 	function ConsulterListePublic(array $dVueEreur) {
 		global $rep,$vues; 
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
 		require ($rep.$vues['listPublic']);
 	}
 
 	function SupprimerTache(){
 		global $rep,$vues; 
-		$id = $_GET['idTache'];
-		$tache = MdlVisiteur::SupprimerTache($id);
+		$tache = MdlVisiteur::SupprimerTache();
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
 		require ($rep.$vues['listPublic']);
 
 	}
 
 	function SupprimerListe(){
 		global $rep,$vues; 
-		$id = $_GET['idListe'];
-		$liste = MdlVisiteur::SupprimerListe($id);
+		$liste = MdlVisiteur::SupprimerListe();
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
 		require ($rep.$vues['listPublic']);
 
 	}

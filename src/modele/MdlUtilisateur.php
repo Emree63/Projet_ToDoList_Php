@@ -7,16 +7,23 @@ class MdlUtilisateur
 
 	}
 
-	public static function CreerUtilisateur(){
-        global $dVueEreur; 
-        $userGtw = new UtilisateurGateway();
-        // $verif = Validation::val_form_user($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["password-Form"],$_POST["mail-Form"],$dVueEreur);
-        // if($verif == false){
-        //     throw new Exception();
-        // }
-        // $hash = password_hash($_POST[password-Form], PASSWORD_DEFAULT);
-        $userGtw->AjouterUtilisateur($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["mail-Form"],$_POST["password-Form"]);
-    }
+    public function connection(){
+		$gtw=new UtilisateurGateway();
+		$mail=Validation::cleanString($_POST['mail']);
+		$mdp=Validation::cleanString($_POST['password']);
+        $verif_pass=$gtw->getCredentials($mail);
+		if(password_verify($mdp,$verif_pass)){
+            $userCurrent=$gtw->RechercheUtilisateurViaEmail($mail);
+            $_SESSION['role']='user';
+			$_SESSION['id']=$userCurrent->getId();
+            $_SESSION['nom']=$userCurrent->getNom();
+            $_SESSION['prenom']=$userCurrent->getPrenom();
+            $_SESSION['pseudo']=$userCurrent->getPseudo();
+            $_SESSION['email']=$userCurrent->getMail();
+            return $userCurrent;    
+		}
+		else throw new Exception('Mot de passe incorrect*');
+	}
 
     public static function RecupererListePublic(){
         $userGtw = new ListeGateway(); 
