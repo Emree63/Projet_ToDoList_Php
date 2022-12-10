@@ -16,11 +16,66 @@
 
       <?php require($rep.$vues['NavBar']); ?>
 
-      <?php
+  <?php
         foreach($listes as $liste){
-          echo '<center>'.$liste->getNom().'</center>';
-        }
-	    ?>
+  ?>
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+
+            <div>
+              <p class="mb-2">
+                <span class="h2 me-2 text-info"><?= $liste->getNom()?>
+                   <a href="index.php?action=SupprimerListe&idListe=<?= $liste->getId() ?>">
+                      <button class="btn btn-default">
+                        <img src="./vue/Images/trash.png" width="25" />
+                      </button>
+                  </a>
+                  <button type="submit" class="btn btn-default">
+                    <img src="./vue/Images/edit.png" width="25" />
+                  </button>
+                </span>
+              </p>
+            <p><span class="h5 me-2"><?= $liste->getDescription()?></span>
+            <p class="text-muted pb-2"><?= $liste->getDateCreation()?></p>
+
+            </div>
+            
+            <ul class="list-group rounded-0">
+               <?php
+              foreach($taches as $tache){
+                if($tache->getIdListe() == $liste->getId()){
+               ?>
+              <li class="list-group-item border-0 d-flex align-items-center ps-0">
+                <input class="form-check-input me-3" type="checkbox" value="" aria-label="..."/>
+                <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
+
+                  <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
+                  <button class="btn btn-default">
+                   <img src="./vue/Images/trash.png" width="25" />
+                 </button>
+               </a>
+                  
+                  <button type="submit" class="btn btn-default">
+                    <img src="./vue/Images/edit.png" width="25" />
+                  </button>
+              </li>
+               <?php
+                }
+              }
+               ?>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <?php
+  }
+?> 
+
 
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -126,5 +181,4 @@
   </div>
   <!-- Copyright -->
 </footer>
-
 </html>

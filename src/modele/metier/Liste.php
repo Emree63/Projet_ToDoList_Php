@@ -32,6 +32,10 @@ class Liste
 		return $this->nom;
 	}
 
+	public function getDescription(){
+		return $this->description;
+	}
+
 	public function setNom($nom){
 		$this->nom=$nom;
 	}

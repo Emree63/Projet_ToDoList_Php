@@ -22,6 +22,21 @@ class Validation {
         //     $dVueEreur[] =	"Veuillez revoir le mail*";
         // }
 
+<<<<<<< HEAD
+        //Vérification Email
+        if (!isset($email)||$email=="") {
+            $dVueEreur[] =	"L'email est obligatoire.";
+            $pseudo="";
+            $i++;
+        }
+
+        if ($email != filter_var($email, FILTER_SANITIZE_STRING))
+        {
+            $dVueEreur[] =	"Tentative d'injection de code (attaque sécurité)";
+            $nom="";
+            $i++;
+        }
+=======
         // //Vérification Pseudo
         // if (!isset($pseudo)||$pseudo=="") {
         //     $dVueEreur[] =	"pas de pseudo";
@@ -30,6 +45,7 @@ class Validation {
         // }
 
         // val_string($pseudo,$i,$dVueEreur);
+>>>>>>> master
 
         // //Vérification Mot de Passe
         // if (!isset($mdp)||$mdp=="") {
@@ -38,7 +54,27 @@ class Validation {
         //     $i++;
         // }
 
+<<<<<<< HEAD
+        //Vérification Pseudo
+        if (!isset($pseudo)||$pseudo=="") {
+            $dVueEreur[] =	"Le pseudonyme est obligatoire.";
+            $pseudo="";
+            $i++;
+        }
+
+        val_string($pseudo,$i,$dVueEreur);
+
+        //Vérification Mot de Passe
+        if (!isset($mdp)||$mdp=="") {
+            $dVueEreur[] =	"Veuillez renseignez votre mot de passe.";
+            $mdp="";
+            $i++;
+        }
+
+        val_string($mdp,$i,$dVueEreur);
+=======
         // val_string($mdp,$i,$dVueEreur);
+>>>>>>> master
 
 
         // if (!preg_match('/^.{5,}$/', $mdp)) {
@@ -57,7 +93,13 @@ class Validation {
         $str = preg_replace('/[^A-Za-z\-]/', '', $str);
         if($str == null || $str == '')
         {
+<<<<<<< HEAD
+            $dVueEreur[] =	"Tentative d'injection de code (attaque sécurité)";
+            $str="";
+            $i++;
+=======
             return null;
+>>>>>>> master
         }
         return $str;
     }
