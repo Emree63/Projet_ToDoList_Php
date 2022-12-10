@@ -22,7 +22,7 @@
                 <h4><a class="nav-item nav-link text-light" href="index.php?action=logout">Se deconnecter</a></h4>
               <?php
               } else {
-                ?> <h5><a class="nav-item nav-link text-light" href="login">Se connecter</a></h5>
+                ?> <h5><a class="nav-item btn btn-outline-light" href="login">Se connecter</a></h5>
                   <h5><a class="nav-item nav-link text-light" href="inscription">S'inscrire</a></h5>
                 
                 <?php

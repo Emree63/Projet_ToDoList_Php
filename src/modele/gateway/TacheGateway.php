@@ -16,7 +16,7 @@ class TacheGateway{
     }
 
     public function Editer(Tache $tache, string $nom, string $description){
-    	$query='UPDATE ToDoListe_Tache SET  nom=:nom, description =:description WHERE id=:id';
+    	$query='UPDATE ToDoList_Tache SET  nom=:nom, description =:description WHERE id=:id';
     	$this->con->executeQuery($query, array('nom' => array($tache->getNom(), PDO::PARAM_STRING)), array('description' => array($tache->getdescription(), PDO::PARAM_STRING)), array('id' => array($tache->getId(),PDO::PARAM_INT)));
     }
 

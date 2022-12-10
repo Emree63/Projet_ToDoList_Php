@@ -23,7 +23,6 @@ class MdlUtilisateur
         return $userGtw->getListePublic(0,10);
     }
 
-<<<<<<< HEAD:src/Modele/MdlVisiteur.php
     public static function RecupererTache(){
         $userGtw = new TacheGateway();
 
@@ -41,8 +40,5 @@ class MdlUtilisateur
 
         return $userGtw->Supprimer($id);
     }
-=======
 
-
->>>>>>> master:src/modele/MdlUtilisateur.php
 }

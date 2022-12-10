@@ -1,7 +1,9 @@
 # Presentation Projet_ToDoList_Php
 
 <div align = center>
+
 ![Image de l'application](Logo.png)
+
 </div>
 
 **Nom de l’application** : ToDoList
