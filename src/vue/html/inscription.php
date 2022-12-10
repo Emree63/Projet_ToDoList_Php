@@ -8,15 +8,15 @@
       <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- CSS only -->
-      <link rel="stylesheet" href="./Vue/css/style.css">
-      <link rel="stylesheet" href="./Vue/css/reset.css">
+      <link rel="stylesheet" href="./vue/css/style.css">
+      <link rel="stylesheet" href="./vue/css/reset.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       </head>
     <body>
       <div class="main">
           <div class="model">
               <div class="main-logo">
-                  <img src="./Vue/Images/Logo.png" alt="logo">
+                  <img src="./vue/Images/Logo.png" alt="logo">
               </div>
               <div class="login-card-header">
                   <h1>Inscrivez-vous</h1>    
@@ -47,8 +47,15 @@
                   <button type="submit" class="btn btn-primary">S'inscrire</button>
                   <!-- action !!!!!!!!!! --> 
                   <input type="hidden" name="action" value="validationFormulaire">
+                  <?php
+                  if (isset($dVueEreur)) {
+                    foreach ($dVueEreur as $value){
+                        echo $value;
+                    }
+                  }
+                  ?>
                   <p class="text-center text-muted mt-5 mb-0">Déjà un compte?
-                  <a href="index.php?action=redirectionLogin" class="fw-bold text-body"><u>Connectez-vous</u></a></p>
+                  <a href="login" class="fw-bold text-body"><u>Connectez-vous</u></a></p>
               
                 </form>
 

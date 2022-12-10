@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
@@ -30,11 +30,11 @@
                 <span class="h2 me-2 text-info"><?= $liste->getNom()?>
                    <a href="index.php?action=SupprimerListe&idListe=<?= $liste->getId() ?>">
                       <button class="btn btn-default">
-                        <img src="./Vue/Images/trash.png" width="25" />
+                        <img src="./vue/Images/trash.png" width="25" />
                       </button>
                   </a>
                   <button type="submit" class="btn btn-default">
-                    <img src="./Vue/Images/edit.png" width="25" />
+                    <img src="./vue/Images/edit.png" width="25" />
                   </button>
                 </span>
               </p>
@@ -54,12 +54,12 @@
 
                   <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
                   <button class="btn btn-default">
-                   <img src="./Vue/Images/trash.png" width="25" />
+                   <img src="./vue/Images/trash.png" width="25" />
                  </button>
                </a>
                   
                   <button type="submit" class="btn btn-default">
-                    <img src="./Vue/Images/edit.png" width="25" />
+                    <img src="./vue/Images/edit.png" width="25" />
                   </button>
               </li>
                <?php
@@ -91,6 +91,7 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light ">
+  <br>
   <!-- Section: Links  -->
   <section class="">
     <div class="container text-center text-md-start mt-5">

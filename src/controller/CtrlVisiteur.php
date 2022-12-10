@@ -76,9 +76,14 @@ class CtrlVisiteur {
 
 	function ValidationFormulaire(array $dVueEreur) {
 		global $rep,$vues; 
-		Mdl::CreerUtilisateur();
-		$action=NULL;
-		$this->redirectionLogin($dVueEreur);
+		$val = MdlVisiteur::CreerUtilisateur();
+		if($val==null){
+			$this->redirectionInscription($dVueEreur);
+		}else {
+			$action=NULL;
+			$this->redirectionLogin($dVueEreur);
+		}
+
 	}
 
 	function redirectionLogin(array $dVueEreur) {

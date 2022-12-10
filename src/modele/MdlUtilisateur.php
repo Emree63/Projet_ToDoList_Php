@@ -20,10 +20,29 @@ class MdlUtilisateur
 
     public static function RecupererListePublic(){
         $userGtw = new ListeGateway(); 
-
         return $userGtw->getListePublic(0,10);
     }
 
+<<<<<<< HEAD:src/Modele/MdlVisiteur.php
+    public static function RecupererTache(){
+        $userGtw = new TacheGateway();
+
+        return $userGtw->getTache();
+    }
+
+    public static function SupprimerTache(string $id){
+         $userGtw = new TacheGateway();
+
+        return $userGtw->Supprimer($id);
+    }
+
+    public static function SupprimerListe(string $id){
+         $userGtw = new ListeGateway();
+
+        return $userGtw->Supprimer($id);
+    }
+=======
 
 
+>>>>>>> master:src/modele/MdlUtilisateur.php
 }
