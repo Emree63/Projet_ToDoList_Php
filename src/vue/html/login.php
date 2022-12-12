@@ -25,7 +25,7 @@
             if(isset($ErreurLog)){?>
                 <center><p class="ErreurText"> <?php echo $ErreurLog?></p></center><?php
             } 
-            ?>
+            ?> 
             <form method="POST" class="login-card-form">
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">mail</span>

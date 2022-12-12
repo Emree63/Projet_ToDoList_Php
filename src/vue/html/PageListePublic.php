@@ -14,8 +14,10 @@
   </head>
   <body>
 
-      <?php require($rep.$vues['NavBar']); ?>
-
+  <?php require($rep.$vues['NavBar']); ?>
+  <br>
+  <br>
+  <br>
   <?php
         foreach($listes as $liste){
   ?>

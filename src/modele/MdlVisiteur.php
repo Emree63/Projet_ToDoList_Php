@@ -10,12 +10,12 @@ class MdlVisiteur
 	public static function CreerUtilisateur(){
         global $dVueEreur; 
         $userGtw = new UtilisateurGateway();
-        Validation::val_form_user($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["password-Form"],$_POST["mail-Form"],$dVueEreur);
-        $hash = password_hash($_POST["password-Form"], PASSWORD_DEFAULT);
+        Validation::val_form_user($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["password"],$_POST["mail"],$dVueEreur);
+        $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
         // if(count($dVueEreur)!=0){
         //     return null;
         // }
-        $userGtw->AjouterUtilisateur($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["mail-Form"],$hash);
+        $userGtw->AjouterUtilisateur($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["mail"],$hash);
     }
 
     public static function RecupererListePublic(){

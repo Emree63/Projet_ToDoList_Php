@@ -2,9 +2,10 @@
 class FrontControleur {
 
     function __construct(){
+		global $rep,$vues; 
 		session_start();
 		try {
-			global $rep,$vues; 
+			
 			$string_actor=' ';
 			$listeActions=array(
 				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte'),
@@ -38,6 +39,12 @@ class FrontControleur {
 		} catch (Exception $e) {
 			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
+		} catch (PDOException $e)
+		{
+			//si erreur BD, pas le cas ici
+			$dVueErreur[] =	"Erreur: Connexion a la base de données impossible! ";
+			require ($rep.$vues['erreur']);
+
 		}
     }
 	

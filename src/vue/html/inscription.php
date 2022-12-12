@@ -38,10 +38,10 @@
                       <input type="text" name="pseudo-Form" placeholder="Pseudo" required autofocus>
                   </div>
                   <div class="form-item">
-                      <input type="text" name="mail-Form" placeholder="Mail" required autofocus>
+                      <input type="text" name="mail" placeholder="Mail" required autofocus>
                   </div>
                   <div class="form-item">
-                      <input type="password" name="password-Form" placeholder="Password" required >
+                      <input type="password" name="password" placeholder="Password" required >
                   </div>
                   
                   <button type="submit" class="btn btn-primary">S'inscrire</button>
