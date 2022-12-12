@@ -6,7 +6,7 @@ class CtrlVisiteur {
 
 		global $rep,$vues; 
 		
-		$dVueEreur = array ();
+		$dVueErreur = array ();
 
 		try{
 			$action=NULL;
@@ -18,54 +18,54 @@ class CtrlVisiteur {
 
 				//pas d'action, on réinitialise 1er appel
 				case NULL:
-					$this->ConsulterListePublic($dVueEreur);
+					$this->ConsulterListePublic($dVueErreur);
 					break;
 
 				case "validationFormulaire":
-					$this->ValidationFormulaire($dVueEreur);
+					$this->ValidationFormulaire($dVueErreur);
 					break;
 
 				case "seConnecter":
-					$this->seConnecter($dVueEreur);
+					$this->seConnecter($dVueErreur);
 					break;
 
 				case "redirectionListePublic":
-					$this->ConsulterListePublic($dVueEreur);
+					$this->ConsulterListePublic($dVueErreur);
 					break;
 
 				case "redirectionLogin":
-					$this->redirectionLogin($dVueEreur);
+					$this->redirectionLogin($dVueErreur);
 					break;
 
 				case "redirectionInscription":
-					$this->redirectionInscription($dVueEreur);
+					$this->redirectionInscription($dVueErreur);
 					break;
 
 				case "SupprimerTache":
-					$this->SupprimerTache();
+					$this->SupprimerTache($dVueErreur);
 					break;
 
 				case "SupprimerListe":
-					$this->SupprimerListe();
+					$this->SupprimerListe($dVueErreur);
 					break;
 
 				//mauvaise action
 				default:
-					$dVueEreur[] =	"Erreur d'appel php";
-					require ($rep.$vues['home']);
+					$dVueErreur[] =	"Erreur d'appel php";
+					require ($rep.$vues['erreur']);
 					break;
 				}
 
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur: Connexion a la base de données impossible! ";
+			$dVueErreur[] =	"Erreur: Connexion a la base de données impossible! ";
 			require ($rep.$vues['erreur']);
 
 		}
 		catch (Exception $e)
 		{
-			$dVueEreur[] =	"Erreur venue de nulle part";
+			$dVueErreur[] =	"Erreur venue de nulle part";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -74,34 +74,37 @@ class CtrlVisiteur {
 		exit(0);
 	}//fin constructeur
 
-	function ValidationFormulaire(array $dVueEreur) {
+	function ValidationFormulaire(array $dVueErreur) {
 		global $rep,$vues; 
-		$val = MdlVisiteur::CreerUtilisateur();
-		if($val==null){
-			$this->redirectionInscription($dVueEreur);
-		}else {
-			$action=NULL;
-			$this->redirectionLogin($dVueEreur);
-		}
 
+		try{
+			$val = MdlVisiteur::CreerUtilisateur();
+			$result=MdlUtilisateur::Connection();
+			$action=NULL;
+			$this->ConsulterListePublic($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			require ($rep.$vues['inscription']);
+		}
 	}
 
-	function redirectionLogin(array $dVueEreur) {
+	function redirectionLogin(array $dVueErreur) {
 		global $rep,$vues; 
 		require ($rep.$vues['login']);
 	}
 
-	function redirectionInscription(array $dVueEreur) {
+	function redirectionInscription(array $dVueErreur) {
 		global $rep,$vues; 
 		require ($rep.$vues['inscription']);
 	}
 
-	function seConnecter(array $dVueEreur) {
+	function seConnecter(array $dVueErreur) {
 		global $rep,$vues; 
 		try{
 			$result=MdlUtilisateur::Connection();
 			$action=NULL;
-			$this->ConsulterListePublic($dVueEreur);
+			$this->ConsulterListePublic($dVueErreur);
 		}	
 		catch (Exception $e)
 		{
@@ -111,7 +114,7 @@ class CtrlVisiteur {
 		
 	}
 
-	function ConsulterListePublic(array $dVueEreur) {
+	function ConsulterListePublic(array $dVueErreur) {
 		global $rep,$vues; 
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
@@ -119,7 +122,7 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 	}
 
-	function SupprimerTache(){
+	function SupprimerTache(array $dVueErreur){
 		global $rep,$vues; 
 		$tache = MdlVisiteur::SupprimerTache();
 		$listes = MdlVisiteur::RecupererListePublic();
@@ -129,7 +132,7 @@ class CtrlVisiteur {
 
 	}
 
-	function SupprimerListe(){
+	function SupprimerListe(array $dVueErreur){
 		global $rep,$vues; 
 		$liste = MdlVisiteur::SupprimerListe();
 		$listes = MdlVisiteur::RecupererListePublic();
@@ -138,6 +141,7 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 
 	}
+
 }//fin class
 
 ?>
