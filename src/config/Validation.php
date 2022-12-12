@@ -62,6 +62,15 @@ class Validation {
         return $str;
     }
 
+    static function cleanMail(string &$str) {
+        $str = preg_replace('/[^A-Za-z\-\^0-9\.\@]/', '', $str);
+        if($str == null || $str == '')
+        {
+            return null;
+        }
+        return $str;
+    }
+
     static function val_mail(string &$mail) {
         if(filter_var($mail, FILTER_VALIDATE_EMAIL))
         {

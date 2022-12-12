@@ -19,8 +19,8 @@
      <div class="model">
         <h1>Un problème est survenue !</h1>
         <?php
-        if (isset($dVueEreur)) {
-            foreach ($dVueEreur as $value){
+        if (isset($dVueErreur)) {
+            foreach ($dVueErreur as $value){
                 echo $value;
             }
         }
