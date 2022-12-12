@@ -6,7 +6,7 @@ class CtrlUtilisateur {
 
 		global $rep,$vues; 
 		
-		$dVueErreur = array ();
+		$dVueEreur = array ();
 
 		try{
 			$action=NULL;
@@ -18,23 +18,14 @@ class CtrlUtilisateur {
 
 				
 				case NULL:
-					$this->ConsulterListePublic($dVueErreur);
+					$this->($dVueEreur);
 					break;
 
-				case "logout":
-					$this->SeDeconnecter($dVueErreur);
-					break;
+				
 
-				case "redirectionProfil":
-					$this->redirectionProfil($dVueErreur);
-					break;
-
-				case "supprimerCompte":
-					$this->supprimerCompte($dVueErreur);
-					break;
-
+				
 				default:
-					$dVueErreur[] =	"Erreur d'appel php";
+					$dVueEreur[] =	"Erreur d'appel php";
 					require ($rep.$vues['home']);
 					break;
 				}
@@ -56,35 +47,6 @@ class CtrlUtilisateur {
 		//fin
 		exit(0);
 	}//fin constructeur
-
-	function ConsulterListePublic(array $dVueErreur) {
-		global $rep,$vues; 
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
-	}
-
-	function SeDeconnecter(array $dVueErreur){
-		global $rep,$vues; 
-		MdlUtilisateur::déconnexion();
-		$action=NULL;
-		require ($rep.$vues['login']);
-	}
-
-	function redirectionProfil(array $dVueErreur){
-		global $rep,$vues; 
-		$action=NULL;
-		$user=MdlUtilisateur::isConnected();
-		require ($rep.$vues['profil']);
-	}
-
-	function supprimerCompte(array $dVueErreur){
-		global $rep,$vues; 
-		$action=NULL;
-		$user=MdlUtilisateur::suppressionUtilisateur();
-		require ($rep.$vues['login']);
-	}
 
 }//fin class
 

@@ -18,10 +18,8 @@
           <ul class="navbar-nav ml-auto">
             <?php
             if(isset($_SESSION['id'])){ ?>
-                <h5><a class="nav-item nav-link text-light" href="VueListePublic">Listes Publiques</a></h5>
-                <h5><a class="nav-item nav-link text-light" href="#">Mes listes</a></h5>
-                <h5><a class="nav-item nav-link text-light" href="MonProfil">Mon Profil</a></h5>
-                <h5><a class="nav-item btn btn-outline-light" href="logout">Se déconnecter</a></h5>
+                <h4><a class="nav-item nav-link text-light" href="#">Mes listes</a></h4>
+                <h4><a class="nav-item nav-link text-light" href="index.php?action=logout">Se deconnecter</a></h4>
               <?php
               } else {
                 ?> <h5><a class="nav-item btn btn-outline-light" href="login">Se connecter</a></h5>

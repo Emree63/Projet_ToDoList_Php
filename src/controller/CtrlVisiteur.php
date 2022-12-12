@@ -6,7 +6,7 @@ class CtrlVisiteur {
 
 		global $rep,$vues; 
 		
-		$dVueErreur = array ();
+		$dVueEreur = array ();
 
 		try{
 			$action=NULL;
@@ -18,54 +18,54 @@ class CtrlVisiteur {
 
 				//pas d'action, on réinitialise 1er appel
 				case NULL:
-					$this->ConsulterListePublic($dVueErreur);
+					$this->ConsulterListePublic($dVueEreur);
 					break;
 
 				case "validationFormulaire":
-					$this->ValidationFormulaire($dVueErreur);
+					$this->ValidationFormulaire($dVueEreur);
 					break;
 
 				case "seConnecter":
-					$this->seConnecter($dVueErreur);
+					$this->seConnecter($dVueEreur);
 					break;
 
 				case "redirectionListePublic":
-					$this->ConsulterListePublic($dVueErreur);
+					$this->ConsulterListePublic($dVueEreur);
 					break;
 
 				case "redirectionLogin":
-					$this->redirectionLogin($dVueErreur);
+					$this->redirectionLogin($dVueEreur);
 					break;
 
 				case "redirectionInscription":
-					$this->redirectionInscription($dVueErreur);
+					$this->redirectionInscription($dVueEreur);
 					break;
 
 				case "SupprimerTache":
-					$this->SupprimerTache($dVueErreur);
+					$this->SupprimerTache();
 					break;
 
 				case "SupprimerListe":
-					$this->SupprimerListe($dVueErreur);
+					$this->SupprimerListe();
 					break;
 
 				//mauvaise action
 				default:
-					$dVueErreur[] =	"Erreur d'appel php";
-					require ($rep.$vues['erreur']);
+					$dVueEreur[] =	"Erreur d'appel php";
+					require ($rep.$vues['home']);
 					break;
 				}
 
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueErreur[] =	"Erreur: Connexion a la base de données impossible! ";
+			$dVueEreur[] =	"Erreur: Connexion a la base de données impossible! ";
 			require ($rep.$vues['erreur']);
 
 		}
 		catch (Exception $e)
 		{
-			$dVueErreur[] =	"Erreur venue de nulle part";
+			$dVueEreur[] =	"Erreur venue de nulle part";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -74,37 +74,34 @@ class CtrlVisiteur {
 		exit(0);
 	}//fin constructeur
 
-	function ValidationFormulaire(array $dVueErreur) {
+	function ValidationFormulaire(array $dVueEreur) {
 		global $rep,$vues; 
-
-		try{
-			$val = MdlVisiteur::CreerUtilisateur();
-			$result=MdlUtilisateur::Connection();
+		$val = MdlVisiteur::CreerUtilisateur();
+		if($val==null){
+			$this->redirectionInscription($dVueEreur);
+		}else {
 			$action=NULL;
-			$this->ConsulterListePublic($dVueErreur);
-		}	
-		catch (Exception $e)
-		{
-			require ($rep.$vues['inscription']);
+			$this->redirectionLogin($dVueEreur);
 		}
+
 	}
 
-	function redirectionLogin(array $dVueErreur) {
+	function redirectionLogin(array $dVueEreur) {
 		global $rep,$vues; 
 		require ($rep.$vues['login']);
 	}
 
-	function redirectionInscription(array $dVueErreur) {
+	function redirectionInscription(array $dVueEreur) {
 		global $rep,$vues; 
 		require ($rep.$vues['inscription']);
 	}
 
-	function seConnecter(array $dVueErreur) {
+	function seConnecter(array $dVueEreur) {
 		global $rep,$vues; 
 		try{
 			$result=MdlUtilisateur::Connection();
 			$action=NULL;
-			$this->ConsulterListePublic($dVueErreur);
+			$this->ConsulterListePublic($dVueEreur);
 		}	
 		catch (Exception $e)
 		{
@@ -114,7 +111,7 @@ class CtrlVisiteur {
 		
 	}
 
-	function ConsulterListePublic(array $dVueErreur) {
+	function ConsulterListePublic(array $dVueEreur) {
 		global $rep,$vues; 
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
@@ -122,7 +119,7 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 	}
 
-	function SupprimerTache(array $dVueErreur){
+	function SupprimerTache(){
 		global $rep,$vues; 
 		$tache = MdlVisiteur::SupprimerTache();
 		$listes = MdlVisiteur::RecupererListePublic();
@@ -132,7 +129,7 @@ class CtrlVisiteur {
 
 	}
 
-	function SupprimerListe(array $dVueErreur){
+	function SupprimerListe(){
 		global $rep,$vues; 
 		$liste = MdlVisiteur::SupprimerListe();
 		$listes = MdlVisiteur::RecupererListePublic();
@@ -141,7 +138,6 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 
 	}
-
 }//fin class
 
 ?>

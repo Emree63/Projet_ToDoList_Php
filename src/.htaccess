@@ -13,6 +13,3 @@ RewriteEngine On
 RewriteRule ^login$ index.php?action=redirectionLogin [L]
 RewriteRule ^inscription$ index.php?action=redirectionInscription [L]
 RewriteRule ^VueListePublic$ index.php?action=redirectionListePublic [L]
-RewriteRule ^logout$ index.php?action=logout [L]
-RewriteRule ^MonProfil$ index.php?action=redirectionProfil [L]
-RewriteRule ^supprimerCompte$ index.php?action=supprimerCompte [L]

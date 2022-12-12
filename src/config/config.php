@@ -14,6 +14,6 @@ $vues['inscription']='vue/html/inscription.php';
 $vues['listPublic']='vue/html/PageListePublic.php';
 $vues['login']='vue/html/login.php';
 $vues['NavBar']='vue/html/NavBar.php';
-$vues['profil']='vue/html/profil.php';
+
 
 ?>
