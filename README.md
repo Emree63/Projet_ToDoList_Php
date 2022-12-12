@@ -53,7 +53,6 @@ La composition pour le projet se voit réaliser par deux élèves de l'IUT d'aub
 ⚙️ Rayhan HASSOU 
 <br>
 
-
 <div align = center>
 © Groupe 4
 </div>
