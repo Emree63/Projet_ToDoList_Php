@@ -41,7 +41,7 @@
                       <img src="./vue/Images/edit.png" width="20" />
                     </button>
        
-                   <button data-toggle="modal" data-target="#formulaireAjout" class="btn btn-default">
+                   <button data-toggle="modal" data-target="#formulaireAjout<?= $liste->getId()?>" class="btn btn-default">
                       <img src="./vue/Images/plus.png" width="20" />
                   </button>
                 </span>
@@ -54,27 +54,27 @@
             <!-- Fenetre modal -->
 
             <div class="container">
-                <div class="modal fade" id="formulaireModif<?= $liste->getId()?>">
+                <div class="modal fade" id="formulaireAjout<?= $liste->getId()?>">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title">Modification</h4>              
+                        <h4 class="modal-title">Ajout d'une tache</h4>              
                         <button type="button" class="close" data-dismiss="modal">
                           <span>&times;</span>
                         </button>
                       </div>
                       <div class="modal-body row">
-                        <form class="col" method="POST" action="index.php?action=ModifierListe&idListe=<?= $liste->getId() ?>">
+                        <form class="col" method="POST" action="index.php?action=AjouterTache&idListe=<?= $liste->getId() ?>">
                           <div class="form-group">
-                            <label for="nom" class="form-control-label">Nouveau nom</label>
-                            <input type="text" class="form-control" name ="nom-modif-liste" id="nom" placeholder="<?= $liste->getNom() ?>">
+                            <label for="nom" class="form-control-label">Nom</label>
+                            <input type="text" class="form-control" name ="nom-ajout" id="nom" placeholder="Entrez un nom">
                           </div>
                           <div class="form-group">
-                            <label for="description" class="form-control-label">Nouvelle description</label>
-                            <input type="text" class="form-control" name="description-modif-liste" id="description" placeholder="<?= $liste->getDescription() ?>">
+                            <label for="description" class="form-control-label">Description</label>
+                            <input type="text" class="form-control" name="description-ajout" id="description" placeholder="Entrez une description">
                           </div>
-                          <button type="submit" class="btn btn-primary pull-right">Modifier</button>
-                          <input type="hidden" name="action" value="ModifierListe">
+                          <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
+                          <input type="hidden" name="action" value="AjouterTache">
                           <input type="hidden" name="idListe" value="<?= $liste->getId() ?>">
                         </form>
                       </div>

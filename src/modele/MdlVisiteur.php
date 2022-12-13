@@ -57,9 +57,6 @@ class MdlVisiteur
         $nom = Validation::cleanString($_POST['nom-modif-liste']);
         $description = Validation::cleanString($_POST['description-modif-liste']);
         if($description == NULL){
-            echo "$nom";
-            echo "$id";
-
             $userGtw->EditerNom($id, $nom);
         }
         else if($nom == NULL){
