@@ -14,55 +14,74 @@
       </head>
     <body>
       <div class="main">
-          <div class="model">
-              <div class="main-logo">
-                  <img src="./vue/Images/Logo.png" alt="logo">
-              </div>
-              <div class="login-card-header">
-                  <h1>Inscrivez-vous</h1>    
-              </div>
-              <form method="POST" class="login-card-form">
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                        <input type="text" name="nom-Form" placeholder="Nom" required autofocus>
-                    </div>
-                  </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                          <input type="text" name="prenom-Form" placeholder="Prenom" required autofocus>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-item">
-                      <input type="text" name="pseudo-Form" placeholder="Pseudo" required autofocus>
-                  </div>
-                  <div class="form-item">
-                      <input type="text" name="mail" placeholder="Mail" required autofocus>
-                  </div>
-                  <div class="form-item">
-                      <input type="password" name="password" placeholder="Password" required >
-                  </div>
-                  
-                  <button type="submit" class="btn btn-primary">S'inscrire</button>
-                  <!-- action !!!!!!!!!! --> 
-                  <input type="hidden" name="action" value="validationFormulaire">
-                  <?php
-                  if (isset($dVueEreur)) {
-                    foreach ($dVueEreur as $value){
-                        echo $value;
-                    }
-                  }
-                  ?>
-                  <p class="text-center text-muted mt-5 mb-0">Déjà un compte?
-                  <a href="login" class="fw-bold text-body"><u>Connectez-vous</u></a></p>
-              
-                </form>
-
+        <div class="model">
+          <div class="main-logo">
+            <img src="./vue/Images/Logo.png" alt="logo">
           </div>
-          
+          <div class="login-card-header">
+            <h1>Inscrivez-vous</h1>    
+          </div>
+          <?php 
+            if(isset($ErreurLog)){?>
+              <center><p class="ErreurText"> <?php echo $ErreurLog?></p></center><?php
+            } 
+          ?> 
+          <form method="POST" class="login-card-form">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <?php 
+                  if(isset($dVueErreur['nom'])){?>
+                    <center><p class="ErreurText"> <?php echo $dVueErreur['nom']?></p></center><?php
+                  } 
+                ?> 
+                <div class="form-outline">
+                    <input type="text" name="nom-Form" placeholder="Nom" required autofocus>
+                </div>
+              </div>
+                <div class="col-md-6 mb-4">
+                  <?php 
+                    if(isset($dVueErreur['prenom'])){?>
+                        <center><p class="ErreurText"> <?php echo $dVueErreur['prenom']?></p></center><?php
+                    } 
+                  ?> 
+                  <div class="form-outline">
+                    <input type="text" name="prenom-Form" placeholder="Prenom" required autofocus>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item">
+                <?php 
+                  if(isset($dVueErreur['pseudo'])){?>
+                    <center><p class="ErreurText"> <?php echo $dVueErreur['pseudo']?></p></center><?php
+                  } 
+                ?> 
+                <input type="text" name="pseudo-Form" placeholder="Pseudo" required autofocus>
+              </div>
+
+              <div class="form-item">
+                <?php 
+                  if(isset($dVueErreur['mail'])){?>
+                    <center><p class="ErreurText"> <?php echo $dVueErreur['mail']?></p></center><?php
+                  } 
+                ?> 
+                <input type="text" name="mail" placeholder="Mail" required autofocus>
+              </div>
+              <div class="form-item">
+                <?php 
+                  if(isset($dVueErreur['password'])){?>
+                      <center><p class="ErreurText"> <?php echo $dVueErreur['password']?></p></center><?php
+                  } 
+                ?> 
+                <input type="password" name="password" placeholder="Password" required >
+              </div>
+              
+              <button type="submit" class="btn btn-primary">S'inscrire</button>
+              <!-- action !!!!!!!!!! --> 
+              <input type="hidden" name="action" value="validationFormulaire">
+              <p class="text-center text-muted mt-5 mb-0">Déjà un compte?
+              <a href="login" class="fw-bold text-body"><u>Connectez-vous</u></a></p>
+          </form>
+        </div>
       </div>
-
     </body>
-
 </html>

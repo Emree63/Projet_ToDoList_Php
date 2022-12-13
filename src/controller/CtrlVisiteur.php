@@ -78,13 +78,19 @@ class CtrlVisiteur {
 		global $rep,$vues; 
 
 		try{
-			$val = MdlVisiteur::CreerUtilisateur();
+			$val = MdlVisiteur::CreerUtilisateur($dVueErreur);
 			$result=MdlUtilisateur::Connection();
 			$action=NULL;
 			$this->ConsulterListePublic($dVueErreur);
 		}	
 		catch (Exception $e)
 		{
+			$ErreurLog=$e->getMessage();
+			require ($rep.$vues['inscription']);
+		}
+		catch (PDOException $e)
+		{
+			$ErreurLog=$e->getMessage();
 			require ($rep.$vues['inscription']);
 		}
 	}
@@ -129,7 +135,6 @@ class CtrlVisiteur {
 		$taches = MdlVisiteur::RecupererTache();
 		$action=NULL;
 		require ($rep.$vues['listPublic']);
-
 	}
 
 	function SupprimerListe(array $dVueErreur){
@@ -139,7 +144,6 @@ class CtrlVisiteur {
 		$taches = MdlVisiteur::RecupererTache();
 		$action=NULL;
 		require ($rep.$vues['listPublic']);
-
 	}
 
 }//fin class

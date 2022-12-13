@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="menu-bar">
+  <div class="menu-bar" >
     <section class="fixed-top">
         <nav class="navbar navbar-expand-lg bg-info ">
           <img src="./vue/Images/LogoForHome.png" width="200">

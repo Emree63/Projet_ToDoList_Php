@@ -20,9 +20,34 @@ class UtilisateurGateway{
     public function SupprimerUtilisateur(int $id){
         $query="DELETE FROM ToDoList_Utilisateur WHERE id=:id";
         $this->con->executeQuery($query, array(
-                            'id' => array($id, PDO::PARAM_STR)));
+                            'id' => array($id, PDO::PARAM_INT)));
     }
 
+    // Vérifie que le mail n'existe pas
+    public function isExisteViaMail($mail){
+        $query="SELECT * FROM ToDoList_Utilisateur WHERE email=:mail";
+        $this->con->executeQuery($query, array('mail' => array($mail, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        if($results!=null){
+            throw new PDOException("Erreur l'email existe déjà*");
+        }else{
+            return null;
+        }
+    }
+
+    // Vérifie que le pseudo n'existe pas
+    public function isExisteViaPseudo($pseudo){
+        $query="SELECT * FROM ToDoList_Utilisateur WHERE pseudo=:pseudo";
+        $this->con->executeQuery($query, array('pseudo' => array($pseudo, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        if($results!=null){
+            throw new PDOException("Erreur le pseudo existe déjà*");
+        }else{
+            return null;
+        }
+    }
+
+    // Récupère le mot de passe pour la connexion via le mail en paramètres
     public function getCredentials(string $mail){
         $query = 'SELECT motDePasse FROM ToDoList_Utilisateur WHERE email=:mail';
         $this->con->executeQuery($query, array('mail' => array($mail, PDO::PARAM_STR)));
@@ -32,7 +57,6 @@ class UtilisateurGateway{
         }else{
             throw new Exception("Identifiant introuvable*");
         }
-        
     }
 
     public function RechercheUtilisateurViaEmail(string $mail){
