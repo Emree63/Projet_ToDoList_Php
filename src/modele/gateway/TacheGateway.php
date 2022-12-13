@@ -6,18 +6,28 @@ class TacheGateway{
         $this->con=new Connection($dsn,$user,$pass);
     }
 
-    public function Ajouter(string $nom, string $description, Date $dateCreation, bool $estValide, int $idCreateur){
-    	$query='INSERT INTO ToDoList_Tache(nom, description, dateCreation,estValide, createur) VALUES(:nom, :description, :dateCreation, :estValide, :idCreateur)';
-        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STRING)),
-        array('description' => array($description, PDO::PARAM_STRING)),
-        array('dateCreation' => array($dateCreation, PDO::PARAM_STRING)),
+
+    public function AjouterTache(string $nom, string $description, bool $estValide, string $idListe){
+        $query='INSERT INTO ToDoList_Tache(nom, description, dateCreation,estValide, idListe) VALUES(:nom, :description, CURRENT_DATE, :estValide, ;idListe)';
+        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR)),
+        array('description' => array($description, PDO::PARAM_STR)),
         array('estValide' => array($estValide, PDO::PARAM_BOOL)),
-        array('idCreateur' => array($idCreateur, PDO::PARAM_INT)));
+        array('idListe' => array($idListe, PDO::PARAM_INT)));
     }
 
-    public function Editer(Tache $tache, string $nom, string $description){
+    public function Editer(string $id, string $nom, string $description){
     	$query='UPDATE ToDoList_Tache SET  nom=:nom, description =:description WHERE id=:id';
-    	$this->con->executeQuery($query, array('nom' => array($tache->getNom(), PDO::PARAM_STRING)), array('description' => array($tache->getdescription(), PDO::PARAM_STRING)), array('id' => array($tache->getId(),PDO::PARAM_INT)));
+    	$this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR)), array('description' => array($description, PDO::PARAM_STR)), array('id' => array($id, PDO::PARAM_INT)));
+    }
+
+    public function EditerNom(string $id, string $nom){
+        $query='UPDATE ToDoList_Tache SET  nom=:nom WHERE id=:id';
+        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR)), array('id' => array($id, PDO::PARAM_INT)));
+    }
+
+     public function EditerDescription(string $id, string $description){
+        $query='UPDATE ToDoList_Tache SET  description=:description WHERE id=:id';
+        $this->con->executeQuery($query, array('description' => array($description, PDO::PARAM_STR)), array('id' => array($id, PDO::PARAM_INT)));
     }
 
     public function Supprimer(string $id){
@@ -39,6 +49,11 @@ class TacheGateway{
             $taches[] = new Tache($tache["id"],$tache["nom"],$tache["description"],$tache["dateCreation"],$tache["estValide"],$tache["idListe"]);
         }
         return $taches;
+    }
+
+    public function isDone(string $id){
+        $query = 'UPDATE ToDoList_Tache SET estValide = !estValide WHERE id=:id';
+        $this->con->executeQuery($query, array('id' => array($id, PDO::PARAM_STR)));
     }
 }
 ?>

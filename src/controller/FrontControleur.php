@@ -28,7 +28,7 @@ class FrontControleur {
 			// }	
 			// else 
 			new CtrlVisiteur();
-
+			echo "coucou";
 
 		} catch (Exception $e) {
 			$dVueEreur[] =	"Erreur inattendue!!! ";

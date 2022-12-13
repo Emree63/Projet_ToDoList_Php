@@ -28,7 +28,7 @@ class MdlVisiteur
         $userGtw = new TacheGateway();
         return $userGtw->getTache();
     }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     public static function SupprimerTache(){
         $userGtw = new TacheGateway();
         $id = $_GET['idTache'];
@@ -41,6 +41,39 @@ class MdlVisiteur
         $id = $_GET['idListe'];
         $taskGtw->SupprimerViaListe($id);
         $userGtw->Supprimer($id);
+    }
+
+    public function AjouterTache(){
+        $taskGtw = new TacheGateway();
+        $id = $_POST['idListe'];
+        $nom = Validation::cleanString($_POST['nom-ajout']);
+        $description = Validation::cleanString($_POST['description-ajout']);
+        $taskGtw->AjouterTache($nom, $description,false,$id);
+    }
+
+    public function ModifierListe(){
+        $userGtw = new ListeGateway();
+        $id = $_POST['idListe'];
+        $nom = Validation::cleanString($_POST['nom-modif-liste']);
+        $description = Validation::cleanString($_POST['description-modif-liste']);
+        if($description == NULL){
+            echo "$nom";
+            echo "$id";
+
+            $userGtw->EditerNom($id, $nom);
+        }
+        else if($nom == NULL){
+            $userGtw->EditerDescription($id, $description);
+        }
+        else{
+             $userGtw->Editer($id, $nom, $description);
+        }  
+    }
+
+    public function check(){
+        $taskGtw = new TacheGateway();
+        $id = $_POST['idTache'];
+        $taskGtw->isDone($id);
     }
 
 }

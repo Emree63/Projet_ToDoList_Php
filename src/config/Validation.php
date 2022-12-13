@@ -53,6 +53,7 @@ class Validation {
 
     }
 
+
     static function cleanString(string &$str) {
         $str = preg_replace('/[^A-Za-z\-]/', '', $str);
         if($str == null || $str == '')

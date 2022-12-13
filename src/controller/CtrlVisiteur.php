@@ -49,10 +49,22 @@ class CtrlVisiteur {
 					$this->SupprimerListe();
 					break;
 
+				case "AjouterTache":
+					$this->AjouterTache();
+					break;
+
+				case "ModifierListe":
+					$this->ModifierListe();
+					break;
+
+				case "check":
+					$this->check();
+					break;
+
 				//mauvaise action
 				default:
 					$dVueEreur[] =	"Erreur d'appel php";
-					require ($rep.$vues['home']);
+					require ($rep.$vues['listPublic']);
 					break;
 				}
 
@@ -137,6 +149,34 @@ class CtrlVisiteur {
 		$action=NULL;
 		require ($rep.$vues['listPublic']);
 
+	}
+
+	public function AjouterTache(){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::AjouterTache();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
+
+	public function ModifierListe(){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::ModifierListe();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
+
+	public function check()
+	{
+		global $rep,$vues;
+		$tache = MdlVisiteur::check();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
 	}
 }//fin class
 
