@@ -18,6 +18,7 @@ class FrontControleur {
 				$action = $_REQUEST["action"];
 			}
 
+
 			//On vérifie si l'action fait partie des listes d'actions
 			$string_actor=FrontControleur::quelListe($action,$listeActions);
 			if($string_actor!=NULL){

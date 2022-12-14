@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/c.gif" type="../Images/gif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
@@ -12,22 +12,72 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
+
   <body style="-webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none;">
-  <?php require($rep.$vues['NavBar']); ?>
-  <br>
-  <br>
-  <br>
+    <?php require($rep.$vues['NavBar']); ?>
+      <br>
+      <br>
+      <br>
+
+      <button class="btn btn-default" data-toggle="modal" data-target="#formulaireAjoutListe">
+          Ajouter une liste
+            <img src="./vue/Images/plus.png" width="20" />
+      </button>
+
+       <div class="container">
+                <div class="modal fade" id="formulaireAjoutListe">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Ajout d'une liste</h4>              
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span>&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body row">
+                        <form class="col" method="POST" action="index.php?action=AjouterListePublic">
+                          <div class="form-group">
+                             <?php 
+                                if(isset($dVueErreur['nom'])){?>
+                                  <center><p class="text-danger"> <?php echo $dVueErreur['nom']?></p></center><?php
+                                } 
+                              ?> 
+                            <label for="nom" class="form-control-label">Nom</label>
+                            <input type="text" class="form-control" name ="nom-ajout-liste" id="nom" placeholder="Entrez un nom">
+                          </div>
+                          <div class="form-group">
+                             <?php 
+                                if(isset($dVueErreur['description'])){?>
+                                  <center><p class="text-danger"> <?php echo $dVueErreur['description']?></p></center><?php
+                                } 
+                              ?> 
+                            <label for="description" class="form-control-label">Description</label>
+                            <input type="text" class="form-control" name="description-ajout-liste" id="description" placeholder="Entrez une description">
+                          </div>
+                          <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
+                          <input type="hidden" name="action" value="AjouterListePublic">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
   <?php
         foreach($listes as $liste){
+          $done = 0;
+          $total = 0;
   ?>
+  
+  <!-- Affichage des listes -->
+  
   <div class="container py-2 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-8 col-xl-6">
         <div class="card rounded-3">
           <div class="card-body p-4">
-
             <div>
               <p class="mb-2">
                 <span class="h2 me-2 text-info"><?= $liste->getNom()?>
@@ -36,23 +86,102 @@
                         <img src="./vue/Images/trash.png" width="20" />
                       </button>
                   </a>
-                  <button type="submit" class="btn btn-default">
-                    <img src="./vue/Images/edit.png" width="20" />
+                    <button data-toggle="modal" data-target="#formulaireModif<?= $liste->getId()?>" class="btn btn-default">
+                      <img src="./vue/Images/edit.png" width="20" />
+                    </button>
+       
+                   <button data-toggle="modal" data-target="#formulaireAjout<?= $liste->getId()?>" class="btn btn-default">
+                      <img src="./vue/Images/plus.png" width="20" />
                   </button>
                 </span>
               </p>
-            <p><span class="h5 me-2"><?= $liste->getDescription()?></span>
-            <p class="text-muted pb-2"><?= $liste->getDateCreation()?></p>
-
+              <p><span class="h5 me-2"><?= $liste->getDescription()?></span>
+              <p class="text-muted pb-2"><?= $liste->getDateCreation()?></p>
             </div>
+
+
+            <!-- Fenetre modal -->
+
+            <div class="container">
+                <div class="modal fade" id="formulaireAjout<?= $liste->getId()?>">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Ajout d'une tache</h4>              
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span>&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body row">
+                        <form class="col" method="POST" action="index.php?action=AjouterTache&idListe=<?= $liste->getId() ?>">
+                          <div class="form-group">
+                            <label for="nom" class="form-control-label">Nom</label>
+                            <input type="text" class="form-control" name ="nom-ajout" id="nom" placeholder="Entrez un nom">
+                          </div>
+                          <div class="form-group">
+                            <label for="description" class="form-control-label">Description</label>
+                            <input type="text" class="form-control" name="description-ajout" id="description" placeholder="Entrez une description">
+                          </div>
+                          <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
+                          <input type="hidden" name="action" value="AjouterTache">
+                          <input type="hidden" name="idListe" value="<?= $liste->getId() ?>">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+           
+
+            <div class="container">
+                <div class="modal fade" id="formulaireModif<?= $liste->getId()?>">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Modification</h4>              
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span>&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body row">
+                        <form class="col" method="POST" action="index.php?action=ModifierListe&idListe=<?= $liste->getId() ?>">
+                          <div class="form-group">
+                            <label for="nom" class="form-control-label">Nouveau nom</label>
+                            <input type="text" class="form-control" name ="nom-modif-liste" id="nom" placeholder="<?= $liste->getNom() ?>">
+                          </div>
+                          <div class="form-group">
+                            <label for="description" class="form-control-label">Nouvelle description</label>
+                            <input type="text" class="form-control" name="description-modif-liste" id="description" placeholder="<?= $liste->getDescription() ?>">
+                          </div>
+                          <button type="submit" class="btn btn-primary pull-right">Modifier</button>
+                          <input type="hidden" name="action" value="ModifierListe">
+                          <input type="hidden" name="idListe" value="<?= $liste->getId() ?>">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Tache -->
             
             <ul class="list-group rounded-0">
                <?php
               foreach($taches as $tache){
+
                 if($tache->getIdListe() == $liste->getId()){
+                  if($tache->getEstValide() == 1){
+                    $done = $done + 1;
+                  }
+                  $total = $total + 1;
                ?>
               <li class="list-group-item border-0 d-flex align-items-center ps-0">
-                <input class="form-check-input me-3" type="checkbox" value="" aria-label="..."/>
+                <form name="action" action="index.php?action=check" method="POST">
+                  <input class="form-check-input me-3" type="checkbox" onChange="submit();"
+                  <?php if($tache->getEstValide() == 1) echo "checked" ?>>
+                  <input type="hidden" name="idTache" value="<?= $tache->getId() ?>" >
+                </form>
                 <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
 
                   <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
@@ -71,6 +200,16 @@
                ?>
             </ul>
           </div>
+           <div class="progress">
+              <?php
+                if($total != 0){
+                    $pourcentage = $done * 100 / $total;
+                } else{
+                  $pourcentage = 0;
+                }
+                ?>
+                  <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo"$pourcentage" ?>%;"></div>
+              </div>
         </div>
       </div>
     </div>
@@ -78,7 +217,6 @@
  <?php
   }
 ?> 
-
 
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -176,5 +314,7 @@
   </div>
   <!-- Copyright -->
 </footer>
+
+
 
 </html>

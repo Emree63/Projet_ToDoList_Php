@@ -49,6 +49,22 @@ class CtrlVisiteur {
 					$this->SupprimerListe($dVueErreur);
 					break;
 
+				case "AjouterTache":
+					$this->AjouterTache();
+					break;
+
+				case "AjouterListePublic":
+					$this->AjouterListePublic($dVueErreur);
+					break;
+
+				case "ModifierListe":
+					$this->ModifierListe();
+					break;
+
+				case "check":
+					$this->check();
+					break;
+
 				//mauvaise action
 				default:
 					$dVueErreur[] =	"Erreur d'appel php";
@@ -146,6 +162,52 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 	}
 
+
+	public function AjouterTache(){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::AjouterTache();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
+
+	public function AjouterListePublic(array $dVueErreur){
+		global $rep,$vues; 
+
+		try{
+			$tache = MdlVisiteur::AjouterListePublic($dVueErreur);
+			$this->ConsulterListePublic($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listes = MdlVisiteur::RecupererListePublic();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPublic']);
+		}	
+		
+	}
+
+	public function ModifierListe(){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::ModifierListe();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
+
+	public function check()
+	{
+		global $rep,$vues;
+		$tache = MdlVisiteur::check();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
 }//fin class
 
 ?>

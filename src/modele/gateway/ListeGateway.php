@@ -7,21 +7,39 @@ class ListeGateway{
         $this->con=new Connection($dsn,$user,$pass);
     }
 
-    public function Ajouter(string $nom,  Date $dateCreation, bool $estValide, int $idCreateur, bool $estPublic){
-    	$query='INSERT INTO ToDoList_Liste(nom, dateCreation,estValide, createur, estPublic) VALUES(:nom, :dateCreation, :estValide, :idCreateur, :estPublic)';
-        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STRING)),
-                                        array('dateCreation' => array($dateCreation, PDO::PARAM_STRING)),
-                                        array('estValide' => array($estValide, PDO::PARAM_BOOL)),
-                                        array('idCreateur' => array($idCreateur, PDO::PARAM_INT)),
-                                        array('estPublic' => array($estPublic, PDO::PARAM_INT)));
+    public function Ajouter(string $nom, string $description, bool $estPublic, string $createur){
+    	$query='INSERT INTO ToDoList_Liste(nom, description, dateCreation,estPublic, idUtilisateur) VALUES(:nom,:description,CURRENT_DATE, :estPublic, :createur);';
+        $this->con->executeQuery($query, array(
+                                        'nom' => array($nom, PDO::PARAM_STR),
+                                        'description' => array($description, PDO::PARAM_STR),
+                                        'estPublic' => array($estPublic, PDO::PARAM_INT),
+                                        'createur' => array($createur, PDO::PARAM_STR),
+                                    ));
     }
 
-    public function Editer(Liste $Liste){
-    	$query='UPDATE ToDoList_Liste SET nom=:nom WHERE id=:id';
-    	$this->con->executeQuery($query, array('nom' => array($Liste->getNom(), PDO::PARAM_STRING)), array('id' => array($Liste->getId()),PDO::PARAM_INT));
+    public function Editer(string $id, string $nom, string $description){
+    	$query='UPDATE ToDoList_Liste SET nom=:nom AND description=:description WHERE id=:id;';
+    	$this->con->executeQuery($query, array(
+            'nom' => array($nom, PDO::PARAM_STR), 
+            'id' => array($id,PDO::PARAM_INT),
+            'description' => array($description, PDO::PARAM_STR))
+        );
     }
 
-    public function Supprimer(int $id){
+    public function EditerNom(string $id, string $nom){
+        $query='UPDATE ToDoList_Liste SET nom=:nom WHERE id=:id;';
+
+// erreur iciiiiiiii
+        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR),'id' => array($id, PDO::PARAM_INT)));
+
+    }
+
+     public function EditerDescription(string $id, string $description){
+        $query='UPDATE ToDoList_Liste SET description=:description WHERE id=:id;';
+        $this->con->executeQuery($query, array('description' => array($description, PDO::PARAM_STR), 'id' => array($id, PDO::PARAM_INT)));
+    }
+
+    public function Supprimer(string $id){
         $query="DELETE FROM ToDoList_Liste WHERE id=:id";
         $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
     }
