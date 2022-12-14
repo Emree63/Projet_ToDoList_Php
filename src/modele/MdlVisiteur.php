@@ -46,16 +46,16 @@ class MdlVisiteur
     public function AjouterTache(){
         $taskGtw = new TacheGateway();
         $id = $_POST['idListe'];
-        $nom = Validation::cleanString($_POST['nom-ajout']);
-        $description = Validation::cleanString($_POST['description-ajout']);
+        $nom = $_POST['nom-ajout'];
+        $description = $_POST['description-ajout'];
         $taskGtw->AjouterTache($nom, $description,false,$id);
     }
 
     public function ModifierListe(){
         $userGtw = new ListeGateway();
         $id = $_POST['idListe'];
-        $nom = Validation::cleanString($_POST['nom-modif-liste']);
-        $description = Validation::cleanString($_POST['description-modif-liste']);
+        $nom = $_POST['nom-modif-liste'];
+        $description = $_POST['description-modif-liste'];
         if($description == NULL){
             $userGtw->EditerNom($id, $nom);
         }
@@ -65,6 +65,13 @@ class MdlVisiteur
         else{
              $userGtw->Editer($id, $nom, $description);
         }  
+    }
+
+    public function AjouterListePublic(){
+        $taskGtw = new ListeGateway();
+        $nom = $_POST['nom-ajout-liste'];
+        $description = $_POST['description-ajout-liste'];
+        $taskGtw->Ajouter($nom, $description,1, true);
     }
 
     public function check(){

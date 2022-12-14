@@ -7,14 +7,14 @@ class ListeGateway{
         $this->con=new Connection($dsn,$user,$pass);
     }
 
-    public function Ajouter(string $nom,  Date $dateCreation, bool $estValide, int $idCreateur, bool $estPublic){
-    	$query='INSERT INTO ToDoList_Liste(nom, dateCreation,estValide, createur, estPublic) VALUES(:nom, :dateCreation, :estValide, :idCreateur, :estPublic);';
+    public function Ajouter(string $nom, string $description, bool $estPublic, string $createur){
+    	$query='INSERT INTO ToDoList_Liste(nom, description, dateCreation,estPublic, idUtilisateur) VALUES(:nom,:description,CURRENT_DATE, :estPublic, :createur);';
         $this->con->executeQuery($query, array(
                                         'nom' => array($nom, PDO::PARAM_STR),
-                                        'dateCreation' => array($dateCreation, PDO::PARAM_STR),
-                                        'estValide' => array($estValide, PDO::PARAM_BOOL),
-                                        'idCreateur' => array($idCreateur, PDO::PARAM_INT),
-                                        'estPublic' => array($estPublic, PDO::PARAM_INT)));
+                                        'description' => array($description, PDO::PARAM_STR),
+                                        'estPublic' => array($estPublic, PDO::PARAM_INT),
+                                        'createur' => array($createur, PDO::PARAM_STR),
+                                    ));
     }
 
     public function Editer(string $id, string $nom, string $description){

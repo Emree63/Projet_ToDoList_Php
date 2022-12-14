@@ -53,6 +53,10 @@ class CtrlVisiteur {
 					$this->AjouterTache();
 					break;
 
+				case "AjouterListePublic":
+					$this->AjouterListePublic();
+					break;
+
 				case "ModifierListe":
 					$this->ModifierListe();
 					break;
@@ -154,6 +158,15 @@ class CtrlVisiteur {
 	public function AjouterTache(){
 		global $rep,$vues; 
 		$tache = MdlVisiteur::AjouterTache();
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
+	}
+
+	public function AjouterListePublic(){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::AjouterListePublic();
 		$listes = MdlVisiteur::RecupererListePublic();
 		$taches = MdlVisiteur::RecupererTache();
 		$action=NULL;

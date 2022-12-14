@@ -16,6 +16,40 @@
 
       <?php require($rep.$vues['NavBar']); ?>
 
+      <button class="btn btn-default" data-toggle="modal" data-target="#formulaireAjoutListe">
+          Ajouter une liste
+            <img src="./vue/Images/plus.png" width="20" />
+      </button>
+
+       <div class="container">
+                <div class="modal fade" id="formulaireAjoutListe">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Ajout d'une liste</h4>              
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span>&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body row">
+                        <form class="col" method="POST" action="index.php?action=AjouterListePublic">
+                          <div class="form-group">
+                            <label for="nom" class="form-control-label">Nom</label>
+                            <input type="text" class="form-control" name ="nom-ajout-liste" id="nom" placeholder="Entrez un nom">
+                          </div>
+                          <div class="form-group">
+                            <label for="description" class="form-control-label">Description</label>
+                            <input type="text" class="form-control" name="description-ajout-liste" id="description" placeholder="Entrez une description">
+                          </div>
+                          <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
+                          <input type="hidden" name="action" value="AjouterListePublic">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
   <?php
         foreach($listes as $liste){
           $done = 0;
@@ -82,6 +116,8 @@
                   </div>
                 </div>
             </div>
+
+           
 
             <div class="container">
                 <div class="modal fade" id="formulaireModif<?= $liste->getId()?>">
