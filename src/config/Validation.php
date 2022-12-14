@@ -63,6 +63,31 @@ class Validation {
         return $str;
     }
 
+    static function val_form_add(string &$nom,string &$description,&$dVueEreur) {
+        $nom = Validation::cleanText($nom);
+        if ($nom == NULL) {
+            $dVueEreur['nom'] =  "Veuillez entrer un nom*";
+        }
+        $description = Validation::cleanText($description);
+        if ($description == NULL) {
+            $dVueEreur['description'] =  "Veuillez entrer une description*";
+        }
+        if(count($dVueEreur)>0){
+            throw new Exception("Problème lors de l'ajout");
+        }
+
+
+    }
+
+    static function cleanText(string &$txt) {
+        $txt = preg_replace('/[^A-Za-z\-\^0-9\ ]/', '',  $txt);
+        if($txt == null || $txt == '')
+        {
+            return null;
+        }
+        return $txt;
+    }
+
     static function val_mail(string &$mail) {
         if(filter_var($mail, FILTER_VALIDATE_EMAIL))
         {

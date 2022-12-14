@@ -34,10 +34,20 @@
                       <div class="modal-body row">
                         <form class="col" method="POST" action="index.php?action=AjouterListePublic">
                           <div class="form-group">
+                             <?php 
+                                if(isset($dVueErreur['nom'])){?>
+                                  <center><p class="text-danger"> <?php echo $dVueErreur['nom']?></p></center><?php
+                                } 
+                              ?> 
                             <label for="nom" class="form-control-label">Nom</label>
                             <input type="text" class="form-control" name ="nom-ajout-liste" id="nom" placeholder="Entrez un nom">
                           </div>
                           <div class="form-group">
+                             <?php 
+                                if(isset($dVueErreur['description'])){?>
+                                  <center><p class="text-danger"> <?php echo $dVueErreur['description']?></p></center><?php
+                                } 
+                              ?> 
                             <label for="description" class="form-control-label">Description</label>
                             <input type="text" class="form-control" name="description-ajout-liste" id="description" placeholder="Entrez une description">
                           </div>

@@ -54,7 +54,7 @@ class CtrlVisiteur {
 					break;
 
 				case "AjouterListePublic":
-					$this->AjouterListePublic();
+					$this->AjouterListePublic($dVueEreur);
 					break;
 
 				case "ModifierListe":
@@ -164,13 +164,22 @@ class CtrlVisiteur {
 		require ($rep.$vues['listPublic']);
 	}
 
-	public function AjouterListePublic(){
+	public function AjouterListePublic(array $dVueErreur){
 		global $rep,$vues; 
-		$tache = MdlVisiteur::AjouterListePublic();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+
+		try{
+			$tache = MdlVisiteur::AjouterListePublic($dVueErreur);
+			$this->ConsulterListePublic($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listes = MdlVisiteur::RecupererListePublic();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPublic']);
+		}	
+		
 	}
 
 	public function ModifierListe(){

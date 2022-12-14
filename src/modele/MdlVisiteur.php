@@ -48,6 +48,7 @@ class MdlVisiteur
         $id = $_POST['idListe'];
         $nom = $_POST['nom-ajout'];
         $description = $_POST['description-ajout'];
+        Validation::val_form_add($nom,$description,$dVueErreur);
         $taskGtw->AjouterTache($nom, $description,false,$id);
     }
 
@@ -67,10 +68,11 @@ class MdlVisiteur
         }  
     }
 
-    public function AjouterListePublic(){
+    public function AjouterListePublic(&$dVueErreur){
         $taskGtw = new ListeGateway();
-        $nom = $_POST['nom-ajout-liste'];
-        $description = $_POST['description-ajout-liste'];
+        $nom=$_POST['nom-ajout-liste'];
+        $description=$_POST['description-ajout-liste'];
+        Validation::val_form_add($nom,$description,$dVueErreur);
         $taskGtw->Ajouter($nom, $description,1, true);
     }
 
