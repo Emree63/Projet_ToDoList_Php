@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="./vue/Images/c.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
@@ -37,7 +37,7 @@
                         </button>
                       </div>
                       <div class="modal-body row">
-                        <form class="col" method="POST" action="index.php?action=AjouterListePublic">
+                        <form class="col" method="POST">
                           <div class="form-group">
                              <?php 
                                 if(isset($dVueErreur['nom'])){?>
@@ -113,14 +113,14 @@
                         </button>
                       </div>
                       <div class="modal-body row">
-                        <form class="col" method="POST" action="index.php?action=AjouterTache&idListe=<?= $liste->getId() ?>">
+                        <form class="col" method="POST" >
                           <div class="form-group">
                             <label for="nom" class="form-control-label">Nom</label>
-                            <input type="text" class="form-control" name ="nom-ajout" id="nom" placeholder="Entrez un nom">
+                            <input type="text" class="form-control" name ="nom-ajout" id="nom" placeholder="Entrez un nom" required autofocus>
                           </div>
                           <div class="form-group">
                             <label for="description" class="form-control-label">Description</label>
-                            <input type="text" class="form-control" name="description-ajout" id="description" placeholder="Entrez une description">
+                            <input type="text" class="form-control" name="description-ajout" id="description" placeholder="Entrez une description" required autofocus>
                           </div>
                           <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
                           <input type="hidden" name="action" value="AjouterTache">
@@ -145,7 +145,7 @@
                         </button>
                       </div>
                       <div class="modal-body row">
-                        <form class="col" method="POST" action="index.php?action=ModifierListe&idListe=<?= $liste->getId() ?>">
+                        <form class="col" method="POST">
                           <div class="form-group">
                             <label for="nom" class="form-control-label">Nouveau nom</label>
                             <input type="text" class="form-control" name ="nom-modif-liste" id="nom" placeholder="<?= $liste->getNom() ?>">
@@ -219,12 +219,15 @@
 ?> 
 
       <nav aria-label="Page navigation example">
+        <center>
+          <p>Page n°<?php echo $_COOKIE['page'] ?></p>
+        </center>
         <ul class="pagination justify-content-center">
           <li class="page-item"> 
-            <a class="page-link" href="#">Previous</a>
-           </li>
+            <a class="page-link" href="previousPage">Previous</a>
+          </li>
           <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <a class="page-link" href="nextPage">Next</a>
           </li>
         </ul>
       </nav>

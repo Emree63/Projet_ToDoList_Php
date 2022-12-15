@@ -59,6 +59,13 @@ class UtilisateurGateway{
         }
     }
 
+    public function modifMdp($id, $mdp){
+        $query = "UPDATE ToDoList_Utilisateur SET motDePasse=:mdp WHERE id=:id";
+        $this->con->executeQuery($query, array(
+            'mdp' => array($mdp, PDO::PARAM_STR),
+            'id' => array($id, PDO::PARAM_INT)));
+    }
+
     public function RechercheUtilisateurViaEmail(string $mail){
         $query = 'SELECT * FROM ToDoList_Utilisateur WHERE email=:mail';
         $this->con->executeQuery($query, array('mail' => array($mail, PDO::PARAM_STR)));

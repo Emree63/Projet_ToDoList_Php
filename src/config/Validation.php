@@ -56,6 +56,15 @@ class Validation {
         return $str;
     }
 
+    static function cleanPseudo(string &$str) {
+        $str = preg_replace('/[^A-Za-z\-\^0-9]/', '', $str);
+        if($str == null || $str == '')
+        {
+            return null;
+        }
+        return $str;
+    }
+
     static function cleanMail(string &$str) {
         $str = preg_replace('/[^A-Za-z\-\^0-9\.\@]/', '', $str);
         if($str == null || $str == '')
@@ -65,16 +74,16 @@ class Validation {
         return $str;
     }
 
-    static function val_form_add(string &$nom,string &$description,&$dVueEreur) {
+    static function val_form_add(string &$nom,string &$description,&$dVueErreur) {
         $nom = Validation::cleanText($nom);
         if ($nom == NULL) {
-            $dVueEreur['nom'] =  "Veuillez entrer un nom*";
+            $dVueErreur['nom'] =  "Veuillez entrer un nom*";
         }
         $description = Validation::cleanText($description);
         if ($description == NULL) {
-            $dVueEreur['description'] =  "Veuillez entrer une description*";
+            $dVueErreur['description'] =  "Veuillez entrer une description*";
         }
-        if(count($dVueEreur)>0){
+        if(count($dVueErreur)>0){
             throw new Exception("Problème lors de l'ajout");
         }
 

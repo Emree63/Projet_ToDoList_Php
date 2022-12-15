@@ -55,20 +55,50 @@
               <p class="mb-0">Nombre de liste</p>
             </div>
             <div class="col-sm-14 text-center">
-              <p class="text-muted mb-0">15 listes</p>
+              <p class="text-muted mb-0"><?php echo $nombreListe ?></p>
             </div>
           </div>
         </div>
         <div class="text-center">
           <br>
-          <a type="button" class="btn btn-outline-info waves-effect" href="#">
+          <a type="button" class="btn btn-outline-info waves-effect" href="#" data-toggle="modal" data-target="#modalModifier">
               Changer mot de passe
           </a>
-          <a type="button" class="btn btn-outline-danger waves-effect" href="#" data-toggle="modal" data-target="#exampleModal">
+          <a type="button" class="btn btn-outline-danger waves-effect" href="#" data-toggle="modal" data-target="#modalSupp">
               Supprimer le compte
           </a>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          
+          <!-- Modal Modifier -->
+          <div class="modal fade" id="modalModifier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modification du mot de passe</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <form class="col" method="POST">
+                  <div class="form-group">
+                    <input type="password" class="form-control" name ="passwordCurrent" placeholder="Mot de passe actuel" required autofocus>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="newPassword" id="description" placeholder="Nouveau mot de passe" required autofocus>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="confirmNewPassword" id="description" placeholder="Confirmer le mot de passe" required autofocus>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Terminer</button>
+                  <input type="hidden" name="action" value="modifMdp">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Supprimer -->
+          <div class="modal fade" id="modalSupp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">

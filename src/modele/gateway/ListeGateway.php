@@ -10,11 +10,11 @@ class ListeGateway{
     public function Ajouter(string $nom, string $description, bool $estPublic, string $createur){
     	$query='INSERT INTO ToDoList_Liste(nom, description, dateCreation,estPublic, idUtilisateur) VALUES(:nom,:description,CURRENT_DATE, :estPublic, :createur);';
         $this->con->executeQuery($query, array(
-                                        'nom' => array($nom, PDO::PARAM_STR),
-                                        'description' => array($description, PDO::PARAM_STR),
-                                        'estPublic' => array($estPublic, PDO::PARAM_INT),
-                                        'createur' => array($createur, PDO::PARAM_STR),
-                                    ));
+                                'nom' => array($nom, PDO::PARAM_STR),
+                                'description' => array($description, PDO::PARAM_STR),
+                                'estPublic' => array($estPublic, PDO::PARAM_INT),
+                                'createur' => array($createur, PDO::PARAM_STR),
+                            ));
     }
 
     public function Editer(string $id, string $nom, string $description){
@@ -26,12 +26,15 @@ class ListeGateway{
         );
     }
 
+    public function CountListe($id){
+        $query="SELECT count(*) as nombreListe FROM ToDoList_Liste WHERE idUtilisateur=:id";
+        $this->con->executeQuery($query, array('id' => array($id, PDO::PARAM_INT)));
+        return $this->con->getResults()[0]['nombreListe'];
+    }
+
     public function EditerNom(string $id, string $nom){
         $query='UPDATE ToDoList_Liste SET nom=:nom WHERE id=:id;';
-
-// erreur iciiiiiiii
         $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR),'id' => array($id, PDO::PARAM_INT)));
-
     }
 
      public function EditerDescription(string $id, string $description){

@@ -32,23 +32,27 @@ class CtrlUtilisateur {
 				case "supprimerCompte":
 					$this->supprimerCompte($dVueErreur);
 					break;
+					
+				case "modifMdp":
+					$this->changerMotDePasse($dVueErreur);
+					break;
 
 				default:
 					$dVueErreur[] =	"Erreur d'appel php";
-					require ($rep.$vues['home']);
+					require ($rep.$vues['erreur']);
 					break;
 				}
 
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur BD!!! ";
+			$dVueErreur[] =	"Erreur BD!!! ";
 			require ($rep.$vues['erreur']);
 
 		}
 		catch (Exception $e2)
 		{
-			$dVueEreur[] =	"Erreur inattendue!!! ";
+			$dVueErreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -76,14 +80,30 @@ class CtrlUtilisateur {
 		global $rep,$vues; 
 		$action=NULL;
 		$user=MdlUtilisateur::isConnected();
+		$nombreListe=MdlUtilisateur::recupererNombreDeListe();
 		require ($rep.$vues['profil']);
 	}
 
 	function supprimerCompte(array $dVueErreur){
 		global $rep,$vues; 
 		$action=NULL;
-		$user=MdlUtilisateur::suppressionUtilisateur();
+		MdlUtilisateur::suppressionUtilisateur();
 		require ($rep.$vues['login']);
+	}
+
+	function changerMotDePasse(array $dVueErreur){
+		global $rep,$vues; 
+		try{
+			MdlUtilisateur::changerMotDePasse();
+			$action=NULL;
+			require ($rep.$vues['login']);
+		}
+		catch(Exception $e)
+		{
+			$dVueErreur[] =	$e->getMessage();
+			require ($rep.$vues['erreur']);
+		}	
+		
 	}
 
 }//fin class

@@ -50,7 +50,7 @@ class CtrlVisiteur {
 					break;
 
 				case "AjouterTache":
-					$this->AjouterTache();
+					$this->AjouterTache($dVueErreur);
 					break;
 
 				case "AjouterListePublic":
@@ -58,11 +58,19 @@ class CtrlVisiteur {
 					break;
 
 				case "ModifierListe":
-					$this->ModifierListe();
+					$this->ModifierListe($dVueErreur);
+					break;
+				
+				case "pagePrécédente":
+					$this->listePrécédente($dVueErreur);
+					break;
+
+				case "pageSuivante":
+					$this->listeSuivante($dVueErreur);
 					break;
 
 				case "check":
-					$this->check();
+					$this->check($dVueErreur);
 					break;
 
 				//mauvaise action
@@ -145,31 +153,18 @@ class CtrlVisiteur {
 	}
 
 	function SupprimerTache(array $dVueErreur){
-		global $rep,$vues; 
 		$tache = MdlVisiteur::SupprimerTache();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
 
 	function SupprimerListe(array $dVueErreur){
-		global $rep,$vues; 
 		$liste = MdlVisiteur::SupprimerListe();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
 
-
-	public function AjouterTache(){
-		global $rep,$vues; 
+	public function AjouterTache(array $dVueErreur){
 		$tache = MdlVisiteur::AjouterTache();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
 
 	public function AjouterListePublic(array $dVueErreur){
@@ -187,27 +182,32 @@ class CtrlVisiteur {
 			$action=NULL;
 			require ($rep.$vues['listPublic']);
 		}	
-		
 	}
 
-	public function ModifierListe(){
-		global $rep,$vues; 
+	public function ModifierListe(array $dVueErreur){
 		$tache = MdlVisiteur::ModifierListe();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
 
-	public function check()
+	public function check(array $dVueErreur)
 	{
-		global $rep,$vues;
 		$tache = MdlVisiteur::check();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
+
+	public function listePrécédente(array $dVueErreur){
+		if($_COOKIE["page"]>1){
+			$_COOKIE["page"]=$_COOKIE["page"]-1;
+		}
+		$this->ConsulterListePublic($dVueErreur);
+	}
+
+	public function listeSuivante(array $dVueErreur){
+		$_COOKIE["page"]=$_COOKIE["page"]+1;
+		$this->ConsulterListePublic($dVueErreur);
+	}
+
+
 }//fin class
 
 ?>

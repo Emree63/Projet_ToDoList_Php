@@ -3,9 +3,9 @@
 <html>
     <head>
       <title>Page d'inscription</title>
+      <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <link rel="shortcut icon" href="./Vue/Images/gif.gif" type="../Images/gif">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- CSS only -->
       <link rel="stylesheet" href="./vue/css/style.css">
@@ -34,7 +34,7 @@
                     <center><p class="ErreurText"> <?php echo $dVueErreur['nom']?></p></center><?php
                   } 
                 ?> 
-                <div class="form-outline">
+                <div>
                     <input type="text" name="nom-Form" placeholder="Nom" required autofocus>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                         <center><p class="ErreurText"> <?php echo $dVueErreur['prenom']?></p></center><?php
                     } 
                   ?> 
-                  <div class="form-outline">
+                  <div>
                     <input type="text" name="prenom-Form" placeholder="Prenom" required autofocus>
                   </div>
                 </div>

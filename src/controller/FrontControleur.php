@@ -4,11 +4,12 @@ class FrontControleur {
     function __construct(){
 		global $rep,$vues; 
 		session_start();
+		setcookie('page', 1, time() + 24*3600);
 		try {
 			
 			$string_actor=' ';
 			$listeActions=array(
-				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte'),
+				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte','modifMdp'),
 				'Admin' => array()
 			);
 
