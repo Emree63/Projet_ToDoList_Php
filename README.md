@@ -20,8 +20,6 @@
 
 # Fonctionnalités
 
-</br>
-
 - Visiteur :
     - Ajouter/Supprimer une liste publique
     - Modifier une liste publique

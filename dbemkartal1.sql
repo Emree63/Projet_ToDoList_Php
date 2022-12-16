@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 16 déc. 2022 à 14:49
+-- Généré le : ven. 16 déc. 2022 à 22:44
 -- Version du serveur :  10.5.15-MariaDB-0+deb11u1
 -- Version de PHP : 7.4.28
 
@@ -60,7 +60,8 @@ CREATE TABLE `ToDoList_Admin` (
 --
 
 INSERT INTO `ToDoList_Admin` (`idAdmin`) VALUES
-(50);
+(50),
+(58);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ CREATE TABLE `ToDoList_Liste` (
   `description` varchar(200) NOT NULL,
   `dateCreation` date NOT NULL,
   `estPublic` tinyint(1) NOT NULL,
-  `idUtilisateur` int(11) NOT NULL
+  `idUtilisateur` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -82,29 +83,11 @@ CREATE TABLE `ToDoList_Liste` (
 --
 
 INSERT INTO `ToDoList_Liste` (`id`, `nom`, `description`, `dateCreation`, `estPublic`, `idUtilisateur`) VALUES
-(2, 'Work', 'Work', '2022-12-01', 1, 1),
-(3, 'Job', 'J\'aime travailler', '2022-12-05', 1, 1),
-(4, 'Fourniture Scolaire', 'Acheter les Fournitures Scolaire avant Septembre', '2022-12-06', 1, 1),
-(6, 'Projet Blazor', 'Les tâches que je doit faire pour mon projet Blazor', '2022-12-06', 1, 1),
-(7, 'SAE', 'Les tâches à faire pour la SAE', '2022-12-06', 1, 1),
-(8, 'Supermarché', 'Acheter les courses au Supermarché', '2022-12-02', 1, 1),
-(9, 'Voiture', 'Liste des choses à acheter pour ma voiture', '2022-12-01', 1, 1),
-(11, 'Ordinateur', 'Les composants pour mon ordinateur', '2022-12-03', 1, 1),
-(13, 'Test List', '', '2022-12-01', 1, 1),
-(14, 'Test List 2', 'hahaa', '2022-12-02', 1, 1),
-(40, 'TestList1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', '2022-12-15', 1, 49),
-(41, 'TestList2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', '2022-12-14', 1, 1),
-(42, 'TestList3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', '2022-12-15', 1, 49),
-(43, 'TestList4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', '2022-12-15', 1, 49),
-(44, 'Montre', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-12', 1, 1),
-(45, 'Glace', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-13', 1, 49),
-(46, 'Trotinette', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-15', 0, 49),
-(47, 'Csharp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-14', 1, 1),
-(48, 'Book', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-15', 1, 49),
-(49, 'Telephone', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-10', 1, 1),
-(50, 'Clavier', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-13', 1, 49),
-(51, 'Méthodes d\'optimisation', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-07', 1, 49),
-(52, 'Casque', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2022-12-07', 1, 49);
+(124, 'Iut', 'Ma liste de devoirs', '2022-12-16', 1, 1),
+(125, 'Serie', 'Les series à regarder', '2022-12-16', 1, 1),
+(150, 'Fourniture Scolaire', 'Mes fournitures Scolaires à acheter avant septembre', '2022-12-06', 1, NULL),
+(155, 'Supermarché', 'Acheter les courses au Supermarché', '2022-12-02', 1, NULL),
+(156, 'Ordinateur', 'Les composants pour mon ordinateur', '2022-12-03', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,15 +109,11 @@ CREATE TABLE `ToDoList_Tache` (
 --
 
 INSERT INTO `ToDoList_Tache` (`id`, `nom`, `description`, `dateCreation`, `estValide`, `idListe`) VALUES
-(1, 'PHP', 'Finir le projet de PHP et les TPs', '2022-12-06', 0, 2),
-(2, 'Blazor', 'Finir le projet de Blazor', '2022-12-06', 1, 2),
-(3, 'Stage', 'Postuler chez CGI et Apside', '2022-12-06', 0, 3),
-(4, 'CV', 'Finir le CV', '2022-12-06', 1, 3),
-(5, 'Push', 'rayhan faut penser a push ton taff', '2022-12-06', 1, 6),
-(6, 'Etre le goat', 'je suis le goat', '2022-12-06', 0, 7),
-(7, 'Acheter le lait ', 'parce que il faut faire comme papa', '2022-12-06', 1, 8),
-(8, 'Acheter des stylos', 'parce que Arthur en a pas', '2022-12-06', 0, 4),
-(9, 'Réviser prog sys', 'Je suis dans la caca', '2022-12-06', 0, 3);
+(139, 'Blazor', 'Finir le projet', '2022-12-16', 0, 124),
+(140, 'Sae', 'Faire le rapport', '2022-12-16', 1, 124),
+(141, 'Breaking Bad', 'Le top 1', '2022-12-16', 0, 125),
+(142, 'The Walking Dead', 'Meme si apres la saison 7 cest pas ouf', '2022-12-16', 0, 125),
+(145, 'ProgSys', 'Finir le tp', '2022-12-16', 0, 124);
 
 -- --------------------------------------------------------
 
@@ -157,8 +136,10 @@ CREATE TABLE `ToDoList_Utilisateur` (
 
 INSERT INTO `ToDoList_Utilisateur` (`id`, `nom`, `prenom`, `pseudo`, `email`, `motDePasse`) VALUES
 (1, 'Kartal', 'Emre', 'Malleo', 'emre.kartal10@etu.uca.fr', '00000'),
-(49, 'Khedair', 'Rami', 'Rori63', 'rami.khedair@etu.uca.fr', '$2y$10$aqRyoGoXN9dxpGPsMYTNY.gkSDZwsIwORfb78HqleiuV3PvwQ75iO'),
-(50, 'Rayhan', 'Hassou', 'rayhan', 'hassourayhan1@gmail.com', '$2y$10$D0sJ14i8bDdigDZZx1VLguWbviCbVw5cAQkwD/ja336MD3E2tFEH6');
+(50, 'Rayhan', 'Hassou', 'rayhan', 'hassourayhan1@gmail.com', '$2y$10$cKfV6KB7siPhwMRbpoS/COMaZQKkYETj.HIQ5YWkrbc5qXo.9jvuK'),
+(51, 'Lucas', 'Mielkarek', 'lukaka', 'lucas@gmail.com', '$2y$10$5AlX0WcLx.8r/WCxxcBeuOaeGTzftqk3jn9q2cKMZkft313y2a3.C'),
+(57, 'Restitutio', 'Mathieu', 'marestituito', 'Matthieu.RESTITUITO@uca.fr', '$2y$10$RNj8XMe5UDWDuiocwwg.g../8powrKKNpQ1FmPzSBoN9JubfjYrIq'),
+(58, 'Admin', 'Prof', 'Admin', 'Matthieu.RESTITUITO@admin.fr', '$2y$10$oE5jSXemC4NrKiQE9EUKYeO1RdTpbeXxj/FaayeVciBQxYdxsmNuW');
 
 --
 -- Index pour les tables déchargées
@@ -212,19 +193,19 @@ ALTER TABLE `MaTable`
 -- AUTO_INCREMENT pour la table `ToDoList_Liste`
 --
 ALTER TABLE `ToDoList_Liste`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT pour la table `ToDoList_Tache`
 --
 ALTER TABLE `ToDoList_Tache`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT pour la table `ToDoList_Utilisateur`
 --
 ALTER TABLE `ToDoList_Utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Contraintes pour les tables déchargées
