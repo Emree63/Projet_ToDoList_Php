@@ -14,7 +14,12 @@ class MdlUtilisateur
         $verif_pass=$gtw->getCredentials($mail);
 		if(password_verify($mdp,$verif_pass)){
             $userCurrent=$gtw->RechercheUtilisateurViaEmail($mail);
-            $_SESSION['role']='user'; 
+            if($gtw->existeAdmin($userCurrent->getId())){
+                $_SESSION['role']='admin'; 
+            }
+            else{
+                $_SESSION['role']='user'; 
+            }
 			$_SESSION['id']=$userCurrent->getId();
             $_SESSION['nom']=$userCurrent->getNom();
             $_SESSION['prenom']=$userCurrent->getPrenom();
@@ -26,7 +31,7 @@ class MdlUtilisateur
 	}   
 
     public function isConnected(){
-        if(isset($_SESSION['id']) && isset($_SESSION['role']) && $_SESSION['role']=='user') {
+        if(isset($_SESSION['id']) && isset($_SESSION['role'])) {
             $id=Validation::cleanInt($_SESSION['id']);
             $nom=Validation::cleanString($_SESSION['nom']);
             $prenom=Validation::cleanString($_SESSION['prenom']);

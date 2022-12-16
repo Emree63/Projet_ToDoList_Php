@@ -16,5 +16,6 @@ $vues['listPrive']='vue/html/PageListePrive.php';
 $vues['login']='vue/html/login.php';
 $vues['NavBar']='vue/html/NavBar.php';
 $vues['profil']='vue/html/profil.php';
+$vues['users']='vue/html/pageUtilisateur.php';
 
 ?>

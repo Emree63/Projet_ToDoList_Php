@@ -23,6 +23,28 @@ class UtilisateurGateway{
                             'id' => array($id, PDO::PARAM_INT)));
     }
 
+    public function existeAdmin(int $id){
+        $query="SELECT * FROM ToDoList_Admin WHERE idAdmin=:id";
+        $this->con->executeQuery($query, array(
+                            'id' => array($id, PDO::PARAM_INT)));
+                            $results=$this->con->getResults();
+        if($results!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getUtilisateurs(){
+        $query = "SELECT * FROM ToDoList_Utilisateur"; 
+        $this->con->executeQuery($query);
+        $listesUsers = [];
+        foreach ($this->con->getResults() as $user) {
+            $listesUsers[] = new Utilisateur($user["id"],$user["nom"],$user["prenom"],$user["pseudo"],$user["email"]);
+        }
+        return $listesUsers;
+    }
+
     // Vérifie que le mail n'existe pas
     public function isExisteViaMail($mail){
         $query="SELECT * FROM ToDoList_Utilisateur WHERE email=:mail";

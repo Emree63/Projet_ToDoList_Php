@@ -6,7 +6,7 @@ class CtrlAdmin {
 
 		global $rep,$vues; 
 		
-		$dVueEreur = array ();
+		$dVueErreur = array ();
 
 		try{
 			$action=NULL;
@@ -18,28 +18,33 @@ class CtrlAdmin {
 
 				
 				case NULL:
-					$this->($dVueEreur);
+					$this->ConsulterUtilisateurs($dVueErreur);
 					break;
 
+				case "redirectionVueUtilisateur":
+					$this->ConsulterUtilisateurs($dVueErreur);
+					break;
 				
-
+				case "SupprimerUtilisateur":
+					$this->SupprimerUtilisateur($dVueErreur);
+					break;
 				
 				default:
-					$dVueEreur[] =	"Erreur d'appel php";
-					require ($rep.$vues['home']);
+					$dVueErreur[] =	"Erreur d'appel php";
+					require ($rep.$vues['erreur']);
 					break;
 				}
 
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur BD!!! ";
+			$dVueErreur[] =	"Erreur BD!!! ";
 			require ($rep.$vues['erreur']);
 
 		}
 		catch (Exception $e2)
 		{
-			$dVueEreur[] =	"Erreur inattendue!!! ";
+			$dVueErreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -47,6 +52,19 @@ class CtrlAdmin {
 		//fin
 		exit(0);
 	}//fin constructeur
+
+	public function ConsulterUtilisateurs(array $dVueErreur){
+		global $rep,$vues; 
+		$users = MdlAdmin::recupererUtilisateur();
+		$action=NULL;
+		require ($rep.$vues['users']);
+	}
+
+	public function SupprimerUtilisateur(array $dVueErreur){
+		global $rep,$vues; 
+		$users = MdlAdmin::supprimerUtilisateur();
+		$this->ConsulterUtilisateurs($dVueErreur);
+	}
 
 }//fin class
 

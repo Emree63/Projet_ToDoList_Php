@@ -18,6 +18,32 @@
 
 :information_source: Réaliser un projet de PHP consistant à faire une To do List, qui contiendra des visiteurs, utilisateurs ou administrateur.
 
+# Fonctionnalités
+
+</br>
+
+- Visiteur :
+    - Ajouter/Supprimer une liste publique
+    - Modifier une liste publique
+    - Ajouter/Supprimer des tâches dans une liste publique
+    - se connecter
+    - s'inscrire
+    - Cocher une tâche d'une liste publique
+
+- Utilisateur (en plus des fonctionnalités visiteurs) :
+	- Ajouter/Supprimer une liste priver
+	- Modifier ses listes privées
+    - Ajouter/Supprimer des tâches à ses listes privé
+    - Voir son profil
+        - Supprimer son compte (Toutes ces tâches sont aussi supprimées)
+        - Modifier son mode de passe
+        - voir ses informations (Nom/Prenom/mail/Nombre de liste privé réalisé)
+    - Cocher une tâche d'une liste privé
+    
+- Administrateur (considérer comme un utilisateur, mais avec des droits en plus) :
+    - Voir tous les utilisateurs
+    - Supprimer un utilisateur
+
 # Repartition du Gitlab
 
 La racine de notre gitlab est composé de deux dossiers essentiels au projet:

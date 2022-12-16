@@ -12,7 +12,7 @@ class FrontControleur {
 			$string_actor=' ';
 			$listeActions=array(
 				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte', 'listePrive','AjouterListePrive', 'SupprimerListePrive', 'AjouterTachePrive', 'ModifierListePrive', 'SupprimerTachePrive'),
-				'Admin' => array('voirUser')
+				'Admin' => array('redirectionVueUtilisateur','SupprimerUtilisateur')
 			);
 
 			//On récupère l'action

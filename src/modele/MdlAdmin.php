@@ -7,12 +7,6 @@ class MdlAdmin
 		
 	}
 		
-	public function deconnexion(){
-		session_unset();
-		session_destroy();
-		$_SESSION = array();
-	}
-		
     public function isConnected(){
         if(isset($_SESSION['id']) && isset($_SESSION['role']) && $_SESSION['role']=='admin') {
             $id=Validation::cleanInt($_SESSION['id']);
@@ -24,9 +18,15 @@ class MdlAdmin
         }
         else return null;
     }
-	
+
+    public function recupererUtilisateur(){
+		$userGtw = new UtilisateurGateway();
+        return $userGtw->getUtilisateurs();
+	}
+    
 	public function supprimerUtilisateur(){
-		
+		$userGtw = new UtilisateurGateway();
+        $userGtw->SupprimerUtilisateur($_GET['idUser']);
 	}
 
 }

@@ -21,10 +21,10 @@
                 if(isset($_SESSION['id'])){ ?>
                   <h5><a class="nav-item nav-link text-light" href="VueListePublic">Listes Publiques</a></h5>
                   <h5><a class="nav-item nav-link text-light" href="listePrive">Mes listes</a></h5>
-                  <?php if($_SESSION['role']=='admin'){?>
-                    <h5><a class="nav-item nav-link text-warning" href="Users">Les utilisateurs</a></h5>
-                  <?php } ?>
                   <h5><a class="nav-item nav-link text-light" href="MonProfil">Mon Profil</a></h5>
+                  <?php if($_SESSION['role']=='admin'){?>
+                    <h5><a class="nav-item nav-link text-warning" href="users">Les utilisateurs</a></h5>
+                  <?php } ?>
                   <h5><button class="nav-item btn btn-outline-light" onclick="myFunction()">Se déconnecter</button></h5>
 
                   <script>
