@@ -63,5 +63,14 @@ class ListeGateway{
 		}
 		return $listes;
     }
+     public function getListePrive($offset,$limit){
+        $query = "SELECT * FROM ToDoList_Liste WHERE !estPublic LIMIT $offset, $limit"; 
+        $this->con->executeQuery($query);
+        $listes = [];
+        foreach ($this->con->getResults() as $liste) {
+            $listes[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
+        }
+        return $listes;
+    }
 }
 ?>

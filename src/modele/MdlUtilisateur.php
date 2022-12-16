@@ -79,5 +79,19 @@ class MdlUtilisateur
 
     }
 
+    public function AjouterListePrive(&$dVueErreur){
+        $taskGtw = new ListeGateway();
+        $nom=$_POST['nom-ajout-liste'];
+        $description=$_POST['description-ajout-liste'];
+        $idCreateur =Validation::cleanInt($_SESSION['id']);
+        Validation::val_form_add($nom,$description,$dVueErreur);
+        $taskGtw->Ajouter($nom, $description,0, $idCreateur);
+    }
+
+     public static function RecupererListePrive(){
+        $userGtw = new ListeGateway(); 
+        return $userGtw->getListePrive(0,10);
+    }
+
 
 }
