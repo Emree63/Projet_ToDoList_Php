@@ -26,8 +26,8 @@
     - Ajouter/Supprimer une liste publique
     - Modifier une liste publique
     - Ajouter/Supprimer des tâches dans une liste publique
-    - se connecter
-    - s'inscrire
+    - Se connecter
+    - S'inscrire
     - Cocher une tâche d'une liste publique
 
 - Utilisateur (en plus des fonctionnalités visiteurs) :
@@ -37,16 +37,16 @@
     - Voir son profil
         - Supprimer son compte (Toutes ces tâches sont aussi supprimées)
         - Modifier son mode de passe
-        - voir ses informations (Nom/Prenom/mail/Nombre de liste privé réalisé)
+        - voir ses informations (Nom/Prénom/mail/Nombre de liste privé réalisé)
     - Cocher une tâche d'une liste privé
     
 - Administrateur (considérer comme un utilisateur, mais avec des droits en plus) :
     - Voir tous les utilisateurs
     - Supprimer un utilisateur
 
-# Repartition du Gitlab
+# Répartition du Gitlab
 
-La racine de notre gitlab est composé de deux dossiers essentiels au projet:
+La racine de notre gitlab est composée de deux dossiers essentiels au projet:
 
 [**src**](src) : **Toute la partie codage du site web**
 
@@ -72,7 +72,7 @@ Notre environnement de travail se base sur plusieurs outils :
 
 # Technicien en charge de l'application
 
-La composition pour le projet se voit réaliser par deux élèves de l'IUT d'aubière:
+La composition pour le projet se voit réaliser par deux élèves de l'IUT d'Aubière:
 <br>
 ⚙️ Emre KARTAL
 <br>

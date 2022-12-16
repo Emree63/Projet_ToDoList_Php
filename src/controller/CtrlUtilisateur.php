@@ -180,8 +180,7 @@ class CtrlUtilisateur {
 		}	 
 	}
 
-
-	public function checkPrive()
+	public function checkPrive(array $dVueErreur)
 	{
 		global $rep,$vues;
 		$tache = MdlVisiteur::check();
