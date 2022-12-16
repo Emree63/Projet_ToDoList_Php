@@ -18,7 +18,7 @@ class ListeGateway{
     }
 
     public function Editer(string $id, string $nom, string $description){
-    	$query='UPDATE ToDoList_Liste SET nom=:nom AND description=:description WHERE id=:id;';
+    	$query='UPDATE ToDoList_Liste SET nom=:nom, description=:description WHERE id=:id;';
     	$this->con->executeQuery($query, array(
             'nom' => array($nom, PDO::PARAM_STR), 
             'id' => array($id,PDO::PARAM_INT),

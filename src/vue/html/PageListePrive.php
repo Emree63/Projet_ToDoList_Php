@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="./vue/Images/c.gif" type="../Images/gif">
+    <link rel="shortcut icon" href="./vue/Images/gif.gif" type="../Images/gif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./vue/css/task.css">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -98,7 +99,7 @@
                 </span>
               </p>
               <p><span class="h5 me-2"><?= $liste->getDescription()?></span>
-              <p class="text-muted pb-2"><?= $liste->getDateCreation()?> : <?= $liste->getIdUtilisateur()?></p>
+              <p class="text-muted pb-2"><?= $liste->getDateCreation()?> by <strong><?= $_SESSION['pseudo'] ?></strong> </p>
             </div>
 
 
@@ -198,17 +199,17 @@
                   }
                   $total = $total + 1;
                ?>
-              <li class="list-group-item border-0 d-flex align-items-center ps-0">
+               <li class="list-group-item border-0 d-flex align-items-center ps-0">
                 <form name="action" action="index.php?action=checkPrive" method="POST">
-                  <input class="form-check-input me-3" type="checkbox" onChange="submit();"
+                  <input class="form-check-input me-3" id="task-<?= $tache->getId() ?>" type="checkbox" onChange="submit();"
                   <?php if($tache->getEstValide() == 1) echo "checked" ?>>
+                  <label for="task-<?= $tache->getId() ?>"> <?= $tache->getNom() ?> : <?= $tache->getDescription() ?></label>
+
                   <input type="hidden" name="idTache" value="<?= $tache->getId() ?>" >
                 </form>
-                <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
-
                   <a href="index.php?action=SupprimerTachePrive&idTache=<?= $tache->getId() ?>">
                     <button class="btn btn-default">
-                      <img src="./vue/Images/trash.png" width="18" />
+                      <img src="./vue/Images/trash2.png" width="20" />
                     </button>
                   </a>
               </li>
@@ -238,12 +239,15 @@
 ?> 
 
       <nav aria-label="Page navigation example">
+        <center>
+          <p>Page n°<?php echo $_COOKIE['page'] ?></p>
+        </center>
         <ul class="pagination justify-content-center">
           <li class="page-item"> 
-            <a class="page-link" href="#">Previous</a>
-           </li>
+            <a class="page-link" href="previousPage">Previous</a>
+          </li>
           <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <a class="page-link" href="nextPage">Next</a>
           </li>
         </ul>
       </nav>
@@ -336,4 +340,4 @@
 
 
 
-</html>
+</html> 

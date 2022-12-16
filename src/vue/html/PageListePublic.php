@@ -191,9 +191,6 @@
                       <img src="./vue/Images/trash2.png" width="20" />
                     </button>
                   </a>
-                  <button type="submit" class="btn btn-default">
-                    <img src="./vue/Images/edit.png" width="18" />
-                  </button>
               </li>
                <?php
                 }

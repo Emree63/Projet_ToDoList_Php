@@ -214,6 +214,19 @@ class CtrlUtilisateur {
 		
 	}
 
+	
+	public function listePrécédente(array $dVueErreur){
+		if($_COOKIE['pageUser'] > 1){
+			setcookie('pageUser', $_COOKIE['pageUser'] - 1, time() + 24*3600);
+		}
+		$this->ConsulterListePrive($dVueErreur);
+	}
+
+	public function listeSuivante(array $dVueErreur){
+		setcookie('pageUser', $_COOKIE['pageUser'] + 1, time() + 24*3600);
+		$this->ConsulterListePrive($dVueErreur);
+	}
+
 }//fin class
 
 ?>

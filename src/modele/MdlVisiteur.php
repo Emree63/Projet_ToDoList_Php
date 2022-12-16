@@ -74,7 +74,7 @@ public static function RecupererListePublic(){
         $nom=$_POST['nom-ajout-liste'];
         $description=$_POST['description-ajout-liste'];
         Validation::val_form_add($nom,$description,$dVueErreur);
-        $listGtw->Ajouter($nom, $description,1, null);
+        $listGtw->Ajouter($nom, $description,1, 1);
     }
 
     public function check(){

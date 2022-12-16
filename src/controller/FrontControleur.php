@@ -7,6 +7,9 @@ class FrontControleur {
 		if(!isset($_COOKIE['page'])){
 			setcookie('page', 1, time() + 24*3600);
 		}
+		if(!isset($_COOKIE['pageUser'])){
+			setcookie('pageUser', 1, time() + 24*3600);
+		}
 		try {
 			
 			$string_actor=' ';
