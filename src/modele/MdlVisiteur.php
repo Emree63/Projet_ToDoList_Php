@@ -18,7 +18,10 @@ class MdlVisiteur
 
 public static function RecupererListePublic(){
         $userGtw = new ListeGateway(); 
-        return $userGtw->getListePublic(0,10);
+        if(isset($_COOKIE["page"]))
+            return $userGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
+        else
+            return $userGtw->getListePublic(1,10);
     }
 
     public static function RecupererTache(){
@@ -67,11 +70,11 @@ public static function RecupererListePublic(){
     }
 
     public function AjouterListePublic(&$dVueErreur){
-        $taskGtw = new ListeGateway();
+        $listGtw = new ListeGateway();
         $nom=$_POST['nom-ajout-liste'];
         $description=$_POST['description-ajout-liste'];
         Validation::val_form_add($nom,$description,$dVueErreur);
-        $taskGtw->Ajouter($nom, $description,1, null);
+        $listGtw->Ajouter($nom, $description,1, null);
     }
 
     public function check(){

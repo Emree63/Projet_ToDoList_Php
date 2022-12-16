@@ -90,7 +90,10 @@ class MdlUtilisateur
 
      public static function RecupererListePrive(){
         $userGtw = new ListeGateway(); 
-        return $userGtw->getListePrive(0,10);
+        if(isset($_COOKIE["page"]))
+            return $userGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
+        else
+            return $userGtw->getListePublic(1,10);
     }
 
 
