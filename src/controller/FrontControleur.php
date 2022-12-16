@@ -1,18 +1,14 @@
 <?php
 class FrontControleur {
-
     function __construct(){
 		global $rep,$vues; 
 		session_start();
-		if(!isset($_COOKIE['page'])){
-			setcookie('page', 1, time() + 24*3600);
-		}
 		try {
 			
 			$string_actor=' ';
 			$listeActions=array(
-				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte','modifMdp'),
-				'Admin' => array('voirUser')
+				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte', 'listePrive','AjouterListePrive', 'SupprimerListePrive', 'AjouterTachePrive', 'ModifierListePrive', 'SupprimerTachePrive'),
+				'Admin' => array()
 			);
 
 			//On récupère l'action

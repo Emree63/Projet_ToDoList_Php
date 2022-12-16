@@ -1,40 +1,35 @@
 <?php
 class ListeGateway{
-	private $con;
+    private $con;
 
-  	public  function __construct(){
+    public  function __construct(){
         global $dsn,$user,$pass;
         $this->con=new Connection($dsn,$user,$pass);
     }
 
     public function Ajouter(string $nom, string $description, bool $estPublic, string $createur){
-    	$query='INSERT INTO ToDoList_Liste(nom, description, dateCreation,estPublic, idUtilisateur) VALUES(:nom,:description,CURRENT_DATE, :estPublic, :createur);';
+        $query='INSERT INTO ToDoList_Liste(nom, description, dateCreation,estPublic, idUtilisateur) VALUES(:nom,:description,CURRENT_DATE, :estPublic, :createur);';
         $this->con->executeQuery($query, array(
-                                'nom' => array($nom, PDO::PARAM_STR),
-                                'description' => array($description, PDO::PARAM_STR),
-                                'estPublic' => array($estPublic, PDO::PARAM_INT),
-                                'createur' => array($createur, PDO::PARAM_STR),
-                            ));
+                                        'nom' => array($nom, PDO::PARAM_STR),
+                                        'description' => array($description, PDO::PARAM_STR),
+                                        'estPublic' => array($estPublic, PDO::PARAM_INT),
+                                        'createur' => array($createur, PDO::PARAM_STR),
+                                    ));
     }
 
     public function Editer(string $id, string $nom, string $description){
-    	$query='UPDATE ToDoList_Liste SET nom=:nom AND description=:description WHERE id=:id;';
-    	$this->con->executeQuery($query, array(
-            'nom' => array($nom, PDO::PARAM_STR), 
-            'id' => array($id,PDO::PARAM_INT),
-            'description' => array($description, PDO::PARAM_STR))
+        $query='UPDATE ToDoList_Liste SET nom=:nom, description=:description WHERE id=:id;';
+        $this->con->executeQuery($query, array(
+            'nom' => array($nom, PDO::PARAM_STR),
+            'description' => array($description, PDO::PARAM_STR), 
+            'id' => array($id,PDO::PARAM_INT))
         );
-    }
-
-    public function CountListe($id){
-        $query="SELECT count(*) as nombreListe FROM ToDoList_Liste WHERE idUtilisateur=:id";
-        $this->con->executeQuery($query, array('id' => array($id, PDO::PARAM_INT)));
-        return $this->con->getResults()[0]['nombreListe'];
     }
 
     public function EditerNom(string $id, string $nom){
         $query='UPDATE ToDoList_Liste SET nom=:nom WHERE id=:id;';
         $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR),'id' => array($id, PDO::PARAM_INT)));
+
     }
 
      public function EditerDescription(string $id, string $description){
@@ -58,10 +53,20 @@ class ListeGateway{
         $query = "SELECT * FROM ToDoList_Liste WHERE estPublic LIMIT $offset, $limit"; 
         $this->con->executeQuery($query);
         $listes = [];
-		foreach ($this->con->getResults() as $liste) {
-			$listes[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
-		}
-		return $listes;
+        foreach ($this->con->getResults() as $liste) {
+            $listes[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
+        }
+        return $listes;
+    }
+
+    public function getListePrive($offset,$limit){
+        $query = "SELECT * FROM ToDoList_Liste WHERE !estPublic LIMIT $offset, $limit"; 
+        $this->con->executeQuery($query);
+        $listes = [];
+        foreach ($this->con->getResults() as $liste) {
+            $listes[] = new Liste($liste["id"],$liste["nom"],$liste["description"],$liste["dateCreation"],$liste["estPublic"],$liste["idUtilisateur"]);
+        }
+        return $listes;
     }
 }
 ?>

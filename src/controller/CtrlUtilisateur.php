@@ -32,11 +32,35 @@ class CtrlUtilisateur {
 				case "supprimerCompte":
 					$this->supprimerCompte($dVueErreur);
 					break;
-					
-				case "modifMdp":
-					$this->changerMotDePasse($dVueErreur);
+
+				case "listePrive":
+					$this->ConsulterListePrive($dVueErreur);
 					break;
 
+				case "SupprimerTachePrive":
+					$this->SupprimerTachePrive($dVueErreur);
+					break;
+
+				case "AjouterTachePrive":
+					$this->AjouterTachePrive($dVueErreur);
+					break;
+
+				case "ModifierListePrive":
+					$this->ModifierListePrive($dVueErreur);
+					break;
+
+				case "checkPrive":
+					$this->checkPrive($dVueErreur);
+					break;
+
+				case "AjouterListePrive":
+					$this->AjouterListePrive($dVueErreur);
+					break;
+
+				case "SupprimerListePrive":
+					$this->SupprimerListePrive($dVueErreur);
+					break;
+					
 				default:
 					$dVueErreur[] =	"Erreur d'appel php";
 					require ($rep.$vues['erreur']);
@@ -46,13 +70,13 @@ class CtrlUtilisateur {
 		} catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueErreur[] =	"Erreur BD!!! ";
+			$dVueEreur[] =	"Erreur BD!!! ";
 			require ($rep.$vues['erreur']);
 
 		}
 		catch (Exception $e2)
 		{
-			$dVueErreur[] =	"Erreur inattendue!!! ";
+			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
 
@@ -61,13 +85,6 @@ class CtrlUtilisateur {
 		exit(0);
 	}//fin constructeur
 
-	function ConsulterListePublic(array $dVueErreur) {
-		global $rep,$vues; 
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
-	}
 
 	function SeDeconnecter(array $dVueErreur){
 		global $rep,$vues; 
@@ -80,31 +97,96 @@ class CtrlUtilisateur {
 		global $rep,$vues; 
 		$action=NULL;
 		$user=MdlUtilisateur::isConnected();
-		$nombreListe=MdlUtilisateur::recupererNombreDeListe();
 		require ($rep.$vues['profil']);
 	}
 
 	function supprimerCompte(array $dVueErreur){
 		global $rep,$vues; 
 		$action=NULL;
-		MdlUtilisateur::suppressionUtilisateur();
+		$user=MdlUtilisateur::suppressionUtilisateur();
 		require ($rep.$vues['login']);
 	}
 
-	function changerMotDePasse(array $dVueErreur){
+	function ConsulterListePrive(array $dVueErreur) {
+		global $rep,$vues; 
+		$listesPrive = MdlUtilisateur::RecupererListePrive();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPrive']);
+	}
+
+	function SupprimerTachePrive(array $dVueErreur){
+		global $rep,$vues; 
+		$tache = MdlVisiteur::SupprimerTache();
+		$this->ConsulterListePrive($dVueErreur);
+	}
+
+	function SupprimerListePrive(array $dVueErreur){
+		global $rep,$vues; 
+		$liste = MdlVisiteur::SupprimerListe();
+		$this->ConsulterListePrive($dVueErreur);
+
+	}
+
+	public function AjouterTachePrive(array $dVueErreur){
 		global $rep,$vues; 
 		try{
-			MdlUtilisateur::changerMotDePasse();
-			$action=NULL;
-			require ($rep.$vues['login']);
-		}
-		catch(Exception $e)
+			$tache = MdlVisiteur::AjouterTache($dVueErreur);
+			$this->ConsulterListePrive($dVueErreur);
+		}	
+		catch (Exception $e)
 		{
-			$dVueErreur[] =	$e->getMessage();
-			require ($rep.$vues['erreur']);
+			$ErreurLog=$e->getMessage();
+			$listesPrive= MdlUtilisateur::RecupererListePrive();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPrive']);
+		}	
+	}
+
+
+	public function ModifierListePrive(array $dVueErreur){
+		global $rep,$vues;
+		try{
+			$tache = MdlVisiteur::ModifierListe($dVueErreurs);
+			$this->ConsulterListePrive($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listesPrive= MdlUtilisateur::RecupererListePrive();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPublic']);
+		}	 
+	}
+
+
+	public function checkPrive()
+	{
+		global $rep,$vues;
+		$tache = MdlVisiteur::check();
+		$this->ConsulterListePrive($dVueErreur);
+	}
+
+	public function AjouterListePrive(array $dVueErreur){
+		global $rep,$vues; 
+
+		try{
+			$tache = MdlUtilisateur::AjouterListePrive($dVueErreur);
+			$this->ConsulterListePrive($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listes = MdlUtilisateur::RecupererListePrive();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPrive']);
 		}	
 		
 	}
+
 
 }//fin class
 

@@ -60,17 +60,9 @@ class CtrlVisiteur {
 				case "ModifierListe":
 					$this->ModifierListe($dVueErreur);
 					break;
-				
-				case "pagePrécédente":
-					$this->listePrécédente($dVueErreur);
-					break;
-
-				case "pageSuivante":
-					$this->listeSuivante($dVueErreur);
-					break;
 
 				case "check":
-					$this->check($dVueErreur);
+					$this->check();
 					break;
 
 				//mauvaise action
@@ -153,18 +145,38 @@ class CtrlVisiteur {
 	}
 
 	function SupprimerTache(array $dVueErreur){
+		global $rep,$vues; 
 		$tache = MdlVisiteur::SupprimerTache();
-		$this->ConsulterListePublic($dVueErreur);
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
 	}
 
 	function SupprimerListe(array $dVueErreur){
+		global $rep,$vues; 
 		$liste = MdlVisiteur::SupprimerListe();
-		$this->ConsulterListePublic($dVueErreur);
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
 	}
 
+
 	public function AjouterTache(array $dVueErreur){
-		$tache = MdlVisiteur::AjouterTache();
-		$this->ConsulterListePublic($dVueErreur);
+		global $rep,$vues; 
+		try{
+			$tache = MdlVisiteur::AjouterTache($dVueErreur);
+			$this->ConsulterListePublic($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listes = MdlVisiteur::RecupererListePublic();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPublic']);
+		}	
 	}
 
 	public function AjouterListePublic(array $dVueErreur){
@@ -182,31 +194,35 @@ class CtrlVisiteur {
 			$action=NULL;
 			require ($rep.$vues['listPublic']);
 		}	
+		
 	}
 
 	public function ModifierListe(array $dVueErreur){
-		$tache = MdlVisiteur::ModifierListe();
-		$this->ConsulterListePublic($dVueErreur);
+		global $rep,$vues;
+		try{
+			$tache = MdlVisiteur::ModifierListe($dVueErreurs);
+			$this->ConsulterListePublic($dVueErreur);
+		}	
+		catch (Exception $e)
+		{
+			$ErreurLog=$e->getMessage();
+			$listes = MdlVisiteur::RecupererListePublic();
+			$taches = MdlVisiteur::RecupererTache();
+			$action=NULL;
+			require ($rep.$vues['listPublic']);
+		}	 
 	}
 
-	public function check(array $dVueErreur)
+
+	public function check()
 	{
+		global $rep,$vues;
 		$tache = MdlVisiteur::check();
-		$this->ConsulterListePublic($dVueErreur);
+		$listes = MdlVisiteur::RecupererListePublic();
+		$taches = MdlVisiteur::RecupererTache();
+		$action=NULL;
+		require ($rep.$vues['listPublic']);
 	}
-
-	public function listePrécédente(array $dVueErreur){
-		if($_COOKIE['page']>1){
-			setcookie('page', $_COOKIE['page'] - 1, time() + 24*3600);
-		}
-		$this->ConsulterListePublic($dVueErreur);
-	}
-
-	public function listeSuivante(array $dVueErreur){
-		setcookie('page', $_COOKIE['page'] + 1, time() + 24*3600);
-		$this->ConsulterListePublic($dVueErreur);
-	}
-
 
 }//fin class
 

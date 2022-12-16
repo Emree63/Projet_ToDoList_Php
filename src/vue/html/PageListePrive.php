@@ -57,7 +57,7 @@
                             <input type="text" class="form-control" name="description-ajout-liste" id="description" placeholder="Entrez une description">
                           </div>
                           <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
-                          <input type="hidden" name="action" value="AjouterListePublic">
+                          <input type="hidden" name="action" value="AjouterListePrive">
                         </form>
                       </div>
                     </div>
@@ -66,12 +66,14 @@
             </div>
 
   <?php
-        foreach($listes as $liste){
+        foreach($listesPrive as $liste){
+          if($liste->getIdUtilisateur() == $_SESSION['id']){
+
           $done = 0;
           $total = 0;
   ?>
   
-  <!-- Affichage des listes -->
+  <!-- Affichage des listesPrive -->
   
   <div class="container py-2 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -81,7 +83,7 @@
             <div>
               <p class="mb-2">
                 <span class="h2 me-2 text-info"><?= $liste->getNom()?>
-                   <a href="index.php?action=SupprimerListe&idListe=<?= $liste->getId() ?>">
+                   <a href="index.php?action=SupprimerListePrive&idListe=<?= $liste->getId() ?>">
                       <button class="btn btn-default">
                         <img src="./vue/Images/trash.png" width="20" />
                       </button>
@@ -96,7 +98,7 @@
                 </span>
               </p>
               <p><span class="h5 me-2"><?= $liste->getDescription()?></span>
-              <p class="text-muted pb-2"><?= $liste->getDateCreation()?></p>
+              <p class="text-muted pb-2"><?= $liste->getDateCreation()?> : <?= $liste->getIdUtilisateur()?></p>
             </div>
 
 
@@ -133,7 +135,7 @@
                             <input type="text" class="form-control" name="description-ajout" id="description" placeholder="Entrez une description">
                           </div>
                           <button type="submit" class="btn btn-primary pull-right">Ajouter</button>
-                          <input type="hidden" name="action" value="AjouterTache">
+                          <input type="hidden" name="action" value="AjouterTachePrive">
                           <input type="hidden" name="idListe" value="<?= $liste->getId() ?>">
                         </form>
                       </div>
@@ -175,7 +177,7 @@
                             <input type="text" class="form-control" name="description-modif-liste" id="description" placeholder="<?= $liste->getDescription() ?>">
                           </div>
                           <button type="submit" class="btn btn-primary pull-right">Modifier</button>
-                          <input type="hidden" name="action" value="ModifierListe">
+                          <input type="hidden" name="action" value="ModifierListePrive">
                           <input type="hidden" name="idListe" value="<?= $liste->getId() ?>">
                         </form>
                       </div>
@@ -197,14 +199,14 @@
                   $total = $total + 1;
                ?>
               <li class="list-group-item border-0 d-flex align-items-center ps-0">
-                <form name="action" action="index.php?action=check" method="POST">
+                <form name="action" action="index.php?action=checkPrive" method="POST">
                   <input class="form-check-input me-3" type="checkbox" onChange="submit();"
                   <?php if($tache->getEstValide() == 1) echo "checked" ?>>
                   <input type="hidden" name="idTache" value="<?= $tache->getId() ?>" >
                 </form>
                 <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
 
-                  <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
+                  <a href="index.php?action=SupprimerTachePrive&idTache=<?= $tache->getId() ?>">
                     <button class="btn btn-default">
                       <img src="./vue/Images/trash.png" width="18" />
                     </button>
@@ -231,6 +233,7 @@
     </div>
   </div>
  <?php
+    }
   }
 ?> 
 

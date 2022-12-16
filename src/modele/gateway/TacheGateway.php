@@ -1,7 +1,7 @@
 <?php
 class TacheGateway{
-	private $con;
-  	public  function __construct(){
+    private $con;
+    public  function __construct(){
         global $dsn,$user,$pass;
         $this->con=new Connection($dsn,$user,$pass);
     }
@@ -17,8 +17,8 @@ class TacheGateway{
     }
 
     public function Editer(string $id, string $nom, string $description){
-    	$query='UPDATE ToDoList_Tache SET  nom=:nom, description =:description WHERE id=:id;';
-    	$this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR), 'description' => array($description, PDO::PARAM_STR), 'id' => array($id, PDO::PARAM_INT)));
+        $query='UPDATE ToDoList_Tache SET  nom=:nom, description =:description WHERE id=:id;';
+        $this->con->executeQuery($query, array('nom' => array($nom, PDO::PARAM_STR), 'description' => array($description, PDO::PARAM_STR), 'id' => array($id, PDO::PARAM_INT)));
     }
 
     public function EditerNom(string $id, string $nom){
