@@ -8,6 +8,7 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./vue/css/task.css">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -176,20 +177,20 @@
                   }
                   $total = $total + 1;
                ?>
+               
               <li class="list-group-item border-0 d-flex align-items-center ps-0">
                 <form name="action" action="index.php?action=check" method="POST">
-                  <input class="form-check-input me-3" type="checkbox" onChange="submit();"
+                  <input class="form-check-input me-3" id="task-<?= $tache->getId() ?>" type="checkbox" onChange="submit();"
                   <?php if($tache->getEstValide() == 1) echo "checked" ?>>
+                  <label for="task-<?= $tache->getId() ?>"> <?= $tache->getNom() ?> : <?= $tache->getDescription() ?></label>
+
                   <input type="hidden" name="idTache" value="<?= $tache->getId() ?>" >
                 </form>
-                <?= $tache->getNom() ?> : <?= $tache->getDescription() ?>
-
                   <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
                     <button class="btn btn-default">
-                      <img src="./vue/Images/trash.png" width="18" />
+                      <img src="./vue/Images/trash2.png" width="20" />
                     </button>
                   </a>
-                  
                   <button type="submit" class="btn btn-default">
                     <img src="./vue/Images/edit.png" width="18" />
                   </button>

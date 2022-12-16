@@ -18,8 +18,8 @@ class MdlVisiteur
 
     public static function RecupererListePublic(){
         $userGtw = new ListeGateway(); 
-        if(isset($_COOKIE["page"]))
-            return $userGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
+        if(isset($_COOKIE['page']))
+            return $userGtw->getListePublic(($_COOKIE['page']-1)*10,10);
         else
             return $userGtw->getListePublic(1,10);
     }

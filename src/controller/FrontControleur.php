@@ -4,13 +4,15 @@ class FrontControleur {
     function __construct(){
 		global $rep,$vues; 
 		session_start();
-		setcookie('page', 1, time() + 24*3600);
+		if(!isset($_COOKIE['page'])){
+			setcookie('page', 1, time() + 24*3600);
+		}
 		try {
 			
 			$string_actor=' ';
 			$listeActions=array(
 				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte','modifMdp'),
-				'Admin' => array()
+				'Admin' => array('voirUser')
 			);
 
 			//On récupère l'action

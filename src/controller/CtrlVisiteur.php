@@ -196,14 +196,14 @@ class CtrlVisiteur {
 	}
 
 	public function listePrécédente(array $dVueErreur){
-		if($_COOKIE["page"]>1){
-			$_COOKIE["page"]=$_COOKIE["page"]-1;
+		if($_COOKIE['page']>1){
+			setcookie('page', $_COOKIE['page'] - 1, time() + 24*3600);
 		}
 		$this->ConsulterListePublic($dVueErreur);
 	}
 
 	public function listeSuivante(array $dVueErreur){
-		$_COOKIE["page"]=$_COOKIE["page"]+1;
+		setcookie('page', $_COOKIE['page'] + 1, time() + 24*3600);
 		$this->ConsulterListePublic($dVueErreur);
 	}
 

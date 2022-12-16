@@ -26,7 +26,7 @@ class MdlUtilisateur
 	}   
 
     public function isConnected(){
-        if(isset($_SESSION['id']) && isset($_SESSION['role'])) {
+        if(isset($_SESSION['id']) && isset($_SESSION['role']) && $_SESSION['role']=='user') {
             $id=Validation::cleanInt($_SESSION['id']);
             $nom=Validation::cleanString($_SESSION['nom']);
             $prenom=Validation::cleanString($_SESSION['prenom']);

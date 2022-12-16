@@ -6,18 +6,6 @@ class MdlAdmin
 	public function __construct(){
 		
 	}
-
-	public function connection($login,$mdp){
-		// $gtw=GatewayAdmin();
-		// $login=Validation::cleanString($login);
-		// $mdp=Validation::cleanString($mdp);
-		// if(password_verify($mdp,$gtw->getCredentials($login)){
-			// 	$_SESSION['role']='admin';
-			// 	$_SESSION['login']=$login;
-			// 	return newAdmin($login,’admin’);    
-		// }
-		// else return NULL;
-	}
 		
 	public function deconnexion(){
 		session_unset();
@@ -25,16 +13,20 @@ class MdlAdmin
 		$_SESSION = array();
 	}
 		
-	public function isAdmin(){
-		if(isset($_SESSION["login"]) && isset($_SESSION["role"]))
-		{
-			$login=Nettoyer::nettoyer_string($_SESSION['login']);
-			$role=Nettoyer::nettoyer_string($_SESSION['role']);
-			return new Admin($login,$role);
-		} else return null;
-	}
+    public function isConnected(){
+        if(isset($_SESSION['id']) && isset($_SESSION['role']) && $_SESSION['role']=='admin') {
+            $id=Validation::cleanInt($_SESSION['id']);
+            $nom=Validation::cleanString($_SESSION['nom']);
+            $prenom=Validation::cleanString($_SESSION['prenom']);
+            $pseudo=Validation::cleanPseudo($_SESSION['pseudo']);
+            $email=Validation::cleanMail($_SESSION['email']);
+            return new Utilisateur($id,$nom,$prenom,$pseudo,$email);
+        }
+        else return null;
+    }
+	
+	public function supprimerUtilisateur(){
 		
-
-
+	}
 
 }
