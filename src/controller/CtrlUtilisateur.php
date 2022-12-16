@@ -16,7 +16,6 @@ class CtrlUtilisateur {
 
 			switch($action) {
 
-				
 				case NULL:
 					$this->ConsulterListePrive($dVueErreur);
 					break;
@@ -63,6 +62,14 @@ class CtrlUtilisateur {
 
 				case "SupprimerListePrive":
 					$this->SupprimerListePrive($dVueErreur);
+					break;
+				
+				case "pagePrécédentePrive":
+					$this->listePrécédente($dVueErreur);
+					break;
+
+				case "pageSuivantePrive":
+					$this->listeSuivante($dVueErreur);
 					break;
 
 				default:
@@ -129,20 +136,20 @@ class CtrlUtilisateur {
 	function ConsulterListePrive(array $dVueErreur) {
 		global $rep,$vues; 
 		$listesPrive = MdlUtilisateur::RecupererListePrive();
-		$taches = MdlVisiteur::RecupererTache();
+		$taches = MdlUtilisateur::RecupererTache();
 		$action=NULL;
 		require ($rep.$vues['listPrive']);
 	}
 
 	function SupprimerTachePrive(array $dVueErreur){
 		global $rep,$vues; 
-		$tache = MdlVisiteur::SupprimerTache();
+		$tache = MdlUtilisateur::SupprimerTache();
 		$this->ConsulterListePrive($dVueErreur);
 	}
 
 	function SupprimerListePrive(array $dVueErreur){
 		global $rep,$vues; 
-		$liste = MdlVisiteur::SupprimerListe();
+		$liste = MdlUtilisateur::SupprimerListe();
 		$this->ConsulterListePrive($dVueErreur);
 
 	}
@@ -150,14 +157,14 @@ class CtrlUtilisateur {
 	public function AjouterTachePrive(array $dVueErreur){
 		global $rep,$vues; 
 		try{
-			$tache = MdlVisiteur::AjouterTache($dVueErreur);
+			$tache = MdlUtilisateur::AjouterTache($dVueErreur);
 			$this->ConsulterListePrive($dVueErreur);
 		}	
 		catch (Exception $e)
 		{
 			$ErreurLog=$e->getMessage();
 			$listesPrive= MdlUtilisateur::RecupererListePrive();
-			$taches = MdlVisiteur::RecupererTache();
+			$taches = MdlUtilisateur::RecupererTache();
 			$action=NULL;
 			require ($rep.$vues['listPrive']);
 		}	
@@ -167,14 +174,14 @@ class CtrlUtilisateur {
 	public function ModifierListePrive(array $dVueErreur){
 		global $rep,$vues;
 		try{
-			$tache = MdlVisiteur::ModifierListe($dVueErreur);
+			$tache = MdlUtilisateur::ModifierListe($dVueErreur);
 			$this->ConsulterListePrive($dVueErreur);
 		}	
 		catch (Exception $e)
 		{
 			$ErreurLog=$e->getMessage();
 			$listesPrive= MdlUtilisateur::RecupererListePrive();
-			$taches = MdlVisiteur::RecupererTache();
+			$taches = MdlUtilisateur::RecupererTache();
 			$action=NULL;
 			require ($rep.$vues['listPublic']);
 		}	 
@@ -183,7 +190,7 @@ class CtrlUtilisateur {
 	public function checkPrive(array $dVueErreur)
 	{
 		global $rep,$vues;
-		$tache = MdlVisiteur::check();
+		$tache = MdlUtilisateur::check();
 		$this->ConsulterListePrive($dVueErreur);
 	}
 
@@ -198,13 +205,11 @@ class CtrlUtilisateur {
 		{
 			$ErreurLog=$e->getMessage();
 			$listes = MdlUtilisateur::RecupererListePrive();
-			$taches = MdlVisiteur::RecupererTache();
+			$taches = MdlUtilisateur::RecupererTache();
 			$action=NULL;
 			require ($rep.$vues['listPrive']);
 		}	
-		
 	}
-
 	
 	public function listePrécédente(array $dVueErreur){
 		if($_COOKIE['pageUser'] > 1){

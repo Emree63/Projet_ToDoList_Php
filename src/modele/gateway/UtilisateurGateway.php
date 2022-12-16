@@ -27,7 +27,7 @@ class UtilisateurGateway{
         $query="SELECT * FROM ToDoList_Admin WHERE idAdmin=:id";
         $this->con->executeQuery($query, array(
                             'id' => array($id, PDO::PARAM_INT)));
-                            $results=$this->con->getResults();
+        $results=$this->con->getResults();
         if($results!=null){
             return true;
         }else{

@@ -179,7 +179,7 @@
                ?>
                
               <li class="list-group-item border-0 d-flex align-items-center ps-0">
-                <form name="action" action="index.php?action=check" method="POST">
+                <form name="action" action="check" method="POST">
                   <input class="form-check-input me-3" id="task-<?= $tache->getId() ?>" type="checkbox" onChange="submit();"
                   <?php if($tache->getEstValide() == 1) echo "checked" ?>>
                   <label for="task-<?= $tache->getId() ?>"> <?= $tache->getNom() ?> : <?= $tache->getDescription() ?></label>
@@ -188,7 +188,7 @@
                 </form>
                   <a href="index.php?action=SupprimerTache&idTache=<?= $tache->getId() ?>">
                     <button class="btn btn-default">
-                      <img src="./vue/Images/trash2.png" width="20" />
+                      <img src="./vue/Images/trash.png" width="20" />
                     </button>
                   </a>
               </li>
@@ -220,7 +220,7 @@
         <center>
           <p>Page n°<?php echo $_COOKIE['page'] ?></p>
         </center>
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center ">
           <li class="page-item"> 
             <a class="page-link" href="previousPage">Previous</a>
           </li>
@@ -232,7 +232,7 @@
   </body>
 
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light ">
+<footer class="text-center text-lg-start bg-light sticky-bottom">
   <br>
   <!-- Section: Links  -->
   <section class="">

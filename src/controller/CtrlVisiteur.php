@@ -160,10 +160,7 @@ class CtrlVisiteur {
 	function SupprimerListe(array $dVueErreur){
 		global $rep,$vues; 
 		$liste = MdlVisiteur::SupprimerListe();
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
+		$this->ConsulterListePublic($dVueErreur);
 	}
 
 	public function AjouterTache(array $dVueErreur){

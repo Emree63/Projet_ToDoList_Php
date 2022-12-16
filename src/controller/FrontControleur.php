@@ -14,7 +14,7 @@ class FrontControleur {
 			
 			$string_actor=' ';
 			$listeActions=array(
-				'Utilisateur' => array('logout','redirectionProfil','supprimerCompte', 'listePrive','AjouterListePrive', 'checkPrive', 'SupprimerListePrive', 'AjouterTachePrive', 'ModifierListePrive', 'SupprimerTachePrive'),
+				'Utilisateur' => array('logout','redirectionProfil','pageSuivantePrive','pagePrécédentePrive','supprimerCompte','modifMdp' ,'listePrive','AjouterListePrive', 'checkPrive', 'SupprimerListePrive', 'AjouterTachePrive', 'ModifierListePrive', 'SupprimerTachePrive'),
 				'Admin' => array('redirectionVueUtilisateur','SupprimerUtilisateur')
 			);
 

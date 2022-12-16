@@ -47,13 +47,6 @@ class ListeGateway{
         $this->con->executeQuery($query,array('id' => array($id, PDO::PARAM_INT)));
     }
 
-    public function getListe(int $offset, int $limit){
-        $query = "SELECT * FROM ToDoList_Liste LIMITS $offset,$limit"; 
-        $this->con->executeQuery($query);
-        $listes=$this->con->getResults();
-        return $listes;
-    }
-
     public function getListePublic($offset,$limit){
         $query = "SELECT * FROM ToDoList_Liste WHERE estPublic LIMIT $offset, $limit"; 
         $this->con->executeQuery($query);

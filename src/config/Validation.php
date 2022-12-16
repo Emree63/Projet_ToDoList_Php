@@ -91,7 +91,7 @@ class Validation {
     }
 
     static function cleanText(string &$txt) {
-        $txt = preg_replace('/[^A-Za-z\-\^0-9\ ]/', '',  $txt);
+        $txt = preg_replace('/[^A-Za-z\-\^0-9\ \à\é\^]/', '',  $txt);
         if($txt == null || $txt == '')
         {
             return null;

@@ -10,14 +10,25 @@ RewriteEngine On
 # Règles de réécriture d'url
 #---------------------------------
 
+# Visiteur
+
 RewriteRule ^login$ index.php?action=redirectionLogin [L]
 RewriteRule ^inscription$ index.php?action=redirectionInscription [L]
 RewriteRule ^VueListePublic$ index.php?action=redirectionListePublic [L]
+RewriteRule ^previousPage$ index.php?action=pagePrécédente [L]
+RewriteRule ^nextPage$ index.php?action=pageSuivante [L]
+RewriteRule ^check$ index.php?action=check [L]
+
+# Utilisateur
+
 RewriteRule ^logout$ index.php?action=logout [L]
 RewriteRule ^MonProfil$ index.php?action=redirectionProfil [L]
 RewriteRule ^supprimerCompte$ index.php?action=supprimerCompte [L]
-RewriteRule ^previousPage$ index.php?action=pagePrécédente [L]
-RewriteRule ^nextPage$ index.php?action=pageSuivante [L]
-RewriteRule ^Users$ index.php?action=voirUser [L]
 RewriteRule ^listePrive$ index.php?action=listePrive [L]
+RewriteRule ^previousPagePrive$ index.php?action=pagePrécédentePrive [L]
+RewriteRule ^nextPagePrive$ index.php?action=pageSuivantePrive [L]
+RewriteRule ^checkPrive$ index.php?action=checkPrive [L]
+
+# Admin
+
 RewriteRule ^users$ index.php?action=redirectionVueUtilisateur [L]

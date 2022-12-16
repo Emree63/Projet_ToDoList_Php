@@ -53,6 +53,26 @@ class MdlUtilisateur
         $id = Validation::cleanInt($_SESSION['id']);
         return $listeGtw->CountListe(intval($id));
     }
+
+    public function ModifierListe(&$dVueErreur){
+        $userGtw = new ListeGateway();
+        $id = $_POST['idListe'];
+        $nom = Validation::cleanText($_POST['nom-modif-liste']);
+        $description = Validation::cleanText($_POST['description-modif-liste']);
+
+        if($nom == NULL && $description==null){
+            return null;
+        }
+        if($description == NULL){
+            $userGtw->EditerNom($id, $nom);
+        }
+        else if($nom == NULL){
+            $userGtw->EditerDescription($id, $description);
+        }
+        else{
+             $userGtw->Editer($id, $nom, $description);
+        }  
+    }
     
     public static function suppressionUtilisateur(){
         
@@ -85,12 +105,12 @@ class MdlUtilisateur
     }
 
     public static function AjouterListePrive(&$dVueErreur){
-        $taskGtw = new ListeGateway();
+        $listGtw = new ListeGateway();
         $nom=$_POST['nom-ajout-liste'];
         $description=$_POST['description-ajout-liste'];
         $idCreateur =Validation::cleanInt($_SESSION['id']);
         Validation::val_form_add($nom,$description,$dVueErreur);
-        $taskGtw->Ajouter($nom, $description,0, $idCreateur);
+        $listGtw->Ajouter($nom, $description,0, $idCreateur);
     }
 
      public static function RecupererListePrive(){
@@ -101,5 +121,38 @@ class MdlUtilisateur
             return $listeGtw->getListePrive(1,10);
     }
 
+    public static function RecupererTache(){
+        $taskGtw = new TacheGateway();
+        return $taskGtw->getTache();
+    }
+
+    public static function SupprimerListe(){
+        $listeGtw = new ListeGateway();
+        $taskGtw = new TacheGateway();
+        $id = $_GET['idListe'];
+        $taskGtw->SupprimerViaListe($id);
+        $listeGtw->Supprimer($id);
+    }
+
+    public static function check(){
+        $taskGtw = new TacheGateway();
+        $id = $_POST['idTache'];
+        $taskGtw->isDone($id);
+    }
+
+    public static function SupprimerTache(){
+        $taskGtw = new TacheGateway();
+        $id = $_GET['idTache'];
+        $taskGtw->Supprimer($id);
+    }
+
+    public function AjouterTache(&$dVueErreur){
+        $taskGtw = new TacheGateway();
+        $id = $_POST['idListe'];
+        $nom = $_POST['nom-ajout'];
+        $description = $_POST['description-ajout'];
+        Validation::val_form_add($nom,$description,$dVueErreur);
+        $taskGtw->AjouterTache($nom, $description,false,$id);
+    }
 
 }

@@ -16,31 +16,31 @@ class MdlVisiteur
         $userGtw->AjouterUtilisateur($_POST["nom-Form"],$_POST["prenom-Form"],$_POST["pseudo-Form"],$_POST["mail"],$hash);
     }
 
-public static function RecupererListePublic(){
-        $userGtw = new ListeGateway(); 
+    public static function RecupererListePublic(){
+        $listGtw = new ListeGateway(); 
         if(isset($_COOKIE["page"]))
-            return $userGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
+            return $listGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
         else
-            return $userGtw->getListePublic(1,10);
+            return $listGtw->getListePublic(1,10);
     }
 
     public static function RecupererTache(){
-        $userGtw = new TacheGateway();
-        return $userGtw->getTache();
+        $taskGtw = new TacheGateway();
+        return $taskGtw->getTache();
     }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     public static function SupprimerTache(){
-        $userGtw = new TacheGateway();
+        $taskGtw = new TacheGateway();
         $id = $_GET['idTache'];
-        $userGtw->Supprimer($id);
+        $taskGtw->Supprimer($id);
     }
 
     public static function SupprimerListe(){
-        $userGtw = new ListeGateway();
+        $listGtw = new ListeGateway();
         $taskGtw = new TacheGateway();
         $id = $_GET['idListe'];
         $taskGtw->SupprimerViaListe($id);
-        $userGtw->Supprimer($id);
+        $listGtw->Supprimer($id);
     }
 
     public function AjouterTache(&$dVueErreur){
@@ -53,19 +53,22 @@ public static function RecupererListePublic(){
     }
 
     public function ModifierListe(&$dVueErreur){
-        $userGtw = new ListeGateway();
+        $listGtw = new ListeGateway();
         $id = $_POST['idListe'];
         $nom = Validation::cleanText($_POST['nom-modif-liste']);
         $description = Validation::cleanText($_POST['description-modif-liste']);
 
+        if($nom == NULL && $description==null){
+            return null;
+        }
         if($description == NULL){
-            $userGtw->EditerNom($id, $nom);
+            $listGtw->EditerNom($id, $nom);
         }
         else if($nom == NULL){
-            $userGtw->EditerDescription($id, $description);
+            $listGtw->EditerDescription($id, $description);
         }
         else{
-             $userGtw->Editer($id, $nom, $description);
+             $listGtw->Editer($id, $nom, $description);
         }  
     }
 
@@ -77,9 +80,9 @@ public static function RecupererListePublic(){
         $listGtw->Ajouter($nom, $description,1, 1);
     }
 
-    public function check(){
+    public static function check(){
         $taskGtw = new TacheGateway();
-        $id = $_POST['idTache'];
+        $id = Validation::cleanInt($_POST['idTache']);
         $taskGtw->isDone($id);
     }
 

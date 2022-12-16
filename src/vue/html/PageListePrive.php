@@ -200,7 +200,7 @@
                   $total = $total + 1;
                ?>
                <li class="list-group-item border-0 d-flex align-items-center ps-0">
-                <form name="action" action="index.php?action=checkPrive" method="POST">
+                <form name="action" action="checkPrive" method="POST">
                   <input class="form-check-input me-3" id="task-<?= $tache->getId() ?>" type="checkbox" onChange="submit();"
                   <?php if($tache->getEstValide() == 1) echo "checked" ?>>
                   <label for="task-<?= $tache->getId() ?>"> <?= $tache->getNom() ?> : <?= $tache->getDescription() ?></label>
@@ -209,7 +209,7 @@
                 </form>
                   <a href="index.php?action=SupprimerTachePrive&idTache=<?= $tache->getId() ?>">
                     <button class="btn btn-default">
-                      <img src="./vue/Images/trash2.png" width="20" />
+                      <img src="./vue/Images/trash.png" width="20" />
                     </button>
                   </a>
               </li>
@@ -240,21 +240,21 @@
 
       <nav aria-label="Page navigation example">
         <center>
-          <p>Page n°<?php echo $_COOKIE['page'] ?></p>
+          <p>Page n°<?php echo $_COOKIE['pageUser'] ?></p>
         </center>
         <ul class="pagination justify-content-center">
           <li class="page-item"> 
-            <a class="page-link" href="previousPage">Previous</a>
+            <a class="page-link" href="previousPagePrive">Previous</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="nextPage">Next</a>
+            <a class="page-link" href="nextPagePrive">Next</a>
           </li>
         </ul>
       </nav>
   </body>
 
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light ">
+<footer class="text-center text-lg-start bg-light sticky-bottom">
   <br>
   <!-- Section: Links  -->
   <section class="">

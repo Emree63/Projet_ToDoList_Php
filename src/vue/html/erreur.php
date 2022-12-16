@@ -15,7 +15,6 @@
   </head>
 
   <body>
-    
      <div class="model">
         <h1>Un problème est survenue !</h1>
         <?php
@@ -27,6 +26,5 @@
         ?>
         <a href="VueListePublic">Revenir</a>
     </div>
-
-    </body> 
+  </body> 
 </html>
