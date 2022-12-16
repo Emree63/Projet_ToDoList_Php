@@ -18,7 +18,7 @@ class CtrlUtilisateur {
 
 				
 				case NULL:
-					$this->ConsulterListePublic($dVueErreur);
+					$this->ConsulterListePrive($dVueErreur);
 					break;
 
 				case "logout":
@@ -88,14 +88,6 @@ class CtrlUtilisateur {
 		//fin
 		exit(0);
 	}//fin constructeur
-
-	function ConsulterListePublic(array $dVueErreur) {
-		global $rep,$vues; 
-		$listes = MdlVisiteur::RecupererListePublic();
-		$taches = MdlVisiteur::RecupererTache();
-		$action=NULL;
-		require ($rep.$vues['listPublic']);
-	}
 
 	function SeDeconnecter(array $dVueErreur){
 		global $rep,$vues; 
@@ -175,7 +167,7 @@ class CtrlUtilisateur {
 	public function ModifierListePrive(array $dVueErreur){
 		global $rep,$vues;
 		try{
-			$tache = MdlVisiteur::ModifierListe($dVueErreurs);
+			$tache = MdlVisiteur::ModifierListe($dVueErreur);
 			$this->ConsulterListePrive($dVueErreur);
 		}	
 		catch (Exception $e)

@@ -84,7 +84,7 @@ class MdlUtilisateur
 
     }
 
-    public function AjouterListePrive(&$dVueErreur){
+    public static function AjouterListePrive(&$dVueErreur){
         $taskGtw = new ListeGateway();
         $nom=$_POST['nom-ajout-liste'];
         $description=$_POST['description-ajout-liste'];
@@ -94,11 +94,11 @@ class MdlUtilisateur
     }
 
      public static function RecupererListePrive(){
-        $userGtw = new ListeGateway(); 
-        if(isset($_COOKIE["page"]))
-            return $userGtw->getListePublic(($_COOKIE["page"]-1)*10,10);
+        $listeGtw = new ListeGateway(); 
+        if(isset($_COOKIE["pageUser"]))
+            return $listeGtw->getListePrive(($_COOKIE["pageUser"]-1)*10,10);
         else
-            return $userGtw->getListePublic(1,10);
+            return $listeGtw->getListePrive(1,10);
     }
 
 
