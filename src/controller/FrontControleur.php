@@ -4,12 +4,13 @@ class FrontControleur {
     function __construct(){
 		global $rep,$vues; 
 		session_start();
-		if(!isset($_COOKIE['page'])){
-			setcookie('page', 1, time() + 24*3600);
+		if(!isset($_SESSION["pageUser"])){
+			$_SESSION['pageUser']=1;
 		}
-		if(!isset($_COOKIE['pageUser'])){
-			setcookie('pageUser', 1, time() + 24*3600);
+		if(!isset($_SESSION["page"])){
+			$_SESSION['page']=1;
 		}
+
 		try {
 			
 			$string_actor=' ';

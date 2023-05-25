@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Home Page</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./vue/css/task.css">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="./vue/css/task.css">
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> 
   </head>
 
   <body style="-webkit-user-select: none; /* Safari */
@@ -72,6 +78,19 @@
           $total = 0;
   ?>
   
+  <!-- Modifier couleur -->
+  <script>
+    
+    $(document).ready(function(){
+      $("#selector").change(function(){
+        $("body").toggleClass("bg-secondary");
+        $("nav").toggleClass("navbar-dark bg-dark");
+        $(".custom-control-label").toggleClass("text-white");
+
+      });
+    });
+  </script>
+
   <!-- Affichage des listes -->
   
   <div class="container py-2 h-100">
@@ -216,9 +235,9 @@
   }
 ?> 
 
-      <nav aria-label="Page navigation example">
+      <div aria-label="Page navigation example" class="NavPage">
         <center>
-          <p>Page n°<?php echo $_COOKIE['page'] ?></p>
+          <p>Page n°<?php echo $_SESSION['page'] ?></p>
         </center>
         <ul class="pagination justify-content-center ">
           <li class="page-item"> 
@@ -228,7 +247,7 @@
             <a class="page-link" href="nextPage">Next</a>
           </li>
         </ul>
-      </nav>
+      </div>
   </body>
 
 <!-- Footer -->

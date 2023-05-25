@@ -73,6 +73,19 @@
           $done = 0;
           $total = 0;
   ?>
+
+  <!-- Modifier couleur -->
+  <script>
+    
+    $(document).ready(function(){
+      $("#selector").change(function(){
+        $("body").toggleClass("bg-secondary");
+        $("nav").toggleClass("navbar-dark bg-dark");
+        $(".custom-control-label").toggleClass("text-white");
+
+      });
+    });
+  </script>
   
   <!-- Affichage des listesPrive -->
   
@@ -240,7 +253,7 @@
 
       <nav aria-label="Page navigation example">
         <center>
-          <p>Page n°<?php echo $_COOKIE['pageUser'] ?></p>
+          <p>Page n°<?php echo $_SESSION['pageUser'] ?></p>
         </center>
         <ul class="pagination justify-content-center">
           <li class="page-item"> 

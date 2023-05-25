@@ -220,14 +220,14 @@ class CtrlVisiteur {
 	}
 
 	public function listePrécédente(array $dVueErreur){
-		if($_COOKIE['page']>1){
-			setcookie('page', $_COOKIE['page'] - 1, time() + 24*3600);
+		if($_SESSION['page'] > 1){
+			$_SESSION['page']=$_SESSION['page']-1;
 		}
 		$this->ConsulterListePublic($dVueErreur);
 	}
 
 	public function listeSuivante(array $dVueErreur){
-		setcookie('page', $_COOKIE['page'] + 1, time() + 24*3600);
+		$_SESSION['page']=$_SESSION['page']+1;
 		$this->ConsulterListePublic($dVueErreur);
 	}
 

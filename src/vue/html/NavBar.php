@@ -16,6 +16,11 @@
                       border-bottom: 1px solid #fff;
                   }
               </style>
+              <div class="custom-control custon-switch mr-5">
+                <input type="checkbox" class="custom-control-input" id="selector">
+                  <label class="custom-control-label" for="selector">Dark Mode</label>
+                </input>
+              </div>
               <ul class="navbar-nav ml-auto">
                 <?php
                 if(isset($_SESSION['id'])){ ?>

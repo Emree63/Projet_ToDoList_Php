@@ -115,8 +115,8 @@ class MdlUtilisateur
 
      public static function RecupererListePrive(){
         $listeGtw = new ListeGateway(); 
-        if(isset($_COOKIE["pageUser"]))
-            return $listeGtw->getListePrive(($_COOKIE["pageUser"]-1)*10,10);
+        if(isset($_SESSION["pageUser"]))
+            return $listeGtw->getListePrive(($_SESSION["pageUser"]-1)*5,5);
         else
             return $listeGtw->getListePrive(1,10);
     }
